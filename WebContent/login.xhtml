@@ -22,20 +22,20 @@
             <p:focus context="panel"/>
 
             <h:panelGrid>
-                <h:outputLabel for="name" value="Username: "/>
+                <h:outputLabel for="name" value="#{text.username}"/>
                 <p:inputText id="name" required="true" label="Name"
                              value="#{login.name}">
                 </p:inputText>
             </h:panelGrid>
 
             <h:panelGrid>
-                <h:outputLabel for="password" value="Password: "/>
+                <h:outputLabel for="password" value="#{text.password}"/>
                 <p:inputText id="password" required="true" label="password"
                              type="password"
                              value="#{login.password}"/>
             </h:panelGrid>
 
-            <h:commandButton ajax="false" value="Login" update="panel,:form:messages"
+            <h:commandButton ajax="false" value="#{text.login}" update="panel,:form:messages"
                              action="#{login.login}"/>
         </p:panel>
     </h:form>

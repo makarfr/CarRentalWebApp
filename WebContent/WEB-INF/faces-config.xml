@@ -10,18 +10,14 @@
 	</converter>
 	
 	<application>
-	<locale-config>
-	<default-locale>ru</default-locale>
-	<supported-locale>en</supported-locale>
-	<supported-locale>ru</supported-locale>
-	</locale-config>
-	
-	<resource-bundle>
-	<base-name>i18n.text</base-name>
-	<var>text</var>
-	</resource-bundle>
-	
-	</application>
+     	   <locale-config>
+     	        <default-locale>en</default-locale>
+     	   </locale-config>
+	   <resource-bundle>
+			<base-name>i18n.text</base-name>
+			<var>text</var>
+	   </resource-bundle>
+     </application>
 	
 	
 </faces-config>

@@ -26,8 +26,7 @@
 
 				<h:form>
 					<c:if test="#{login.logged}">
-						<li><p:commandLink value="Logout " action="#{login.logout}"
-								ajax="false" /></li>
+						<li><p:commandLink value="#{text.logout}" action="#{login.logout}" ajax="false" /></li>
 
 					</c:if>
 					<div id="menu">
@@ -43,13 +42,12 @@
 								icon="ui-icon-search" />
 
 						</p:tabMenu>
+						<f:view locale="#{localeBean.localeCode}"/>
+						<h:selectOneMenu value="#{localeBean.localeCode}" onchange="submit()"
+										 valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
+   							<f:selectItems value="#{localeBean.languages}" /> 
+						</h:selectOneMenu>
 					
-							<h:selectOneMenu value="#{localeBean.language}"	onchange="submit()">
-								<f:selectItem itemValue="en" itemLabel="English" />
-								<f:selectItem itemValue="ru" itemLabel="Русский" />
-							</h:selectOneMenu>
-					
-
 					</div>
 				</h:form>
 			</div>

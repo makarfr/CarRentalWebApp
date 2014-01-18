@@ -86,16 +86,16 @@ public class AuthentificationBean implements Serializable {
 			isLogged = true;
 			System.out.println(user.getRole());
 			if (user.getRole().equals("client")) {
-				return "client/carView";
+				return "client/carView?faces-redirect=true";
 			}
 			System.out.println("admin case");
-			return "admin/clientView";
+			return "admin/clientView?faces-redirect=true";
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
 			e1.printStackTrace();
 			System.out.println("error case " + e1.getStackTrace());
-			return "/login";
+			return "/login?faces-redirect=true";
 		}
 	}
 
@@ -107,7 +107,7 @@ public class AuthentificationBean implements Serializable {
 		isLogged = false;
 		client = null;
 		System.out.println("in logout end");
-		return "/login";
+		return "/login?faces-redirect=true";
 
 	}
 
