@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.faces.application.Application;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -16,7 +17,7 @@ public class LoñaleBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String localeCode = FacesContext.getCurrentInstance().getApplication().getDefaultLocale().getLanguage();
+	private String localeCode;
 
 	private Map<String, Locale> languages = new LinkedHashMap<String, Locale>(2) {
 		{
@@ -26,7 +27,8 @@ public class LoñaleBean implements Serializable {
 	};
 
 	public LoñaleBean() {
-
+		Application app = FacesContext.getCurrentInstance().getApplication();
+		localeCode = app.getDefaultLocale().getLanguage();
 	}
 
 	public Map<String, Locale> getLanguages() {
