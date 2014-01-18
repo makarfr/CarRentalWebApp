@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<f:facet name="header">Create new Car</f:facet>
+
+				<p:panelGrid columns="2" cellpadding="5">
+
+					<h:outputText value="Car Number: " />
+					<p:inputMask value="#{carBean.car.carNumber}" mask="a*-9999-a*" />
+
+					<h:outputText value="Price per day: " />
+					<p:inputMask value="#{carBean.car.carPrice}" mask="9?999"
+						maxlength="5" />
+
+					<h:outputText value="Year of manufectured: " />
+					<p:calendar id="cal" value="#{carBean.car.carYear}"
+						navigator="true" display="inline" required="true"
+						requiredMessage="Date is required"
+						converterMessage="Invalid date format" />
+
+					<h:outputText value="Car Description: " />
+					<p:inputText value="#{carBean.car.carDescription}" />
+
+					<h:outputText value="Car Model: " />
+
+					<p:selectOneMenu value="#{carBean.car.carModel}"
+						converter="carModelConverter">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{carBean.carModels}" var="model"
+							itemLabel="#{model.carModelName}, #{model.carModelDescription}"
+							itemValue="#{carModelName}" />
+
+					</p:selectOneMenu>
+
+
+					<h:outputText value="Car Type: " />
+					<p:selectOneMenu value="#{carBean.car.carType}">
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItems value="#{carBean.types}" />
+					</p:selectOneMenu>
+
+					<p:commandButton value="Reset" type="reset" />
+
+					<h:commandButton value="Submit" action="#{carBean.addCar}"
+						oncomplete="Added new car" onclick="PF('dlg').show()"/>
+
+					<p:dialog header="Add New Car" widgetVar="dlg" resizable="false">
+						<h:form id="form">
+							<h:panelGrid columns="1">
+								<h:outputLabel for="firstname" value="Successful!" />
+
+								<p:commandButton id="closeButton" value="Ok"
+									oncomplete="PF('dlg').hide();" />
+							</h:panelGrid>
+						</h:form>
+					</p:dialog>
+
+				</p:panelGrid>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+
+<h:form>
+    <p:dataTable var="clientItem" value="#{clientBean.clientsList}">
+        <p:column headerText="Client Card Number:">
+            <h:outputText value="#{clientItem.clientCardNumber}" />
+         
+        </p:column>
+
+        <p:column headerText="Name (Middle Name) and Surname:" >
+            <h:outputText value="#{clientItem.clientName} #{clientItem.clientMiddleName} #{clientItem.clientSurname}" />
+      
+        </p:column>
+
+        <p:column headerText="Address:" >
+  <h:outputText value="#{clientItem.clientAddress}"/>
+        </p:column>
+
+        <p:column headerText="Phone number:">
+            <h:outputText value="#{clientItem.clientPhoneNumber}" />
+        </p:column>
+        
+          <p:column headerText="Driver Liscense number:" >
+            <h:outputText value="#{clientItem.clientDriverLicenseNumber}" />
+        </p:column>
+        
+          <p:column headerText="Discount:">
+            <h:outputText value="#{clientItem.clientDiscount}" />
+        </p:column>
+    </p:dataTable>
+</h:form>
+
+
+		
+		</ui:define>
+	</ui:composition>
+	
+</h:body>
+</html>

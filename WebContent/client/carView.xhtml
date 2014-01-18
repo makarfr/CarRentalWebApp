@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="form">
+							
+				<p:dataTable var="carView" value="#{carBean.lazyModel}" paginator="true" rows="10"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{carBean.car}" id="carBean" lazy="true">
+
+					<p:ajax event="rowSelect" update=":form:display" oncomplete="PF('carDialog').show()" />
+
+					<p:column headerText="Model" sortBy="model"
+						filterBy="#{carView.carModel}">
+						<h:outputText value="#{carView.carModel}" converter="carModelConverter"/>
+					</p:column>
+
+					<p:column headerText="Year" sortBy="#{carView.date}"
+						filterBy="#{carView.carYear}">
+						<h:outputText value="#{carView.carYear}">
+							<f:convertDateTime pattern="yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Price" sortBy="price"
+						filterBy="#{carView.carPrice}">
+						<h:outputText value="#{carView.carPrice}" />
+					</p:column>
+
+					<p:column headerText="Type" sortBy="type" filterBy="#{carView.carType}">
+						<h:outputText value="#{carView.carType}" />
+					</p:column>
+
+					<p:column headerText="Number" sortBy="number"
+						filterBy="#{carView.carNumber}">
+						<h:outputText value="#{carView.carNumber}" />
+					</p:column>
+
+					<p:column headerText="Description" 
+						filterBy="#{carView.carDescription}">
+						<h:outputText value="#{carView.carDescription}" />
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog header="Car Detail" widgetVar="carDialog"
+					resizable="true" >
+
+					<h:panelGrid id="display" columns="1" cellpadding="4">
+
+						<h:panelGrid columns="2" cellpadding="4">
+
+							<h:outputText value="Model" />
+							<h:outputText
+								value="#{carBean.car.carModel.carModelName}"
+								id="model" />
+
+							<h:outputText value="Type:" />
+							<h:outputText value="#{carBean.car.carType.value}"
+								id="type" />
+
+							<h:outputText value="Number:"/>
+							<h:outputText value="#{carBean.car.carNumber}"
+								id="number" />
+
+							<h:outputText value="Year:" />
+							<h:outputText value="#{carBean.car.carYear}" id="year">
+								<f:convertDateTime pattern="yyyy" />
+							</h:outputText>
+
+							<h:outputText value="Price:" />
+							<h:outputText value="#{carBean.car.carPrice}"
+								id="price" />
+
+
+							<p:commandButton value="Rent!"
+								action="#{selectedCarBean.choose(carBean.car)}" />
+						</h:panelGrid>
+					</h:panelGrid>
+				</p:dialog>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

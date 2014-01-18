@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			    <div>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Your name:"/>
+                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.name}"/>
+                <p:outputLabel value="Your Lastname:"/>
+                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.lastname}"/>
+                <p:outputLabel value="Your LN:"/>
+                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.licenseNumber}"/>
+                <p:outputLabel value="Your Date of Birth:"/>
+                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.dateOfBirth}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </p:outputLabel>
+                <p:outputLabel value="Your Discount:"/>
+                <p:outputLabel rendered="#{profileBean.clientBean.client.discount!=null}"
+                               value="#{profileBean.clientBean.client.discount} %"/>
+                <p:outputLabel rendered="#{profileBean.clientBean.client.discount==null}" value="0 %"/>
+            </p:panelGrid>
+        </div>
+
+        <div id="client_cars_view">
+            <h:form id="form">
+                <p:carousel id="carousel" value="#{profileBean.cars}" var="car" itemStyleClass="carItem"
+                            headerText="Your cars" numVisible="1">
+
+                    <p:graphicImage id="image" value="../resources/foto/#{car.number}.jpg" width="250" height="250"/>
+
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputText value="Manufacturer:"/>
+                        <h:outputText value="#{car.manufacturer.label}" id="manufacturer"/>
+
+                        <h:outputText value="Model:"/>
+                        <h:outputText value="#{car.model}" id="model"/>
+
+                        <h:outputText value="Number:"/>
+                        <h:outputText value="#{car.number}" id="number"/>
+
+                        <h:outputText value="Year:"/>
+                        <h:outputText value="#{car.date}" id="year">
+                            <f:convertDateTime pattern="yyyy"/>
+                        </h:outputText>
+
+                        <h:outputText value="Color:"/>
+                        <h:outputText value="#{car.color.value}" id="color"/>
+
+                        <h:outputText value="Price:"/>
+                        <h:outputText value="#{car.price}" id="price"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Rent It Again" action="#{selectedCarBean.choose(car)}"/>
+                </p:carousel>
+
+                <p:dialog>
+                    <p:outputPanel id="carDetail" style="text-align:center;" layout="block"/>
+                </p:dialog>
+
+            </h:form>
+        </div>
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>
