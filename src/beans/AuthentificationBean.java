@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import common.Actions;
+import common.SessionHelper;
 import common.UserRole;
 
 import model.Client;
@@ -87,8 +88,9 @@ public class AuthentificationBean implements Serializable {
 			RegisterUser user = dao.findByLogin(name);
 			client = user.getClient();
 			isLogged = true;
-
-			if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
+			SessionHelper.putAtrributeToSession("id", user.getClientId());
+			SessionHelper.putAtrributeToSession("userLogin", user.getRegisterLogin());
+				if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
 				return Actions.CARS_VIEW.getFullUrl();
 			}
 
