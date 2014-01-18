@@ -14,18 +14,17 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form>
+			<h:form id="addCarForm">
 				<f:facet name="header">Create new Car</f:facet>
 
-				<p:panelGrid columns="2" cellpadding="5">
+				<p:panelGrid columns="2" cellpadding="5" id="addCarPanel">
 
 					<h:outputText value="Car Number: " />
 					<p:inputMask value="#{carBean.car.carNumber}" mask="a*-9999-a*" />
-
+					
 					<h:outputText value="Price per day: " />
-					<p:inputMask value="#{carBean.car.carPrice}" mask="9?999"
-						maxlength="5" />
-
+					<p:inputMask value="#{carBean.car.carPrice}" mask="9?999" maxlength="5" />
+					
 					<h:outputText value="Year of manufectured: " />
 					<p:calendar id="cal" value="#{carBean.car.carYear}"
 						navigator="true" display="inline" required="true"

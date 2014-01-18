@@ -30,7 +30,8 @@
 
 					</c:if>
 					<div id="menu">
-
+					
+					<c:if test="#{login.logged}">
 						<p:tabMenu activeIndex="0">
 							<p:menuitem value="Automobiles" url="/client/carView.xhtml"
 								icon="ui-icon-star" />
@@ -42,6 +43,9 @@
 								icon="ui-icon-search" />
 
 						</p:tabMenu>
+
+					</c:if>
+						
 						<f:view locale="#{localeBean.localeCode}"/>
 						<h:selectOneMenu value="#{localeBean.localeCode}" onchange="submit()"
 										 valueChangeListener="#{localeBean.languageLocaleCodeChanged}">

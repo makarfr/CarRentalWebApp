@@ -13,7 +13,11 @@ import model.Car;
 import model.CarModel;
 import model.enums.CarType;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
+
+import common.Actions;
+
 
 import convertors.CarModelConverter;
 
@@ -24,7 +28,7 @@ import dao.interfaces.CarModelDAOInterface;
 @ManagedBean(name ="carBean")
 @SessionScoped
 public class CarBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Car car = new Car();
@@ -32,16 +36,14 @@ public class CarBean implements Serializable {
 	private CarDAOInterface<Car> carDao;
 	@EJB
 	private CarModelDAOInterface<CarModel> carModelDao;
-	  private LazyDataModel<Car> lazyModel;
+	private LazyDataModel<Car> lazyModel;
 
-	  
-	  @PostConstruct
-	    public void init() {
-	        lazyModel = new CarLazyDataModel(carDao);
-	    }
 
-	  
-	  
+	@PostConstruct
+	public void init() {
+		lazyModel = new CarLazyDataModel(carDao);
+	}
+
 	public Car getCar() {
 		return car;
 	}
@@ -49,38 +51,37 @@ public class CarBean implements Serializable {
 	public void setCar(Car car) {
 		this.car = car;
 	}
-	
-	 public LazyDataModel<Car> getLazyModel() {
-	        return lazyModel;
-	    }
 
-	    public void setLazyModel(LazyDataModel<Car> lazyModel) {
-	        this.lazyModel = lazyModel;
-	    }
-		
+	public LazyDataModel<Car> getLazyModel() {
+		return lazyModel;
+	}
+
+	public void setLazyModel(LazyDataModel<Car> lazyModel) {
+		this.lazyModel = lazyModel;
+	}
+
 	public CarType[] getTypes() {
 		return CarType.values();
-		}
-		
+	}
+
 	public void saveCar() {
 		carDao.create(car);
 	}
-	
+
 	public List<CarModel> getCarModels(){
 		List<CarModel> list = new LinkedList<CarModel>();
 		list = carModelDao.findAll();
 		CarModelConverter.getList(list);
 		return list;
 	}
-	
-	 public String addCar() {
-		carDao.create(car);
-       return "carView";
-   }
-	 
-	 public String goToAdd(){
-		 return "addCarView";
-	 }
-	
-	
+
+	public String addCar() {
+		carDao.create(car); 
+		return Actions.CARS_VIEW.getFullUrl();
+	}
+
+	public String goToAdd(){
+		return Actions.ADD_CAR_VIEW.getViewUrl();
+	}
+
 }

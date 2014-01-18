@@ -46,8 +46,7 @@ public class OrderPostBean {
         del.setDealerId(2);
         contract.setDealer(del);
         contract.setStatus(StatusContract.NEW);
-   System.out.println(clientBean);
-   System.out.println(clientBean.getSelectedClient());
+
         if (clientBean.getSelectedClient().getClientDiscount() > 0) {
         	BigDecimal percent = new BigDecimal(clientBean.getSelectedClient().getClientDiscount() / 100);
             contract.setTotalPrice(getTotalSum().subtract(getTotalSum().multiply(percent)));

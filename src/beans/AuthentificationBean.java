@@ -11,6 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import common.Actions;
+import common.UserRole;
+
 import model.Client;
 import model.RegisterUser;
 import dao.interfaces.ClientDAOInterface;
@@ -84,30 +87,27 @@ public class AuthentificationBean implements Serializable {
 			RegisterUser user = dao.findByLogin(name);
 			client = user.getClient();
 			isLogged = true;
-			System.out.println(user.getRole());
-			if (user.getRole().equals("client")) {
-				return "client/carView?faces-redirect=true";
+
+			if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
+				return Actions.CARS_VIEW.getFullUrl();
 			}
-			System.out.println("admin case");
-			return "admin/clientView?faces-redirect=true";
+
+			return Actions.CLIENTS_VIEW.getFullUrl();
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
 			e1.printStackTrace();
-			System.out.println("error case " + e1.getStackTrace());
-			return "/login?faces-redirect=true";
+			return Actions.LOGIN_VIEW.getFullUrl();
 		}
 	}
 
 	public String logout() {
-		System.out.println("in logout start");
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		((HttpSession) ec.getSession(false)).invalidate();
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		isLogged = false;
 		client = null;
-		System.out.println("in logout end");
-		return "/login?faces-redirect=true";
+		return Actions.LOGIN_VIEW.getFullUrl();
 
 	}
 
