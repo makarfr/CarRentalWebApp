@@ -26,36 +26,37 @@
 					<p:ajax event="rowSelect" update=":formClient:display"
 						oncomplete="PF('clientDialog').show()" />
 
-					<p:column headerText="Client Card Number:"
+					<p:column headerText="#{text.client_card_number}:"
 						sortBy="clientCardNumber">
 						<h:outputText value="#{clientItem.clientCardNumber}" />
 
 					</p:column>
 
-					<p:column headerText="Name (Middle Name) and Surname:"
+					<p:column headerText="#{text.client_full_name}:"
 						sortBy="clientSurname" filterBy="#{clientItem.clientSurname}">
 						<h:outputText
 							value="#{clientItem.clientName} #{clientItem.clientMiddleName} #{clientItem.clientSurname}" />
 
 					</p:column>
 
-					<p:column headerText="Address:" sortBy="clientAddress"
-						filterBy="#{clientItem.clientAddress}">
+					<p:column headerText="#{text.client_address}:"
+						sortBy="clientAddress" filterBy="#{clientItem.clientAddress}">
 						<h:outputText value="#{clientItem.clientAddress}" />
 					</p:column>
 
-					<p:column headerText="Phone number:" sortBy="clientPhoneNumber"
+					<p:column headerText="#{text.client_phone_number}:"
+						sortBy="clientPhoneNumber"
 						filterBy="#{clientItem.clientPhoneNumber}">
 						<h:outputText value="#{clientItem.clientPhoneNumber}" />
 					</p:column>
 
-					<p:column headerText="Driver Liscense number:"
+					<p:column headerText="#{text.client_driver_license}:"
 						sortBy="clientDriverLicenseNumber"
 						filterBy="#{clientItem.clientDriverLicenseNumber}">
 						<h:outputText value="#{clientItem.clientDriverLicenseNumber}" />
 					</p:column>
 
-					<p:column headerText="Discount:" sortBy="clientDiscount">
+					<p:column headerText="#{text.discount}:" sortBy="clientDiscount">
 						<h:outputText value="#{clientItem.clientDiscount}" />
 					</p:column>
 					<p:column>
@@ -65,35 +66,34 @@
 					</p:column>
 				</p:dataTable>
 
-				<p:dialog header="Client Detail" widgetVar="clientDialog"
+				<p:dialog header="#{text.client_detail}" widgetVar="clientDialog"
 					resizable="true">
 
 					<h:panelGrid id="display" columns="2" cellpadding="12">
 
+						<h:outputText value="#{text.client_card_number}:" />
+       					     #{clientBean.selectedClient.clientCardNumber}
 
-						<h:outputText value="Client Card Number:" />
-            #{clientBean.selectedClient.clientCardNumber}
-
-            <h:outputText value="Name (Middle Name) and Surname:" />
+       				     <h:outputText value="#{text.client_full_name}:" />
 						<h:outputText
 							value="#{clientBean.selectedClient.clientName} #{clientBean.selectedClient.clientSurname}"
 							style="font-weight:bold" />
 
-						<h:outputText value="Address:" />
+						<h:outputText value="#{text.client_address}:" />
 						<h:outputText value="#{clientBean.selectedClient.clientAddress}"
 							style="font-weight:bold" />
 
-						<h:outputText value="Phone number:" />
+						<h:outputText value="#{text.client_phone_number}:" />
 						<h:outputText
 							value="#{clientBean.selectedClient.clientPhoneNumber}"
 							style="font-weight:bold" />
 
-						<h:outputText value="Driver Liscense number:" />
+						<h:outputText value="#{text.client_driver_license}:" />
 						<h:outputText
 							value="#{clientBean.selectedClient.clientDriverLicenseNumber}"
 							style="font-weight:bold" />
 
-						<h:outputText value="Discount:" />
+						<h:outputText value="#{text.discount}:" />
 						<h:outputText value="#{clientBean.selectedClient.clientDiscount}"
 							style="font-weight:bold" />
 					</h:panelGrid>
@@ -104,25 +104,41 @@
 
 
 
-			<p:dialog id="editDialog" header="Edit" widgetVar="dlg"
+			<p:dialog id="editDialog" header="#{text.edit}" widgetVar="dlg"
 				resizable="false" modal="true">
 				<h:form>
 					<h:panelGrid style="margin-top:20px">
 						<h:panelGrid columns="1">
-							<h:outputText value="Client name" />
+							<h:outputText value="#{text.client_name}" />
 							<h:inputText label="ClientName" required="true" id="name"
 								value="#{clientBean.selectedClient.clientName}" />
-							<h:outputText value="Client Surname" />
+							<h:outputText value="#{text.client_surname}" />
 							<h:inputText label="ClientSurname" required="true" id="s"
 								value="#{clientBean.selectedClient.clientSurname}" />
 						</h:panelGrid>
 
 					</h:panelGrid>
+					<p:commandButton value="Reset" type="reset" />
 
+					<p:commandButton value="Ok" action="#{clientBean.save}"
+						oncomplete="dlgConfirm.show();" />
+				</h:form>
+			</p:dialog>
+
+
+			<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
+				resizable="false">
+				<h:form>
+					<h:panelGrid columns="1">
+						<h:outputText value="#{text.dialog_success_edit}" />
+
+						<p:commandButton id="closeButton" value="Ok"
+							oncomplete="dlgConfirm.hide();"
+							action="/admin/clientView.xhtml?faces-redirect=true " ajax="false" />
+					</h:panelGrid>
 				</h:form>
 
 			</p:dialog>
-
 
 
 		</ui:define>

@@ -98,9 +98,9 @@
             <form-error-page>/index.xhtml</form-error-page>
         </form-login-config>
     </login-config>
+    
     <welcome-file-list>
-        <welcome-file>ordercreateext.faces</welcome-file>
-
+        <welcome-file>login.xhtml</welcome-file>
     </welcome-file-list>
 <context-param>
    <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>

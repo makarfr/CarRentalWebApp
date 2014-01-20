@@ -19,56 +19,65 @@
 
 				<p:panelGrid columns="2" cellpadding="5" id="addCarPanel">
 
-					<h:outputText value="Car Number: " />
-					<p:inputMask value="#{carBean.car.carNumber}" mask="a*-9999-a*" />
-					
-					<h:outputText value="Price per day: " />
-					<p:inputMask value="#{carBean.car.carPrice}" mask="9?999" maxlength="5" />
-					
-					<h:outputText value="Year of manufectured: " />
-					<p:calendar id="cal" value="#{carBean.car.carYear}"
+					<h:outputText value="#{text.number}: " />
+					<p:inputMask id="numb" value="#{addCarBean.car.carNumber}"
+						mask="a*-9999-a*" required="true"
+						requiredMessage="#{text.number} required" />
+				
+
+					<h:outputText value="#{text.price_per_day}: " />
+					<p:inputMask id="price" value="#{addCarBean.car.carPrice}"
+						mask="9?999" maxlength="5" required="true"
+						requiredMessage="#{text.price_per_day} required" />
+				
+
+					<h:outputText value=" #{text.year}: " />
+					<p:calendar id="cal" value="#{addCarBean.car.carYear}"
 						navigator="true" display="inline" required="true"
 						requiredMessage="Date is required"
 						converterMessage="Invalid date format" />
+				
 
-					<h:outputText value="Car Description: " />
-					<p:inputText value="#{carBean.car.carDescription}" />
+					<h:outputText value="#{text.description}: " />
+					<p:inputText value="#{addCarBean.car.carDescription}" />
 
-					<h:outputText value="Car Model: " />
-
-					<p:selectOneMenu value="#{carBean.car.carModel}"
-						converter="carModelConverter">
-						<f:selectItem itemLabel="Select One" itemValue="" />
-						<f:selectItems value="#{carBean.carModels}" var="model"
+					<h:outputText value="#{text.model}: " />
+					<p:selectOneMenu id="mod" value="#{addCarBean.car.carModel}"
+						converter="carModelConverter" required="true">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{addCarBean.carModels}" var="model"
 							itemLabel="#{model.carModelName}, #{model.carModelDescription}"
 							itemValue="#{carModelName}" />
-
 					</p:selectOneMenu>
-
-
-					<h:outputText value="Car Type: " />
-					<p:selectOneMenu value="#{carBean.car.carType}">
-						<f:selectItem itemLabel="Select One" itemValue="" />
-						<f:selectItems value="#{carBean.types}" />
+					
+	
+					<h:outputText value="#{text.type}: " />
+					<p:selectOneMenu id="type" value="#{addCarBean.car.carType}" required="true"
+						requiredMessage="#{text.type} required">
+						<f:selectItem itemLabel="#{text.select_one}" itemValue="" />
+						<f:selectItems value="#{addCarBean.types}" />
 					</p:selectOneMenu>
-
-					<p:commandButton value="Reset" type="reset" />
-
-					<h:commandButton value="Submit" action="#{carBean.addCar}"
-						oncomplete="Added new car" onclick="PF('dlg').show()"/>
-
-					<p:dialog header="Add New Car" widgetVar="dlg" resizable="false">
-						<h:form id="form">
-							<h:panelGrid columns="1">
-								<h:outputLabel for="firstname" value="Successful!" />
-
-								<p:commandButton id="closeButton" value="Ok"
-									oncomplete="PF('dlg').hide();" />
-							</h:panelGrid>
-						</h:form>
-					</p:dialog>
-
+				
 				</p:panelGrid>
+				
+				<p:commandButton value="Reset" type="reset" />
+
+				<p:commandButton value="Ok" action="#{addCarBean.addCar}"
+					oncomplete="Added new car" onclick="dlg.show();" />
+
+				<p:dialog header="#{text.add_new_car}" widgetVar="dlg"
+					resizable="false">
+
+					<h:panelGrid columns="1">
+						<h:outputText value="#{text.dialog_success_add_car}" />
+
+						<p:commandButton id="closeButton" value="Ok"
+							oncomplete="dlg.hide();" />
+					</h:panelGrid>
+
+				</p:dialog>
+
+
 
 			</h:form>
 

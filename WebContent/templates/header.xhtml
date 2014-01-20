@@ -26,31 +26,30 @@
 
 				<h:form>
 					<c:if test="#{login.logged}">
-						<li><p:commandLink value="#{text.logout}" action="#{login.logout}" ajax="false" /></li>
+						<p:commandLink value="#{text.logout}" action="#{login.logout}" ajax="false" />
+						<br/>
+								<f:view locale="#{localeBean.localeCode}"/>
+								<h:selectOneMenu value="#{localeBean.localeCode}" onchange="submit()"
+												 valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
+		   							<f:selectItems value="#{localeBean.languages}" /> 
+								</h:selectOneMenu>
+							
+						
 						<li><p:outputLabel value="#{text.welcome}, #{sessionScope['userLogin']}"/> </li>
 					</c:if>
 					<div id="menu">
 					
 					<c:if test="#{login.logged}">
-						<p:tabMenu activeIndex="0">
+						<p:tabMenu activeIndex="5">
 							<p:menuitem value="Automobiles" url="/client/carView.xhtml"
 								icon="ui-icon-star" />
 							<p:menuitem value="Clients" url="/admin/clientView.xhtml"
 								rendered="#{request.isUserInRole('admin')}"
 								icon="ui-icon-person" />
-							<p:menuitem value="AddNewCar" url="/admin/addCarView.xhtml"
-								rendered="#{request.isUserInRole('admin')}"
-								icon="ui-icon-search" />
-
 						</p:tabMenu>
 
 					</c:if>
 						
-						<f:view locale="#{localeBean.localeCode}"/>
-						<h:selectOneMenu value="#{localeBean.localeCode}" onchange="submit()"
-										 valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
-   							<f:selectItems value="#{localeBean.languages}" /> 
-						</h:selectOneMenu>
 					
 					</div>
 				</h:form>

@@ -13,15 +13,11 @@ import model.Car;
 import model.CarModel;
 import model.enums.CarType;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.model.LazyDataModel;
 
 import common.Actions;
 
-
 import convertors.CarModelConverter;
-
-import dao.implementations.CarModelDAO;
 import dao.interfaces.CarDAOInterface;
 import dao.interfaces.CarModelDAOInterface;
 
@@ -64,9 +60,6 @@ public class CarBean implements Serializable {
 		return CarType.values();
 	}
 
-	public void saveCar() {
-		carDao.create(car);
-	}
 
 	public List<CarModel> getCarModels(){
 		List<CarModel> list = new LinkedList<CarModel>();

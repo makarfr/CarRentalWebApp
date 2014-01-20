@@ -8,7 +8,6 @@ import model.Car;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import dao.implementations.CarDAO;
 import dao.interfaces.CarDAOInterface;
 
 public class CarLazyDataModel extends LazyDataModel<Car> {
@@ -21,7 +20,7 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
 	private int pageSize;
 	private int rowIndex;
 	private int rowCount;
-	private CarDAOInterface carDao;
+	private CarDAOInterface<Car> carDao;
 
 	public CarLazyDataModel(CarDAOInterface<Car> carDao2) {
 		this.carDao = carDao2;

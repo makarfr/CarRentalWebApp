@@ -57,5 +57,10 @@ public class ClientBean implements Serializable{
 	public void setSelectedClient(Client client) {
 		this.selectedClient = client;
 	}
+	
+	 public String save() {
+	        clientDao.update(selectedClient);
+	        return "clientView";
+	    }
 
 }

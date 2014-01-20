@@ -31,7 +31,8 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		Query query = em.createNamedQuery("Car.count");
 		return (Long) query.getSingleResult();
 	}
-
+	
+	@Override
 	public List<Car> findRange(int start, int count, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();

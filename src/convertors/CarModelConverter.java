@@ -2,7 +2,6 @@ package convertors;
 
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -12,10 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import model.CarModel;
-import model.Client;
-import dao.implementations.CarModelDAO;
 import dao.interfaces.CarModelDAOInterface;
-import dao.interfaces.ClientDAOInterface;
 
 @FacesConverter(value = "carModelConverter")
 public class CarModelConverter implements Converter {
@@ -27,7 +23,7 @@ public class CarModelConverter implements Converter {
 			UIComponent uiComponent, String s) {
 		if (s.isEmpty()){
 			return s;
-		}
+		} else {
 		String[] mass = s.split(" ");
 		System.out.println(s);
 		String modelName = mass[0];
@@ -36,7 +32,7 @@ public class CarModelConverter implements Converter {
 		 CarModel result = getCarModelDao().findByModelNameAndDesc(modelName, modelDescription);
 		//CarModel result = list.get(0);
 		return result;
-
+		}
 	}
 
 	@Override

@@ -164,6 +164,8 @@ public class Car implements Serializable {
 		this.carType = carType;
 	}
 
+
+
 	public List<Contract> getContracts() {
 		return this.contracts;
 	}

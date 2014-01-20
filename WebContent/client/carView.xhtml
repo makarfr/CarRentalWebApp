@@ -16,6 +16,10 @@
 		<ui:define name="content">
 			<h:form id="form">
 
+	<p:commandButton value="AddNewCar" action="/admin/addCarView.xhtml?faces-redirect=true "
+								rendered="#{request.isUserInRole('admin')}"
+								icon="ui-icon-search" style="margin: left"/>
+								
 				<p:dataTable var="carView" value="#{carBean.lazyModel}"
 					paginator="true" rows="10"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"

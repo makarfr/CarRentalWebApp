@@ -99,7 +99,7 @@
 								<p:commandButton value="Calculate"
 									action="#{orderPostBean.precalculate}" update="display, panel" />
 								<p:commandButton value="Place Order"
-									action="#{orderPostBean.postOrder}" oncomplete="dlg1.show();" />
+									action="#{orderPostBean.postOrder}" onsuccess="dlg1.show();" />
 
 								<p:dialog header="Post Order" widgetVar="dlg1">
 									<h:outputText value="#{text.dialogSuccessBook}" />
