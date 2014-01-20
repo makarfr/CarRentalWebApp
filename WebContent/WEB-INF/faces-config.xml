@@ -8,16 +8,16 @@
 		<converter-id>carModelConverter</converter-id>
 		<converter-class>convertors.CarModelConverter</converter-class>
 	</converter>
-	
+
 	<application>
-     	   <locale-config>
-     	        <default-locale>en</default-locale>
-     	   </locale-config>
-	   <resource-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+		<resource-bundle>
 			<base-name>i18n.text</base-name>
 			<var>text</var>
-	   </resource-bundle>
-     </application>
-	
-	
+		</resource-bundle>
+	</application>
+
+
 </faces-config>

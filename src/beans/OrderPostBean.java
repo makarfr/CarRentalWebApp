@@ -7,6 +7,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+
+import org.hibernate.Session;
+
+import common.SessionHelper;
 
 import model.Contract;
 import model.Dealer;
@@ -40,10 +45,10 @@ public class OrderPostBean {
     public void precalculate() {
         contract.setCar(selectedCarBean.getCar());
         RegisterUser reg = new RegisterUser();
-        reg.setRegisterId(2);
+        reg.setRegisterId((Long) SessionHelper.getAttribute("id"));
         contract.setRegisterUser(reg);
         Dealer del = new Dealer();
-        del.setDealerId(2);
+        del.setDealerId((Long) SessionHelper.getAttribute("id"));
         contract.setDealer(del);
         contract.setStatus(StatusContract.NEW);
 
