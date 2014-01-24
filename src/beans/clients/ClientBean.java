@@ -59,6 +59,7 @@ public class ClientBean implements Serializable{
 	}
 	
 	 public String save() {
+		 System.out.println("In Save method ClientBean ");
 	        clientDao.update(selectedClient);
 	        return "clientView";
 	    }

@@ -5,7 +5,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 
 <h:head>
 
@@ -16,18 +18,21 @@
 		<ui:define name="content">
 			<h:form id="form">
 
-	<p:commandButton value="AddNewCar" action="/admin/addCarView.xhtml?faces-redirect=true "
-								rendered="#{request.isUserInRole('admin')}"
-								icon="ui-icon-search" style="margin: left"/>
-								
+				<p:commandButton value="AddNewCar"
+					action="/admin/addCarView.xhtml?faces-redirect=true "
+					rendered="#{request.isUserInRole('admin')}" icon="ui-icon-search"
+					style="margin: left" />
+
 				<p:dataTable var="carView" value="#{carBean.lazyModel}"
 					paginator="true" rows="10"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 					rowsPerPageTemplate="5,10,15" selectionMode="single"
 					selection="#{carBean.car}" id="carBean" lazy="true">
-
-					<p:ajax event="rowSelect" update=":form:display"
-						oncomplete="PF('carDialog').show()" />
+					
+					
+						<p:ajax event="rowSelect" update=":form:display" oncomplete="carDialog.show()" />
+				
+				
 
 					<p:column headerText="Model" sortBy="model"
 						filterBy="#{carView.carModel}">
@@ -96,6 +101,8 @@
 						</h:panelGrid>
 					</h:panelGrid>
 				</p:dialog>
+
+
 
 			</h:form>
 		</ui:define>

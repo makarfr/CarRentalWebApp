@@ -33,7 +33,7 @@ public class ClientDAO extends EntityDAO<Client> implements ClientDAOInterface<C
 	}
 
 	public List<Client> getByNameSurname(String nameClient,String surnameClient){
-		System.out.println("ClientDAO: " + em);
+		System.out.println("ClientDAO: getByNameSurname" + em);
 		Query query = em.createNamedQuery("Client.getByNameSurname", Client.class);
 		query.setParameter("name",nameClient);
 		query.setParameter("surname",surnameClient);
@@ -61,7 +61,7 @@ public class ClientDAO extends EntityDAO<Client> implements ClientDAOInterface<C
 	public List<Client> findRange(int start, int count, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
 
-		System.out.println("ClientDAO: " + em);
+		System.out.println("ClientDAO: findRange" + em);
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Client> cq = cb.createQuery(getEntityClass());
 		Root<Client> rt = cq.from(getEntityClass());

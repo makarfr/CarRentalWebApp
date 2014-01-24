@@ -89,7 +89,9 @@ public class AuthentificationBean implements Serializable {
 			client = user.getClient();
 			isLogged = true;
 			SessionHelper.putAtrributeToSession("id", user.getClientId());
+			SessionHelper.putAtrributeToSession("regId", user.getRegisterId());
 			SessionHelper.putAtrributeToSession("userLogin", user.getRegisterLogin());
+			SessionHelper.putAtrributeToSession("client", user.getClient());
 				if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
 				return Actions.CARS_VIEW.getFullUrl();
 			}

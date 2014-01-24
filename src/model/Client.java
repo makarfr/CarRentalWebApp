@@ -1,12 +1,15 @@
 package model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -43,7 +46,7 @@ public class Client implements Serializable {
 	private long clientCardNumber;
 
 	@Column(name="client_discount", nullable=false)
-	private int clientDiscount;
+	private BigDecimal clientDiscount;
 
 	@Column(name="client_driver_license_number", nullable=false, length=50)
 	private String clientDriverLicenseNumber;
@@ -60,15 +63,15 @@ public class Client implements Serializable {
 	@Column(name="client_surname", nullable=false, length=50)
 	private String clientSurname;
 
-	//bi-directional one-to-one association to RegisterUser
-	@OneToOne(mappedBy="client")
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name = "register_login")
 	private RegisterUser registerUser;
 
 	public Client() {
 	}
 
 	public Client(String clientAddress, long clientCardNumber,
-			int clientDiscount, String clientDriverLicenseNumber,
+			BigDecimal clientDiscount, String clientDriverLicenseNumber,
 			String clientMiddleName, String clientName,
 			String clientPhoneNumber, String clientSurname,
 			RegisterUser registerUser) {
@@ -108,11 +111,11 @@ public class Client implements Serializable {
 		this.clientCardNumber = clientCardNumber;
 	}
 
-	public int getClientDiscount() {
+	public BigDecimal getClientDiscount() {
 		return this.clientDiscount;
 	}
 
-	public void setClientDiscount(int clientDiscount) {
+	public void setClientDiscount(BigDecimal clientDiscount) {
 		this.clientDiscount = clientDiscount;
 	}
 
@@ -199,7 +202,7 @@ public class Client implements Serializable {
 	        result = 31 * result + (clientAddress != null ? clientAddress.hashCode() : 0);
 	        result = 31 * result + (clientPhoneNumber != null ? clientPhoneNumber.hashCode() : 0);
 	        result = 31 * result + (clientDriverLicenseNumber != null ? clientDriverLicenseNumber.hashCode() : 0);
-	        result = 31 * result + clientDiscount;
+	        result = 31 * result + clientDiscount.longValue();
 	        return (int) result;
 	    }
 

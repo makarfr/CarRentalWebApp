@@ -38,6 +38,7 @@ public abstract class EntityDAO<T> implements EntityDAOInterface<T>{
 
     @Override
     public void update(T transientObject) {
+    	System.out.println("Update from EntityDAO");
         em.merge(transientObject);
     }
 

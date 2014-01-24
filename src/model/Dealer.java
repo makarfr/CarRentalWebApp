@@ -3,13 +3,16 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,7 +44,11 @@ public class Dealer implements Serializable {
 
 	@Column(name="dealer_surname", nullable=false, length=50)
 	private String dealerSurname;
-
+	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name = "register_login")
+	private RegisterUser registerUser;
+	
 	//bi-directional many-to-one association to Contract
 	@OneToMany(mappedBy="dealer")
 	private List<Contract> contracts;

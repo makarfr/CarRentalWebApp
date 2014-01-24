@@ -112,9 +112,26 @@
 							<h:outputText value="#{text.client_name}" />
 							<h:inputText label="ClientName" required="true" id="name"
 								value="#{clientBean.selectedClient.clientName}" />
+								
 							<h:outputText value="#{text.client_surname}" />
 							<h:inputText label="ClientSurname" required="true" id="s"
 								value="#{clientBean.selectedClient.clientSurname}" />
+								
+							<h:outputText value="#{text.client_address}:" />
+							<h:inputText label="ClientAddress" required="true" id="adress"
+								value="#{clientBean.selectedClient.clientAddress}" />
+								
+							<h:outputText value="#{text.client_phone_number}:" />
+							<h:inputText label="ClientPhoneNumber" required="true" id="number"
+								value="#{clientBean.selectedClient.clientPhoneNumber}" />
+								
+							<h:outputText value="#{text.client_driver_license}:" />
+								<h:inputText label="ClientDriverLic" required="true" id="license"
+								value="#{clientBean.selectedClient.clientDriverLicenseNumber}" />
+								
+							<h:outputText value="#{text.discount}:" />	
+							<h:inputText label="ClientDisc" required="true" id="discount"
+								value="#{clientBean.selectedClient.clientDiscount}" />
 						</h:panelGrid>
 
 					</h:panelGrid>
