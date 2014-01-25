@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="addCarForm">
+				<f:facet name="header">#{text.create_new_member}</f:facet>
+
+				<h:panelGrid style="margin-top:20px">
+					<h:panelGrid columns="1">
+										
+						<h:outputText value="#{text.login}:" />
+						<h:inputText label="ClientLogin" required="true" id="login"
+							value="#{clientBean.selectedClient.registerUser.registerLogin}" />
+					
+					<h:outputText value="#{text.password}:" />
+						<h:inputSecret label="ClientPass" required="true" id="pass"
+							value="#{clientBean.selectedClient.registerUser.registerPassword}" />
+					
+						<h:outputText value="#{text.client_name}" />
+						<h:inputText label="ClientName" required="true" id="name"
+							value="#{clientBean.selectedClient.clientName}" />
+
+						<h:outputText value="#{text.client_surname}" />
+						<h:inputText label="ClientSurname" required="true" id="s"
+							value="#{clientBean.selectedClient.clientSurname}" />
+
+						<h:outputText value="#{text.client_address}:" />
+						<h:inputText label="ClientAddress" required="true" id="adress"
+							value="#{clientBean.selectedClient.clientAddress}" />
+
+						<h:outputText value="#{text.client_phone_number}:" />
+						<h:inputText label="ClientPhoneNumber" required="true" id="number"
+							value="#{clientBean.selectedClient.clientPhoneNumber}" />
+
+						<h:outputText value="#{text.client_driver_license}:" />
+						<h:inputText label="ClientDriverLic" required="true" id="license"
+							value="#{clientBean.selectedClient.clientDriverLicenseNumber}" />
+
+					</h:panelGrid>
+
+				</h:panelGrid>
+				<p:commandButton value="Reset" type="reset" />
+
+				<p:commandButton value="Ok" action="#{clientBean.save}"
+					oncomplete="dlgConfirm.show();" />
+
+				<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
+					resizable="false">
+					<h:panelGrid columns="1">
+						<h:outputText value="#{text.dialog_success_edit}" />
+
+						<p:commandButton id="closeButton" value="Ok"
+							oncomplete="dlgConfirm.hide();"
+							action="/admin/clientView.xhtml?faces-redirect=true "
+							ajax="false" />
+					</h:panelGrid>
+
+
+				</p:dialog>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

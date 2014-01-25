@@ -1,6 +1,7 @@
 package beans.clients;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.LinkedList;
 
 import javax.annotation.PostConstruct;
@@ -9,10 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import model.Client;
+import model.RegisterUser;
 
 import org.primefaces.model.LazyDataModel;
 
+import dao.implementations.RegisterUserDAO;
 import dao.interfaces.ClientDAOInterface;
+import dao.interfaces.RegisterUserDAOInterface;
 
 @ManagedBean(name = "clientBean")
 @SessionScoped
@@ -24,7 +28,7 @@ public class ClientBean implements Serializable{
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
 	private LazyDataModel<Client> lazyModel;
-
+	
 	@PostConstruct
 	public void init(){
 		lazyModel = new ClientLazyDataModel(new LinkedList<Client>(), clientDao);
@@ -36,6 +40,7 @@ public class ClientBean implements Serializable{
 
     private void instantiateClient() {
     	selectedClient = new Client();
+    	
         
     }
 
@@ -58,9 +63,12 @@ public class ClientBean implements Serializable{
 		this.selectedClient = client;
 	}
 	
-	 public String save() {
+	
+	public String save() {
 		 System.out.println("In Save method ClientBean ");
-	        clientDao.update(selectedClient);
+		 BigDecimal startDisc = new BigDecimal(3);
+		 selectedClient.setClientDiscount(startDisc);
+	        clientDao.create(selectedClient);
 	        return "clientView";
 	    }
 

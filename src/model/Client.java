@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import common.UserRole;
+
 
 /**
  * The persistent class for the "client" database table.
@@ -68,6 +70,8 @@ public class Client implements Serializable {
 	private RegisterUser registerUser;
 
 	public Client() {
+		registerUser = new RegisterUser();
+		registerUser.setRole(new Role(UserRole.CLIENT.getCode()));
 	}
 
 	public Client(String clientAddress, long clientCardNumber,

@@ -23,8 +23,8 @@ public class Role {
 	@NotEmpty
 	private String role; 
 
-	public Role() {
-		super();
+	public Role(int id) {
+		this.id = id;
 	}
 
 	public int getId() {
