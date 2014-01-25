@@ -33,10 +33,10 @@ public class Contract implements Serializable {
 	@SequenceGenerator(name="contract_contract_id_seq" )
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="contract_id", insertable=false, updatable=false, unique=true, nullable=false)
-	private long contractId;
+	private Long contractId;
 
 	@Column(name="car_id", nullable=false, insertable=false, updatable=false)
-	private long carId;
+	private Long carId;
 
 	
 	@Column(name="contract_date_from", nullable=false)
@@ -72,32 +72,32 @@ public class Contract implements Serializable {
 	}
 
 	public Contract(Car car, Date contractDateFrom, Date contractDateTo,
-			int totalPrice, Dealer dealer, RegisterUser registerUser,
+BigDecimal totalPrice, Dealer dealer, RegisterUser registerUser,
 			StatusContract statusContract) {
 		super();
 		this.carId = car.getCarId();
 		this.contractDateFrom = contractDateFrom;
 		this.contractDateTo = contractDateTo;
-		this.totalPrice = new BigDecimal(totalPrice);
+		this.totalPrice = totalPrice;
 		this.car = car;
 		this.dealer = dealer;
 		this.registerUser = registerUser;
 		this.statusContract = statusContract;
 	}
 
-	public long getContractId() {
+	public Long getContractId() {
 		return this.contractId;
 	}
 
-	public void setContractId(long contractId) {
+	public void setContractId(Long contractId) {
 		this.contractId = contractId;
 	}
 
-	public long getCarId() {
+	public Long getCarId() {
 		return this.carId;
 	}
 
-	public void setCarId(long carId) {
+	public void setCarId(Long carId) {
 		this.carId = carId;
 	}
 

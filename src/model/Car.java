@@ -40,13 +40,13 @@ public class Car implements Serializable {
 	@GeneratedValue(generator = "car_id_generator", strategy = GenerationType.AUTO)
 	    @SequenceGenerator(name = "car_id_generator", sequenceName = "car_car_id_seq", allocationSize = 1)
 	@Column(name="car_id")
-	private long carId;
+	private Long carId;
 
 	@Column(name="car_description", length=200)
 	private String carDescription;
 
 	@Column(name="car_model_id", nullable=false,  insertable=false, updatable=false)
-	private long carModelId;
+	private Long carModelId;
 
 	@Column(name="car_number", nullable=false, length=20)
 	private String carNumber;
@@ -87,11 +87,11 @@ public class Car implements Serializable {
 
 
 
-	public long getCarId() {
+	public Long getCarId() {
 		return this.carId;
 	}
 
-	public void setCarId(long carId) {
+	public void setCarId(Long carId) {
 		this.carId = carId;
 	}
 
@@ -107,7 +107,7 @@ public class Car implements Serializable {
 		return this.carModelId;
 	}
 
-	public void setCarModelId(int carModelId) {
+	public void setCarModelId(Long carModelId) {
 		this.carModelId = carModelId;
 	}
 

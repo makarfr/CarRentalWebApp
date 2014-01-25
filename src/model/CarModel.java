@@ -32,7 +32,7 @@ public class CarModel implements Serializable {
 	@SequenceGenerator(name="CAR_MODEL_CAR_MODEL_ID_GENERATOR" )
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="car_model_id", insertable=false, updatable=false, unique=true, nullable=false)
-	private long carModelId;
+	private Long carModelId;
 
 	@Column(name="car_model_description", length=200)
 	private String carModelDescription;
@@ -51,11 +51,11 @@ public class CarModel implements Serializable {
 		this.carModelName = carModelName;
 	}
 
-	public long getCarModelId() {
+	public Long getCarModelId() {
 		return this.carModelId;
 	}
 
-	public void setCarModelId(long carModelId) {
+	public void setCarModelId(Long carModelId) {
 		this.carModelId = carModelId;
 	}
 

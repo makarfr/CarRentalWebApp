@@ -40,13 +40,13 @@ public class Client implements Serializable {
 	@SequenceGenerator(name="CLIENT_CLIENT_ID_GENERATOR" )
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="client_id", insertable=false, updatable=false, unique=true, nullable=false)
-	private long clientId;
+	private Long clientId;
 
 	@Column(name="client_address", nullable=false, length=200)
 	private String clientAddress;
 
 	@Column(name="client_card_number", nullable=false)
-	private long clientCardNumber;
+	private Long clientCardNumber;
 
 	@Column(name="client_discount", nullable=false)
 	private BigDecimal clientDiscount;
@@ -75,7 +75,7 @@ public class Client implements Serializable {
 		registerUser.setRole(new Role(UserRole.CLIENT.getCode()));
 	}
 
-	public Client(String clientAddress, long clientCardNumber,
+	public Client(String clientAddress, Long clientCardNumber,
 			BigDecimal clientDiscount, String clientDriverLicenseNumber,
 			String clientMiddleName, String clientName,
 			String clientPhoneNumber, String clientSurname,
@@ -92,11 +92,11 @@ public class Client implements Serializable {
 		this.registerUser = registerUser;
 	}
 
-	public long getClientId() {
+	public Long getClientId() {
 		return this.clientId;
 	}
 
-	public void setClientId(long clientId) {
+	public void setClientId(Long clientId) {
 		this.clientId = clientId;
 	}
 
@@ -108,11 +108,11 @@ public class Client implements Serializable {
 		this.clientAddress = clientAddress;
 	}
 
-	public long getClientCardNumber() {
+	public Long getClientCardNumber() {
 		return this.clientCardNumber;
 	}
 
-	public void setClientCardNumber(long clientCardNumber) {
+	public void setClientCardNumber(Long clientCardNumber) {
 		this.clientCardNumber = clientCardNumber;
 	}
 

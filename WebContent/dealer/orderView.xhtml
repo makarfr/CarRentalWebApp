@@ -26,7 +26,7 @@
 						oncomplete="contractDialog.show()" />
 
 					<p:column headerText="#{text.model}:" >
-						<h:outputText value="#{order.carModelName()}" />
+						<h:outputText value="#{contractBean.getConvertedCarModelName(order)}" />
 					</p:column>
 					
 				</p:dataTable>

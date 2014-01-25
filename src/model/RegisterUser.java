@@ -35,7 +35,7 @@ public class RegisterUser implements Serializable {
 	@SequenceGenerator(name="REGISTER_USER_REGISTER_ID_GENERATOR" )
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="register_id", insertable=false, updatable=false, unique=true, nullable=false)
-	private long registerId;
+	private Long registerId;
 
 	@Email(message = "Invalid email")
 	@Column(name="register_login", nullable=false, length=50)
@@ -62,11 +62,11 @@ public class RegisterUser implements Serializable {
 	
 	}
 
-	public long getRegisterId() {
+	public Long getRegisterId() {
 		return registerId;
 	}
 
-	public void setRegisterId(long registerId) {
+	public void setRegisterId(Long registerId) {
 		this.registerId = registerId;
 	}
 

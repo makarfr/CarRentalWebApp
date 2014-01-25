@@ -20,7 +20,7 @@ public class Role {
 	@Column(name = "role_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genRole")
 	@SequenceGenerator(name = "genRole")
-	private int id;
+	private Long id;
 
 	@NotEmpty
 	@Column(name = "role_name")
@@ -29,15 +29,15 @@ public class Role {
 	public Role() {
 		super();
 	}
-	public Role(int id) {
+	public Role(Long id) {
 		this.id = id;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -53,7 +53,7 @@ public class Role {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = (int) (prime * result + id);
 		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
 		return result;
 	}

@@ -33,7 +33,7 @@ public class Dealer implements Serializable {
 	@SequenceGenerator(name="DEALER_DEALER_ID_GENERATOR" )
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="dealer_id", insertable=false, updatable=false, unique=true, nullable=false)
-	private long dealerId;
+	private Long dealerId;
 
 	@Column(name="dealer_address", nullable=false, length=200)
 	private String dealerAddress;
@@ -42,7 +42,7 @@ public class Dealer implements Serializable {
 	private String dealerName;
 
 	@Column(name="dealer_phone_number", nullable=false, length=50)
-	private long dealerPhoneNumber;
+	private Long dealerPhoneNumber;
 
 	@Column(name="dealer_surname", nullable=false, length=50)
 	private String dealerSurname;
@@ -61,7 +61,7 @@ public class Dealer implements Serializable {
 	}
 
 	public Dealer(String dealerAddress, String dealerName,
-			long dealerPhoneNumber, String dealerSurname) {
+			Long dealerPhoneNumber, String dealerSurname) {
 		super();
 		this.dealerAddress = dealerAddress;
 		this.dealerName = dealerName;
@@ -69,11 +69,11 @@ public class Dealer implements Serializable {
 		this.dealerSurname = dealerSurname;
 	}
 
-	public long getDealerId() {
+	public Long getDealerId() {
 		return this.dealerId;
 	}
 
-	public void setDealerId(long dealerId) {
+	public void setDealerId(Long dealerId) {
 		this.dealerId = dealerId;
 	}
 
@@ -93,11 +93,11 @@ public class Dealer implements Serializable {
 		this.dealerName = dealerName;
 	}
 
-	public long getDealerPhoneNumber() {
+	public Long getDealerPhoneNumber() {
 		return this.dealerPhoneNumber;
 	}
 
-	public void setDealerPhoneNumber(long dealerPhoneNumber) {
+	public void setDealerPhoneNumber(Long dealerPhoneNumber) {
 		this.dealerPhoneNumber = dealerPhoneNumber;
 	}
 

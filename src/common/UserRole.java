@@ -1,16 +1,17 @@
 package common;
 
 public enum UserRole {
-	ADMIN(0), CLIENT(1), DEALER(2);
+	ADMIN(0L), CLIENT(1L), DEALER(2L);
 
 	
-	private int code;
-
-	public int getCode() {
-		return code;
-	}
-
-	UserRole(int code) {
+	private UserRole(Long code) {
 		this.code = code;
 	}
+
+	private Long code;
+
+	public Long getCode() {
+		return code;
+	}
+	
 }
