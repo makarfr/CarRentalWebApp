@@ -16,14 +16,14 @@
 		<ui:define name="content">
 	<h:form id="form">
 
-    <p:dataTable var="car" value="#{tableBean.lazyModel}" paginator="true" rows="10"
+    <p:dataTable var="order" value="#{dealerBean.lazyModel}" paginator="true" rows="10"
                  paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{tableBean.selectedCar}" id="carTable" lazy="true">
+                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{dealerBean.contract}" id="carTable" lazy="true">
 
-        <p:ajax event="rowSelect" listener="#{tableBean.onRowSelect}" update=":form:display" oncomplete="PF('carDialog').show()" />
+        <p:ajax event="rowSelect" listener="#{dealerBean.onRowSelect}" update=":form:display" oncomplete="contractDialog.show()" />
 
-        <p:column headerText="Model" sortBy="model" filterBy="#{car.model}">
-            <h:outputText value="#{car.model}" />
+        <p:column headerText="#{text.car}" sortBy="order." >
+            <h:outputText value="#{}" />
         </p:column>
 
         <p:column headerText="Year" sortBy="year" filterBy="#{car.year}">
@@ -39,7 +39,7 @@
         </p:column>
     </p:dataTable>
 
-    <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false"
+    <p:dialog header="Car Detail" widgetVar="contractDialog" resizable="false"
               showEffect="explode" hideEffect="explode">
 
         <h:panelGrid id="display" columns="2" cellpadding="4">

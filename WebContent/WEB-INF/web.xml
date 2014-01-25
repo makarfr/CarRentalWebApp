@@ -68,10 +68,23 @@
     
      <security-constraint>
         <web-resource-collection>
+            <web-resource-name>Dealer</web-resource-name>
+            <description/>
+            <url-pattern>/dealer/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>dealer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+     <security-constraint>
+        <web-resource-collection>
             <web-resource-name>Access</web-resource-name>
              <url-pattern>/client/carView.xhtml</url-pattern>
             <url-pattern>/admin/clientView.xhtml</url-pattern>
-            <url-pattern>/admin/orderView.xhtml</url-pattern>
             <http-method>POST</http-method>
             <http-method>GET</http-method>
             <http-method>PUT</http-method>
@@ -88,6 +101,9 @@
     </security-role>
     <security-role>
         <role-name>admin</role-name>
+    </security-role>
+     <security-role>
+        <role-name>dealer</role-name>
     </security-role>
 
     <login-config>
