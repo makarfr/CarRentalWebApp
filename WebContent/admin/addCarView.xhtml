@@ -15,27 +15,27 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<h:form id="addCarForm">
-				<f:facet name="header">Create new Car</f:facet>
+				<f:facet name="header">#{text.createNewCarTitle}</f:facet>
 
 				<p:panelGrid columns="2" cellpadding="5" id="addCarPanel">
 
 					<h:outputText value="#{text.number}: " />
 					<p:inputMask id="numb" value="#{addCarBean.car.carNumber}"
 						mask="a*-9999-a*" required="true"
-						requiredMessage="#{text.number} required" />
+						requiredMessage="#{text.numberRequired}" />
 				
 
 					<h:outputText value="#{text.price_per_day}: " />
 					<p:inputMask id="price" value="#{addCarBean.car.carPrice}"
 						mask="9?999" maxlength="5" required="true"
-						requiredMessage="#{text.price_per_day} required" />
+						requiredMessage="#{text.pricePerDayRequired}" />
 				
 
 					<h:outputText value=" #{text.year}: " />
 					<p:calendar id="cal" value="#{addCarBean.car.carYear}"
 						navigator="true" display="inline" required="true"
-						requiredMessage="Date is required"
-						converterMessage="Invalid date format" />
+						requiredMessage="#{text.dateIsRequired}"
+						converterMessage="#{text.invalidDateFormat}" />
 				
 
 					<h:outputText value="#{text.description}: " />
@@ -60,10 +60,10 @@
 				
 				</p:panelGrid>
 				
-				<p:commandButton value="Reset" type="reset" />
+				<p:commandButton value="#{text.reset}" type="reset" />
 
-				<p:commandButton value="Ok" action="#{addCarBean.addCar}"
-					oncomplete="Added new car" onclick="dlg.show();" />
+				<p:commandButton value="#{text.ok}" action="#{addCarBean.addCar}"
+					oncomplete="#{text.carAdded}" onclick="dlg.show();" />
 
 				<p:dialog header="#{text.add_new_car}" widgetVar="dlg"
 					resizable="false">
