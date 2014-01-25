@@ -62,11 +62,7 @@ public class Car implements Serializable {
 	@JoinColumn(name = "car_model_id")
 	private CarModel carModel;
 
-	//bi-directional many-to-one association to CarStatus
-	/*@ManyToOne
-	@JoinColumn(name = "car_status_id")
-	private CarStatus carStatus;
-*/
+
 	@Column(name="car_type", nullable=false)
 	@Enumerated(EnumType.STRING)
 	private CarType carType;
@@ -80,13 +76,12 @@ public class Car implements Serializable {
 	
 	
 	public Car(String carNumber, BigDecimal carPrice, Date carYear,
-			CarModel carModel, CarStatus carStatus, CarType carType) {
+			CarModel carModel, CarType carType) {
 		this.carNumber = carNumber;
 		this.carPrice = carPrice;
 		this.carYear = carYear;
 		this.carModel = carModel;
 		this.carModelId = carModel.getCarModelId();
-	//	this.carStatus = carStatus;
 		this.carType = carType;
 	}
 
@@ -140,14 +135,7 @@ public class Car implements Serializable {
 		this.carModel = carModel;
 	}
 
-/*	public CarStatus getCarStatus() {
-		return this.carStatus;
-	}
-
-	public void setCarStatus(CarStatus carStatus) {
-		this.carStatus = carStatus;
-	}*/
-	
+ 	
 	public BigDecimal getCarPrice() {
 		return carPrice;
 	}
