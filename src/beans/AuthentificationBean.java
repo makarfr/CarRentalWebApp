@@ -3,6 +3,7 @@ package beans;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -129,7 +130,7 @@ public class AuthentificationBean implements Serializable {
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
-			e1.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sample error message", "PrimeFaces makes no mistakes")); 
 			return Actions.LOGIN_VIEW.getFullUrl();
 		}
 	}

@@ -67,7 +67,6 @@ public class ClientBean implements Serializable{
 	
 	
 	public String save() {
-		 System.out.println("In Save method ClientBean ");
 		 BigDecimal startDisc = new BigDecimal(3);
 		 selectedClient.setClientDiscount(startDisc);
 	        clientDao.create(selectedClient);

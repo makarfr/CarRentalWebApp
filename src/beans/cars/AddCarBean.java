@@ -28,7 +28,7 @@ public class AddCarBean {
 
     public String addCar() {
         carDao.create(car);
-        return Actions.CARS_VIEW.getViewUrl();
+        return Actions.CARS_VIEW.getFullUrl();
     }
 
 

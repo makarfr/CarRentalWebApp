@@ -51,9 +51,9 @@ public class OrderPostBean {
         reg.setRegisterId((Long) SessionHelper.getAttribute("regId"));
         System.out.println("RegisterID in OrderBean " + reg.getRegisterId());
         contract.setRegisterUser(reg);
-        Dealer del = null;// = new Dealer();
+        /*Dealer del = null;// = new Dealer();
         del.setDealerId((Long) SessionHelper.getAttribute("id"));
-        contract.setDealer(del);
+        contract.setDealer(del);*/
         contract.setStatus(StatusContract.NEW);
         
 
