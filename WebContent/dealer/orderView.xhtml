@@ -14,56 +14,42 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-	<h:form id="form">
+			<h:form id="formOrder">
 
-    <p:dataTable var="order" value="#{dealerBean.lazyModel}" paginator="true" rows="10"
-                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                 rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{dealerBean.contract}" id="carTable" lazy="true">
+				<p:dataTable var="order" value="#{contractBean.lazyModel}"
+					paginator="true" rows="10"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="5,10,15" selectionMode="single"
+					selection="#{contractBean.contract}" id="contractTable" lazy="true">
 
-        <p:ajax event="rowSelect" listener="#{dealerBean.onRowSelect}" update=":form:display" oncomplete="contractDialog.show()" />
+					<p:ajax event="rowSelect" update=":formOrder:display"
+						oncomplete="contractDialog.show()" />
 
-        <p:column headerText="#{text.car}" sortBy="order." >
-            <h:outputText value="#{}" />
-        </p:column>
+					<p:column headerText="#{text.model}:" >
+						<h:outputText value="#{order.carModelName()}" />
+					</p:column>
+					
+				</p:dataTable>
 
-        <p:column headerText="Year" sortBy="year" filterBy="#{car.year}">
-            <h:outputText value="#{car.year}" />
-        </p:column>
+				<p:dialog header="Car Detail" widgetVar="contractDialog"
+					resizable="false" showEffect="explode" hideEffect="explode">
 
-        <p:column headerText="Manufacturer" sortBy="manufacturer" filterBy="#{car.manufacturer}">
-            <h:outputText value="#{car.manufacturer}" />
-        </p:column>
+					<h:panelGrid id="display" columns="2" cellpadding="4">
 
-        <p:column headerText="Color" sortBy="color" filterBy="#{car.color}">
-            <h:outputText value="#{car.color}" />
-        </p:column>
-    </p:dataTable>
+						<f:facet name="header">
+							<p:graphicImage
+								value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg" />
+						</f:facet>
 
-    <p:dialog header="Car Detail" widgetVar="contractDialog" resizable="false"
-              showEffect="explode" hideEffect="explode">
+						<h:outputText value="#{text.model}:" />
+						<h:outputText value="#{order.carModelName()}"
+							style="font-weight:bold" />
 
-        <h:panelGrid id="display" columns="2" cellpadding="4">
+					</h:panelGrid>
+				</p:dialog>
 
-            <f:facet name="header">
-                <p:graphicImage value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg"/>
-            </f:facet>
+			</h:form>
 
-            <h:outputText value="Model:" />
-            <h:outputText value="#{tableBean.selectedCar.model}" style="font-weight:bold"/>
-
-            <h:outputText value="Year:" />
-            <h:outputText value="#{tableBean.selectedCar.year}" style="font-weight:bold"/>
-
-            <h:outputText value="Manufacturer:" />
-            <h:outputText value="#{tableBean.selectedCar.manufacturer}" style="font-weight:bold"/>
-
-            <h:outputText value="Color:" />
-            <h:outputText value="#{tableBean.selectedCar.color}" style="font-weight:bold"/>
-        </h:panelGrid>
-    </p:dialog>
-
-</h:form>
-		
 		</ui:define>
 	</ui:composition>
 	<p:splitButton></p:splitButton>

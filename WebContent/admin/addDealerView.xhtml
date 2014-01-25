@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="addDealForm">
+				<f:facet name="header">#{text.create_new_member}</f:facet>
+
+				<h:panelGrid style="margin-top:20px">
+					<h:panelGrid columns="1">
+										
+						<h:outputText value="#{text.login}:" />
+						<h:inputText label="DealerLogin" required="true" id="login"
+							value="#{dealerBean.dealer.registerUser.registerLogin}" />
+					
+					<h:outputText value="#{text.password}:" />
+						<h:inputSecret label="Pass" required="true" id="pass"
+							value="#{dealerBean.dealer.registerUser.registerPassword}" />
+					
+						<h:outputText value="#{text.client_name}" />
+						<h:inputText label="Name" required="true" id="name"
+							value="#{dealerBean.dealer.dealerName}" />
+
+						<h:outputText value="#{text.client_surname}" />
+						<h:inputText label="Surname" required="true" id="s"
+							value="#{dealerBean.dealer.dealerSurname}" />
+
+						<h:outputText value="#{text.client_address}:" />
+						<h:inputText label="Address" required="true" id="adress"
+							value="#{dealerBean.dealer.dealerAddress}" />
+
+						<h:outputText value="#{text.client_phone_number}:" />
+						<h:inputText label="PhoneNumber" required="true" id="number"
+							value="#{dealerBean.dealer.dealerPhoneNumber}" />
+			
+
+					</h:panelGrid>
+
+				</h:panelGrid>
+				<p:commandButton value="Reset" type="reset" />
+
+				<p:commandButton value="Ok" action="#{dealerBean.save}"
+					oncomplete="dlgConfirm.show();" />
+
+				<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
+					resizable="false">
+					<h:panelGrid columns="1">
+						<h:outputText value="#{text.dialog_success_edit}" />
+
+						<p:commandButton id="closeButton" value="Ok"
+							oncomplete="dlgConfirm.hide();"
+							action="/admin/dealerView.xhtml?faces-redirect=true "
+							ajax="false" />
+					</h:panelGrid>
+
+
+				</p:dialog>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

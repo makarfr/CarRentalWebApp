@@ -42,10 +42,8 @@ public class ClientBean implements Serializable{
 
     private void instantiateClient() {
     	selectedClient = new Client();
-    	
-        
+    	       
     }
-
 	
 	public LazyDataModel<Client> getLazyModel() {
 		return lazyModel;

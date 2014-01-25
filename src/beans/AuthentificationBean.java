@@ -110,7 +110,7 @@ public class AuthentificationBean implements Serializable {
 				System.out.println(" Role is dealer ");
 				
 				isLogged = true;
-				return Actions.LOGIN_VIEW.getFullUrl();
+				return Actions.CONTRACTS_VIEW.getFullUrl();
 			}
 
 		} catch (ServletException e1) {

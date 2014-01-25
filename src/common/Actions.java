@@ -4,7 +4,8 @@ public enum Actions {
 	LOGIN_VIEW("login", ""), 
 	CLIENTS_VIEW("clientView", "admin"), 
 	CARS_VIEW("carView", "client"), ADD_CAR_VIEW("addCarView", "admin"),
-	CONTRACTS_VIEW("orderView", "dealer");
+	CONTRACTS_VIEW("orderView", "dealer"),
+	DEALER_VIEW("dealerView", "admin");
 	
 	private String path;
 	private String view;

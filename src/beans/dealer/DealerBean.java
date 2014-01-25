@@ -1,57 +1,35 @@
 package beans.dealer;
 
 import java.io.Serializable;
-import java.util.LinkedList;
+import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import model.Contract;
-import model.Dealer;
-
-import org.primefaces.model.LazyDataModel;
-
 import common.Actions;
 
-import dao.interfaces.ContractDAOInterface;
+import model.Client;
+import model.Dealer;
+import dao.interfaces.DealerDAOInterface;
 
 @ManagedBean(name = "dealerBean")
 @SessionScoped
 public class DealerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Dealer dealer;
-	private Contract contract;
-	@EJB
-	private ContractDAOInterface<Contract> contractDAO;
-	private LazyDataModel<Contract> lazyModel;
 
-	@PostConstruct
-	public void init() {
-		lazyModel = new ContractLazyDataModel(new LinkedList<Contract>(),
-				contractDAO);
-	}
+	private Dealer dealer;
+	@EJB
+	private DealerDAOInterface<Dealer> dealDAO;
 
 	public DealerBean() {
-		instantiate();
+		instantiateDealer();
 	}
 
-	private void instantiate() {
+	private void instantiateDealer() {
 		dealer = new Dealer();
-		contract = new Contract();
-	}
 
-	
-
-	public LazyDataModel<Contract> getLazyModel() {
-		return lazyModel;
-	}
-
-	public void setLazyModel(LazyDataModel<Contract> lazyModel) {
-
-		this.lazyModel = lazyModel;
 	}
 
 	public Dealer getDealer() {
@@ -62,17 +40,13 @@ public class DealerBean implements Serializable {
 		this.dealer = dealer;
 	}
 
-	public Contract getContract() {
-		return contract;
+	public List<Dealer> getDealersList() {
+		List<Dealer> list = dealDAO.findAll();
+		return list;
 	}
-
-	public void setContract(Contract contract) {
-		this.contract = contract;
+	public String save() {
+		dealDAO.create(dealer);
+		return Actions.DEALER_VIEW.getViewUrl();
+		
 	}
-
-	public String update() {
-		contractDAO.update(contract);
-		return Actions.CONTRACTS_VIEW.getViewUrl();
-	}
-
 }

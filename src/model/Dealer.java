@@ -16,6 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import common.UserRole;
+
 
 /**
  * The persistent class for the "dealer" database table.
@@ -54,6 +56,8 @@ public class Dealer implements Serializable {
 	private List<Contract> contracts;
 
 	public Dealer() {
+		registerUser = new RegisterUser();
+		registerUser.setRole(new Role(UserRole.DEALER.getCode()));
 	}
 
 	public Dealer(String dealerAddress, String dealerName,
@@ -103,6 +107,14 @@ public class Dealer implements Serializable {
 
 	public void setDealerSurname(String dealerSurname) {
 		this.dealerSurname = dealerSurname;
+	}
+
+	public RegisterUser getRegisterUser() {
+		return registerUser;
+	}
+
+	public void setRegisterUser(RegisterUser registerUser) {
+		this.registerUser = registerUser;
 	}
 
 	public List<Contract> getContracts() {

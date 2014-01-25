@@ -16,72 +16,12 @@ import dao.interfaces.ClientDAOInterface;
 
 public class ClientLazyDataModel extends LazyDataModel<Client> implements SelectableDataModel<Client> {
 
-	/**
+	
+	  /**
 	 * 
-	 *//*
+	 */
 	private static final long serialVersionUID = 1L;
-//	@EJB
-	private ClientDAOInterface<Client> dao;
-    private List<Client> datasource;
-    
-
-    public List<Client> getDatasource() {
-        return datasource;
-    }
-
-    public ClientLazyDataModel(List<Client> datasource, ClientDAOInterface<Client> dao) {
-        this.datasource = datasource;
-        this.dao  = dao;
-        setRowCount(this.datasource.size());
-    }
-
-
-    public void setDatasource(List<Client> datasource) {
-        this.datasource = datasource;
-    }
-
-    @Override
-    public Client getRowData(String rowKey){
-        for(Client Client : datasource) {
-            if(String.valueOf(Client.getClientId()).equals(rowKey))
-                return Client;
-        }
-        return null;
-
-    }
-
-    @Override
-    public Object getRowKey(Client Client) {
-        return Client.getClientId();
-    }
-
-    @Override
-    public void setRowIndex(int rowIndex) {
-        
-         * The following is in ancestor (LazyDataModel):
-         * this.rowIndex = rowIndex == -1 ? rowIndex : (rowIndex % pageSize);
-         
-        if (rowIndex == -1 || getPageSize() == 0) {
-            super.setRowIndex(-1);
-        }
-        else
-            super.setRowIndex(rowIndex % getPageSize());
-    }
-
-
-    @Override
-    public List<Client> load(int i, int i2, String s, SortOrder sortOrder, Map<String, String> stringStringMap)  {
-
-     datasource = dao.findRange(i, i2, s, sortOrder, stringStringMap);     
-   
-        long count = dao.count();
-        this.setRowCount((int) count);
-        sortOrder = SortOrder.DESCENDING;
-        return datasource;
-    }*/
-	
-	
-	  private List<Client> data;
+	private List<Client> data;
 	    private int pageSize;
 	    private int rowIndex;
 	    private int rowCount;

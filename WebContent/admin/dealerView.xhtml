@@ -15,6 +15,11 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 <h:form>
+
+<p:commandButton value="AddNewDealer"
+					action="/admin/addDealerView.xhtml?faces-redirect=true "
+					 icon="ui-icon-search"	style="margin: left" />
+					
     <p:dataTable var="del" value="#{dealerBean.dealer}">
         <p:column headerText="Name ">
             <h:outputText value="#{del.dealerName}" />
@@ -25,7 +30,7 @@
         </p:column>
 
         <p:column headerText="Address">
-            <h:outputText value="#{del.dealerAddress()}" />
+            <h:outputText value="#{del.dealerAddress}" />
         </p:column>
 
         <p:column headerText="Dealer Phone Number">

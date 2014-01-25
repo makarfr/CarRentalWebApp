@@ -46,6 +46,9 @@
 							<p:menuitem value="Clients" url="/admin/clientView.xhtml"
 								rendered="#{request.isUserInRole('admin')}"
 								icon="ui-icon-person" />
+							<p:menuitem value="Dealers" url="/admin/dealerView.xhtml"
+								rendered="#{request.isUserInRole('admin')}"
+								icon="ui-icon-person" />
 						</p:tabMenu>
 
 					</c:if>
