@@ -135,9 +135,9 @@
 						</h:panelGrid>
 
 					</h:panelGrid>
-					<p:commandButton value="Reset" type="reset" />
+					<p:commandButton value="#{text.reset}" type="reset" />
 
-					<p:commandButton value="Ok" action="#{clientBean.update}"
+					<p:commandButton value="#{text.ok}" action="#{clientBean.update}"
 						oncomplete="dlgConfirm.show();" />
 				</h:form>
 			</p:dialog>
@@ -149,7 +149,7 @@
 					<h:panelGrid columns="1">
 						<h:outputText value="#{text.dialog_success_edit}" />
 
-						<p:commandButton id="closeButton" value="Ok"
+						<p:commandButton id="closeButton" value="#{text.ok}"
 							oncomplete="dlgConfirm.hide();"
 							action="/admin/clientView.xhtml?faces-redirect=true " ajax="false" />
 					</h:panelGrid>
