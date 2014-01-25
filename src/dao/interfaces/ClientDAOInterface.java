@@ -22,7 +22,7 @@ public interface ClientDAOInterface<T> extends EntityDAOInterface<T> {
 	public int count(Map<String, String> filters);
 
 	public List<Client> findAll(int i, int j);
-
+	Client getByUser(long regId);
 	
 	  public List<Client> findAllFromDAO();
 

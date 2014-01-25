@@ -46,7 +46,7 @@ public class Dealer implements Serializable {
 	private String dealerSurname;
 	
 	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "register_login")
+	@JoinColumn(name = "register_id")
 	private RegisterUser registerUser;
 	
 	//bi-directional many-to-one association to Contract

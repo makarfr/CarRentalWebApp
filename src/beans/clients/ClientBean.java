@@ -14,6 +14,8 @@ import model.RegisterUser;
 
 import org.primefaces.model.LazyDataModel;
 
+import common.Actions;
+
 import dao.implementations.RegisterUserDAO;
 import dao.interfaces.ClientDAOInterface;
 import dao.interfaces.RegisterUserDAOInterface;
@@ -71,5 +73,10 @@ public class ClientBean implements Serializable{
 	        clientDao.create(selectedClient);
 	        return "clientView";
 	    }
+	
+	public String update() {
+		clientDao.update(selectedClient);
+		return Actions.CLIENTS_VIEW.getViewUrl();
+	}
 
 }

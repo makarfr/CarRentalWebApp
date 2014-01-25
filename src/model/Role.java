@@ -14,6 +14,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table (name = "role")
 public class Role {
 
+	
+
 	@Id
 	@Column(name = "role_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "genRole")
@@ -21,8 +23,12 @@ public class Role {
 	private int id;
 
 	@NotEmpty
-	private String role; 
-
+	@Column(name = "role_name")
+	private String roleName; 
+	
+	public Role() {
+		super();
+	}
 	public Role(int id) {
 		this.id = id;
 	}
@@ -35,12 +41,12 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoleName() {
+		return roleName;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	@Override
@@ -48,7 +54,7 @@ public class Role {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((roleName == null) ? 0 : roleName.hashCode());
 		return result;
 	}
 
@@ -63,10 +69,10 @@ public class Role {
 		Role other = (Role) obj;
 		if (id != other.id)
 			return false;
-		if (role == null) {
-			if (other.role != null)
+		if (roleName == null) {
+			if (other.roleName != null)
 				return false;
-		} else if (!role.equals(other.role))
+		} else if (!roleName.equals(other.roleName))
 			return false;
 		return true;
 	}

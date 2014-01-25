@@ -24,13 +24,14 @@ import common.UserRole;
  * 
  */
 @Entity
-@Table(name="client")
+@Table(name="Client")
 @NamedQueries({
 @NamedQuery(name="Client.findAll", query="FROM Client"),
 @NamedQuery(name="Client.findAllLazy",query="FROM Client") ,
 @NamedQuery(name="Client.count",query="SELECT count(*) from Client") ,
 @NamedQuery(name="Client.getByNameSurname", query="FROM Client WHERE client_name=:name AND client_surname=:surname") ,
-@NamedQuery(name="Client.getByCardNumber", query="FROM Client WHERE client_card_number=:cardNumber")
+@NamedQuery(name="Client.getByCardNumber", query="FROM Client WHERE client_card_number=:cardNumber"),
+@NamedQuery(name="Client.getByUser", query="select c FROM Client c join c.registerUser r where r.registerId =:regId")
 })
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -66,7 +67,7 @@ public class Client implements Serializable {
 	private String clientSurname;
 
 	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "register_login")
+	@JoinColumn(name = "register_id")
 	private RegisterUser registerUser;
 
 	public Client() {

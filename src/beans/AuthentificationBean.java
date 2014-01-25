@@ -86,17 +86,46 @@ public class AuthentificationBean implements Serializable {
 
 			request.login(name, password);
 			RegisterUser user = dao.findByLogin(name);
-			client = user.getClient();
-			isLogged = true;
-			SessionHelper.putAtrributeToSession("id", user.getClientId());
+			System.out.println("RegisterUser Role : " + user.getRole().getRoleName());
 			SessionHelper.putAtrributeToSession("regId", user.getRegisterId());
-			SessionHelper.putAtrributeToSession("userLogin", user.getRegisterLogin());
-			SessionHelper.putAtrributeToSession("client", user.getClient());
-				if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
+			SessionHelper.putAtrributeToSession("userLogin",
+					user.getRegisterLogin());
+
+			if (request.isUserInRole(UserRole.CLIENT.name().toLowerCase())) {
+				System.out.println(" Role is client ");
+				this.client = clientDao.getByUser(user.getRegisterId());
+				SessionHelper.putAtrributeToSession("id", client.getClientId());
+				SessionHelper.putAtrributeToSession("client", client);
+				
+				isLogged = true;
 				return Actions.CARS_VIEW.getFullUrl();
+			} else if (request.isUserInRole(UserRole.ADMIN.name().toLowerCase())) {
+				System.out.println(" Role is admin ");
+				
+				isLogged = true;
+				return Actions.CLIENTS_VIEW.getFullUrl();
+			} else {
+				// TODO: Handle dealer
+				System.out.println(" Role is dealer ");
+				
+				isLogged = true;
+				return Actions.LOGIN_VIEW.getFullUrl();
 			}
 
-			return Actions.CLIENTS_VIEW.getFullUrl();
+			/*
+			 * RegisterUser user = dao.findByLogin(name); client =
+			 * user.getClient(); isLogged = true;
+			 * SessionHelper.putAtrributeToSession("id", user.getClientId());
+			 * SessionHelper.putAtrributeToSession("regId",
+			 * user.getRegisterId());
+			 * SessionHelper.putAtrributeToSession("userLogin",
+			 * user.getRegisterLogin());
+			 * SessionHelper.putAtrributeToSession("client", user.getClient());
+			 * if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
+			 * return Actions.CARS_VIEW.getFullUrl(); }
+			 * 
+			 * return Actions.CLIENTS_VIEW.getFullUrl();
+			 */
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
@@ -106,9 +135,11 @@ public class AuthentificationBean implements Serializable {
 	}
 
 	public String logout() {
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		ExternalContext ec = FacesContext.getCurrentInstance()
+				.getExternalContext();
 		((HttpSession) ec.getSession(false)).invalidate();
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		FacesContext.getCurrentInstance().getExternalContext()
+				.invalidateSession();
 		isLogged = false;
 		client = null;
 		return Actions.LOGIN_VIEW.getFullUrl();
