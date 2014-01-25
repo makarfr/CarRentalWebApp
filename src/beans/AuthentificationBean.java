@@ -113,20 +113,6 @@ public class AuthentificationBean implements Serializable {
 				return Actions.LOGIN_VIEW.getFullUrl();
 			}
 
-			/*
-			 * RegisterUser user = dao.findByLogin(name); client =
-			 * user.getClient(); isLogged = true;
-			 * SessionHelper.putAtrributeToSession("id", user.getClientId());
-			 * SessionHelper.putAtrributeToSession("regId",
-			 * user.getRegisterId());
-			 * SessionHelper.putAtrributeToSession("userLogin",
-			 * user.getRegisterLogin());
-			 * SessionHelper.putAtrributeToSession("client", user.getClient());
-			 * if (UserRole.CLIENT.name().equalsIgnoreCase(user.getRole())) {
-			 * return Actions.CARS_VIEW.getFullUrl(); }
-			 * 
-			 * return Actions.CLIENTS_VIEW.getFullUrl();
-			 */
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);

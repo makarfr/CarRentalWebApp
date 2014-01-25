@@ -99,9 +99,9 @@
         </form-login-config>
     </login-config>
     
-   <!--  <welcome-file-list>
+    <welcome-file-list>
         <welcome-file>login.xhtml</welcome-file>
-    </welcome-file-list> -->
+    </welcome-file-list>
     
 <context-param>
    <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
