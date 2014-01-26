@@ -1,5 +1,6 @@
 package dao.interfaces;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -14,5 +15,7 @@ public interface ContractDAOInterface<T> extends EntityDAOInterface<T> {
 
 	@Override
 	List<T> findRange(int start, int count, String sortField,
-             SortOrder sortOrder, Map<String, String> filters) ; 
+             SortOrder sortOrder, Map<String, String> filters) ;
+
+		List<Contract> getClientContractsByRegisterId(Long registerId); 
 }

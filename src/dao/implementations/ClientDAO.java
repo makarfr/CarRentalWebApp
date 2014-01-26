@@ -67,6 +67,7 @@ public class ClientDAO extends EntityDAO<Client> implements ClientDAOInterface<C
 		return (Client) result;
 	}
 
+	@Override
 	public List<Client> findRange(int start, int count, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
 

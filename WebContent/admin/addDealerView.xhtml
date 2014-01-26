@@ -19,15 +19,15 @@
 
 				<h:panelGrid style="margin-top:20px">
 					<h:panelGrid columns="1">
-										
+
 						<h:outputText value="#{text.login}:" />
 						<h:inputText label="DealerLogin" required="true" id="login"
 							value="#{dealerBean.dealer.registerUser.registerLogin}" />
-					
-					<h:outputText value="#{text.password}:" />
+
+						<h:outputText value="#{text.password}:" />
 						<h:inputSecret label="Pass" required="true" id="pass"
 							value="#{dealerBean.dealer.registerUser.registerPassword}" />
-					
+
 						<h:outputText value="#{text.client_name}" />
 						<h:inputText label="Name" required="true" id="name"
 							value="#{dealerBean.dealer.dealerName}" />
@@ -43,7 +43,7 @@
 						<h:outputText value="#{text.client_phone_number}:" />
 						<h:inputText label="PhoneNumber" required="true" id="number"
 							value="#{dealerBean.dealer.dealerPhoneNumber}" />
-			
+
 
 					</h:panelGrid>
 
@@ -52,6 +52,10 @@
 
 				<p:commandButton value="#{text.ok}" action="#{dealerBean.save}"
 					oncomplete="dlgConfirm.show();" />
+			</h:form>
+			<h:form>
+				<p:commandButton value="#{text.cancel}"
+					action="/admin/dealerView.xhtml?faces-redirect=true" ajax="false" />
 
 				<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
 					resizable="false">
@@ -63,11 +67,9 @@
 							action="/admin/dealerView.xhtml?faces-redirect=true "
 							ajax="false" />
 					</h:panelGrid>
-
-
 				</p:dialog>
-			</h:form>
 
+			</h:form>
 		</ui:define>
 	</ui:composition>
 

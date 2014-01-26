@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			<h:form id="formClient">
+
+				<p:dataTable var="clientItem" value="#{clientBean.lazyModel}"
+					paginator="true" rows="10"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					rowsPerPageTemplate="5,10,15" selectionMode="single"
+					selection="#{clientBean.selectedClient}" id="clientTable"
+					lazy="true">
+
+					<p:ajax event="rowSelect" update=":formClient:display"
+						oncomplete="PF('clientDialog').show()" />
+
+					<p:column headerText="#{text.client_card_number}:"
+						sortBy="clientCardNumber">
+						<h:outputText value="#{clientItem.clientCardNumber}" />
+
+					</p:column>
+
+					<p:column headerText="#{text.client_full_name}:"
+						sortBy="clientSurname" filterBy="#{clientItem.clientSurname}">
+						<h:outputText
+							value="#{clientItem.clientName} #{clientItem.clientMiddleName} #{clientItem.clientSurname}" />
+
+					</p:column>
+
+					<p:column headerText="#{text.client_address}:"
+						sortBy="clientAddress" filterBy="#{clientItem.clientAddress}">
+						<h:outputText value="#{clientItem.clientAddress}" />
+					</p:column>
+
+					<p:column headerText="#{text.client_phone_number}:"
+						sortBy="clientPhoneNumber"
+						filterBy="#{clientItem.clientPhoneNumber}">
+						<h:outputText value="#{clientItem.clientPhoneNumber}" />
+					</p:column>
+
+					<p:column headerText="#{text.client_driver_license}:"
+						sortBy="clientDriverLicenseNumber"
+						filterBy="#{clientItem.clientDriverLicenseNumber}">
+						<h:outputText value="#{clientItem.clientDriverLicenseNumber}" />
+					</p:column>
+
+					<p:column headerText="#{text.discount}:" sortBy="clientDiscount">
+						<h:outputText value="#{clientItem.clientDiscount}" />
+					</p:column>
+					<p:column>
+						<p:commandButton id="updateButton" icon="ui-icon-pencil"
+							action="#{clientBean.setSelectedClient(clientItem)}"
+							oncomplete="dlg.show()" update=":editDialog" />
+					</p:column>
+				</p:dataTable>
+
+				<p:dialog header="#{text.client_detail}" widgetVar="clientDialog"
+					resizable="true">
+
+					<h:panelGrid id="display" columns="2" cellpadding="12">
+
+						<h:outputText value="#{text.client_card_number}:" />
+       					     #{clientBean.selectedClient.clientCardNumber}
+
+       				     <h:outputText value="#{text.client_full_name}:" />
+						<h:outputText
+							value="#{clientBean.selectedClient.clientName} #{clientBean.selectedClient.clientSurname}"
+							style="font-weight:bold" />
+
+						<h:outputText value="#{text.client_address}:" />
+						<h:outputText value="#{clientBean.selectedClient.clientAddress}"
+							style="font-weight:bold" />
+
+						<h:outputText value="#{text.client_phone_number}:" />
+						<h:outputText
+							value="#{clientBean.selectedClient.clientPhoneNumber}"
+							style="font-weight:bold" />
+
+						<h:outputText value="#{text.client_driver_license}:" />
+						<h:outputText
+							value="#{clientBean.selectedClient.clientDriverLicenseNumber}"
+							style="font-weight:bold" />
+
+						<h:outputText value="#{text.discount}:" />
+						<h:outputText value="#{clientBean.selectedClient.clientDiscount}"
+							style="font-weight:bold" />
+					</h:panelGrid>
+
+				</p:dialog>
+
+			</h:form>
+
+
+
+			<p:dialog id="editDialog" header="#{text.edit}" widgetVar="dlg"
+				resizable="false" modal="true">
+				<h:form>
+					<h:panelGrid style="margin-top:20px">
+						<h:panelGrid columns="1">
+							<h:outputText value="#{text.client_name}" />
+							<h:inputText label="ClientName" required="true" id="name"
+								value="#{clientBean.selectedClient.clientName}" />
+								
+							<h:outputText value="#{text.client_surname}" />
+							<h:inputText label="ClientSurname" required="true" id="s"
+								value="#{clientBean.selectedClient.clientSurname}" />
+								
+							<h:outputText value="#{text.client_address}:" />
+							<h:inputText label="ClientAddress" required="true" id="adress"
+								value="#{clientBean.selectedClient.clientAddress}" />
+								
+							<h:outputText value="#{text.client_phone_number}:" />
+							<h:inputText label="ClientPhoneNumber" required="true" id="number"
+								value="#{clientBean.selectedClient.clientPhoneNumber}" />
+								
+							<h:outputText value="#{text.client_driver_license}:" />
+								<h:inputText label="ClientDriverLic" required="true" id="license"
+								value="#{clientBean.selectedClient.clientDriverLicenseNumber}" />
+								
+							<h:outputText value="#{text.discount}:" />	
+							<h:inputText label="ClientDisc" required="true" id="discount"
+								value="#{clientBean.selectedClient.clientDiscount}" />
+						</h:panelGrid>
+
+					</h:panelGrid>
+					<p:commandButton value="#{text.reset}" type="reset" />
+
+					<p:commandButton value="#{text.ok}" action="#{clientBean.update}"
+						oncomplete="dlgConfirm.show();" />
+				</h:form>
+			</p:dialog>
+
+
+			<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
+				resizable="false">
+				<h:form>
+					<h:panelGrid columns="1">
+						<h:outputText value="#{text.dialog_success_edit}" />
+
+						<p:commandButton id="closeButton" value="#{text.ok}"
+							oncomplete="dlgConfirm.hide();"
+							action="/admin/clientView.xhtml?faces-redirect=true " ajax="false" />
+					</h:panelGrid>
+				</h:form>
+
+			</p:dialog>
+
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

@@ -1,5 +1,6 @@
 package dao.implementations;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.Root;
 
 import org.primefaces.model.SortOrder;
 
+import model.Client;
 import model.Contract;
 import model.enums.StatusContract;
 import dao.interfaces.ContractDAOInterface;
@@ -64,4 +66,12 @@ public class ContractDAO extends EntityDAO<Contract> implements ContractDAOInter
 	        q.setFirstResult(start);
 	        return q.getResultList();
 	    }
+
+	@Override
+	public List<Contract> getClientContractsByRegisterId(Long registerId) {
+		Query query = em.createNamedQuery("Contract.getClientContractsByRegisterId", Contract.class);
+		query.setParameter("regId", registerId);
+		List<Contract> result =  query.getResultList();
+		return result;
+	}
 }

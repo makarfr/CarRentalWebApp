@@ -14,34 +14,34 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-		
-	<div class="login">
-    <h:form>
-        <p:panel id="panel" header="#{text.login}" >
-            <p:growl id="messages" showDetail="true"/>
-            <p:focus context="panel"/>
 
-            <h:panelGrid style="margin: auto">
-                <h:outputLabel for="name" value="#{text.username}"/>
-                <p:inputText id="name" required="true" label="Name"
-                             value="#{login.name}">
-                </p:inputText>
-         
-                <h:outputLabel for="password" value="#{text.password}"/>
-                <p:inputText id="password" required="true" label="password"
-                             type="password"
-                             value="#{login.password}"/>
-            </h:panelGrid>
+			<div class="login">
+				<h:form>
+					<p:panel id="panel" header="#{text.login}">
+						<p:growl id="messages" showDetail="true" />
+						<p:focus context="panel" />
 
-            <p:commandButton ajax="false" value="#{text.login}" update="panel,:form:messages"
-                             action="#{login.login}"/>
-        </p:panel>
-    </h:form>
+						<h:panelGrid style="margin: auto">
+							<h:outputLabel for="name" value="#{text.username}" />
+							<p:inputText id="name" required="true" label="Name"
+								value="#{login.name}" placeholder="#{text.input_login}">
+							</p:inputText>
 
-  </div>
+							<h:outputLabel for="password" value="#{text.password}" />
+							<p:inputText id="password" required="true" label="password"
+								type="password" value="#{login.password}"
+								placeholder="#{text.input_password}" />
+						</h:panelGrid>
+
+						<p:commandButton ajax="false" value="#{text.login}"
+							update="panel,:form:messages" action="#{login.login}" />
+					</p:panel>
+				</h:form>
+
+			</div>
 
 		</ui:define>
 	</ui:composition>
-	
+
 </h:body>
 </html>

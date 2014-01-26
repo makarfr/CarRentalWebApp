@@ -14,62 +14,25 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
+		<h:form>
 			    <div>
+			   
             <p:panelGrid columns="2">
                 <p:outputLabel value="#{text.your_name}"/>
-                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.name}"/>
+                <p:outputLabel value="#{profileBean.clientBean.selectedClient.clientName}"/>
                 <p:outputLabel value="#{text.your_last_name}"/>
-                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.lastname}"/>
+                <p:outputLabel value="#{profileBean.clientBean.selectedClient.clientSurname}"/>
                 <p:outputLabel value="#{text.your_licence_number}"/>
-                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.licenseNumber}"/>
-                <p:outputLabel value="#{text.your_bithdate}"/>
-                <p:outputLabel value="#{profileBean.clientBean.client.driverLicenseByClientId.dateOfBirth}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </p:outputLabel>
+                <p:outputLabel value="#{profileBean.clientBean.selectedClient.clientDriverLicenseNumber}"/>
                 <p:outputLabel value="#{text.your_discount}"/>
-                <p:outputLabel rendered="#{profileBean.clientBean.client.discount!=null}"
-                               value="#{profileBean.clientBean.client.discount} %"/>
-                <p:outputLabel rendered="#{profileBean.clientBean.client.discount==null}" value="0 %"/>
+                <p:outputLabel rendered="#{profileBean.clientBean.selectedClient.clientDiscount!=null}"
+                               value="#{profileBean.clientBean.selectedClient.clientDiscount} %"/>
+               
             </p:panelGrid>
         </div>
 
-        <div id="client_cars_view">
-            <h:form id="form">
-                <p:carousel id="carousel" value="#{profileBean.cars}" var="car" itemStyleClass="carItem"
-                            headerText="#{text.your_cars}" numVisible="1">
-
-                    <p:graphicImage id="image" value="../resources/foto/#{car.number}.jpg" width="250" height="250"/>
-
-                    <h:panelGrid columns="2" cellpadding="5">
-                        <h:outputText value="#{text.manufacturer}"/>
-                        <h:outputText value="#{car.manufacturer.label}" id="manufacturer"/>
-
-                        <h:outputText value="#{text.model}"/>
-                        <h:outputText value="#{car.model}" id="model"/>
-
-                        <h:outputText value="#{text.number}"/>
-                        <h:outputText value="#{car.number}" id="number"/>
-
-                        <h:outputText value="#{text.year}"/>
-                        <h:outputText value="#{car.date}" id="year">
-                            <f:convertDateTime pattern="yyyy"/>
-                        </h:outputText>
-
-                        <h:outputText value="#{text.color}"/>
-                        <h:outputText value="#{car.color.value}" id="color"/>
-
-                        <h:outputText value="#{text.price}"/>
-                        <h:outputText value="#{car.price}" id="price"/>
-                    </h:panelGrid>
-                    <p:commandButton value="#{text.rent_it_again}" action="#{selectedCarBean.choose(car)}"/>
-                </p:carousel>
-
-                <p:dialog>
-                    <p:outputPanel id="carDetail" style="text-align:center;" layout="block"/>
-                </p:dialog>
-
-            </h:form>
-        </div>
+                </h:form>
+    
 		</ui:define>
 	</ui:composition>
 

@@ -13,11 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import model.enums.StatusContract;
+
 
 /**
  * The persistent class for the "contract" database table.
@@ -25,7 +27,10 @@ import model.enums.StatusContract;
  */
 @Entity
 @Table(name="contract")
-@NamedQuery(name="Contract.findAll", query="SELECT c FROM Contract c")
+@NamedQueries({
+@NamedQuery(name="Contract.findAll", query="SELECT c FROM Contract c"),
+@NamedQuery(name ="Contract.getClientContractsByRegisterId", query= "SELECT c FROM Contract c join c.registerUser r where r.registerId =:regId")
+})
 public class Contract implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -104,7 +104,7 @@ public class AuthentificationBean implements Serializable {
 				System.out.println(" Role is admin ");
 				
 				isLogged = true;
-				return Actions.CLIENTS_VIEW.getFullUrl();
+				return Actions.DEALER_VIEW.getFullUrl();
 			} else {
 				// TODO: Handle dealer
 				System.out.println(" Role is dealer ");
