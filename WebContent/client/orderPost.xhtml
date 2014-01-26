@@ -15,30 +15,30 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<f:facet name="header">Order</f:facet>
+				<f:facet name="header">#{text.order}</f:facet>
 				<h:panelGrid columns="3" cellpadding="3">
 					<h:panelGroup>
-						<p:panel header="Car Details">
+						<p:panel header="#{text.car_detail}">
 							<h:panelGrid columns="2" cellpadding="7">
 
-								<h:outputText value="Model" />
+								<h:outputText value="#{text.model}" />
 								<h:outputText
 									value="#{selectedCarBean.car.carModel.carModelName}" id="model" />
 
-								<h:outputText value="Type:" />
+								<h:outputText value="#{text.type}"/>
 								<h:outputText value="#{selectedCarBean.car.carType.value}"
 									id="type" />
 
-								<h:outputText value="Number:" />
+								<h:outputText value="#{text.number}" />
 								<h:outputText value="#{selectedCarBean.car.carNumber}"
 									id="number" />
 
-								<h:outputText value="Year:" />
+								<h:outputText value="#{text.year}" />
 								<h:outputText value="#{selectedCarBean.car.carYear}" id="year">
 									<f:convertDateTime pattern="yyyy" />
 								</h:outputText>
 
-								<h:outputText value="Price:" />
+								<h:outputText value="#{text.price}" />
 								<h:outputText value="#{selectedCarBean.car.carPrice}" id="price" />
 
 							</h:panelGrid>
@@ -48,22 +48,22 @@
 					<h:panelGroup>
 						<div id="arend_time_form">
 							<h:form>
-								<p:panel id="panel" header="Enter dates:">
+								<p:panel id="panel" header="#{text.enter_dates}">
 									<h:panelGrid columns="3" cellpadding="5">
-										<p:outputLabel for="from_time" value="From time: " />
+										<p:outputLabel for="from_time" value="#{text.from}" />
 										<p:calendar id="from_time" binding="#{fromTimeComponent}"
 											value="#{orderPostBean.contract.contractDateFrom}"
 											navigator="true" display="inline" required="true"
-											requiredMessage="Please select start time"
-											converterMessage="Invalid date" />
+											requiredMessage="#{text.select_from_date}"
+											converterMessage="#{text.invalid_date}" />
 										<p:message for="from_time" style="color:red" />
 
-										<p:outputLabel for="to_time" value="To time: " />
+										<p:outputLabel for="to_time" value="#{text.to}" />
 										<p:calendar id="to_time"
 											value="#{orderPostBean.contract.contractDateTo}"
 											navigator="true" display="inline" required="true"
-											requiredMessage="Please select end time"
-											converterMessage="Invalid date">
+											requiredMessage="#{text.select_to_date}"
+											converterMessage="#{text.invalid_date}">
 											<f:attribute name="fromTimeComponent"
 												value="#{fromTimeComponent}" />
 											<f:attribute name="car"
@@ -74,17 +74,17 @@
 									</h:panelGrid>
 								</p:panel>
 
-								<p:panel id="display" header="Money/term">
+								<p:panel id="display" header="#{text.bill}">
 									<h:panelGrid columns="2">
-										<p:outputLabel value="General sum:" />
+										<p:outputLabel value="#{text.general_sum}" />
 										<p:outputLabel
 											value="#{orderPostBean.rentDays * orderPostBean.selectedCarBean.car.carPrice}" />
 
-										<p:outputLabel rendered="true" value="Your personal discount:" />
+										<p:outputLabel rendered="true" value="#{text.your_discount}" />
 										<p:outputLabel rendered="true"
 											value="#{orderPostBean.activeClient.selectedClient.clientDiscount}" />
 
-										<p:outputLabel value="Total sum:" />
+										<p:outputLabel value="#{text.total_sum}" />
 										<p:outputLabel
 											rendered="#{orderPostBean.contract.totalPrice!=null}"
 											value="#{orderPostBean.contract.totalPrice} USD" />
@@ -96,12 +96,12 @@
 
 								</p:panel>
 
-								<p:commandButton value="Calculate"
+								<p:commandButton value="#{text.calculate}"
 									action="#{orderPostBean.precalculate}" update="display, panel" />
-								<p:commandButton value="Place Order"
+								<p:commandButton value="#{text.post_order}"
 									action="#{orderPostBean.postOrder}" onsuccess="dlg1.show();" />
 
-								<p:dialog header="Post Order" widgetVar="dlg1">
+								<p:dialog header="#{text.post_order}" widgetVar="dlg1">
 									<h:outputText value="#{text.dialogSuccessBook}" />
 								</p:dialog>
 
@@ -113,7 +113,7 @@
 				</h:panelGrid>
 			</h:form>
 			<h:form>
-				<p:commandButton value="Cancel"
+				<p:commandButton value="#{text.cancel}"
 					action="/client/carView.xhtml?faces-redirect=true" ajax="false" />
 			</h:form>
 		</ui:define>
