@@ -17,29 +17,29 @@
 
 <h:form>
     <p:dataTable var="clientItem" value="#{clientBean.clientsList}">
-        <p:column headerText="Client Card Number:">
+        <p:column headerText="#{text.client_card_number}">
             <h:outputText value="#{clientItem.clientCardNumber}" />
          
         </p:column>
 
-        <p:column headerText="Name (Middle Name) and Surname:" >
+        <p:column headerText="#{text.client_full_name}" >
             <h:outputText value="#{clientItem.clientName} #{clientItem.clientMiddleName} #{clientItem.clientSurname}" />
       
         </p:column>
 
-        <p:column headerText="Address:" >
-  <h:outputText value="#{clientItem.clientAddress}"/>
+        <p:column headerText="#{text.client_address}" >
+  			<h:outputText value="#{clientItem.clientAddress}"/>
         </p:column>
 
-        <p:column headerText="Phone number:">
+        <p:column headerText="#{text.client_phone_number}">
             <h:outputText value="#{clientItem.clientPhoneNumber}" />
         </p:column>
         
-          <p:column headerText="Driver Liscense number:" >
+          <p:column headerText="#{text.client_driver_license}" >
             <h:outputText value="#{clientItem.clientDriverLicenseNumber}" />
         </p:column>
         
-          <p:column headerText="Discount:">
+          <p:column headerText="#{text.discount}">
             <h:outputText value="#{clientItem.clientDiscount}" />
         </p:column>
     </p:dataTable>
