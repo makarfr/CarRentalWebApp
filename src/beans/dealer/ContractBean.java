@@ -77,9 +77,9 @@ public class ContractBean implements Serializable {
 		this.contract = contract;
 	}
 	
-	public String getConvertedCarModelName(Contract contract){
+	public String getConvertedCarModelName(Long carID){
 		List<CarModel> list = new LinkedList<CarModel>();
-		CarModel model = carModelDao.find(contract.getCarId());
+		CarModel model = carModelDao.find(carID);
 		list.add(model);
 		CarModelConverter.getList(list);
 		if(list.isEmpty()) {
