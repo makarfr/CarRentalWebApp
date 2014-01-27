@@ -27,13 +27,18 @@
 					paginator="true" rows="5"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 					rowsPerPageTemplate="5,10,15" selectionMode="single"
-					selection="#{carBean.car}" id="carBean" lazy="true" resizableColumns="true" liveResize="true">
-					
-					
-						<p:ajax event="rowSelect" update=":form:display" oncomplete="carDialog.show()" />
-				
-				
+					selection="#{carBean.car}" id="carBean" lazy="true"
+					resizableColumns="true" liveResize="true">
 
+
+					<p:ajax event="rowSelect" update=":form:display"
+						oncomplete="carDialog.show()" />
+					<p:column>
+						<p:graphicImage
+							value="../resources/foto/#{carView.carModel.carModelName}_#{carView.carModel.carModelDescription}.jpg"
+							alt="no foto" width="130" height="80" />
+
+					</p:column>
 					<p:column headerText="#{text.model}" sortBy="model"
 						filterBy="#{carView.carModel}">
 						<h:outputText value="#{carView.carModel}"
@@ -68,7 +73,8 @@
 					</p:column>
 				</p:dataTable>
 
-				<p:dialog header="#{text.car_detail}" widgetVar="carDialog" resizable="true">
+				<p:dialog header="#{text.car_detail}" widgetVar="carDialog"
+					resizable="true">
 
 					<h:panelGrid id="display" columns="1" cellpadding="4">
 						<p:graphicImage
@@ -87,7 +93,7 @@
 							<h:outputText value="#{text.number}" />
 							<h:outputText value="#{carBean.car.carNumber}" id="number" />
 
-							<h:outputText value="#{text.year}"/>
+							<h:outputText value="#{text.year}" />
 							<h:outputText value="#{carBean.car.carYear}" id="year">
 								<f:convertDateTime pattern="yyyy" />
 							</h:outputText>
@@ -97,7 +103,8 @@
 
 
 							<p:commandButton value="#{text.rent}"
-								action="#{selectedCarBean.choose(carBean.car)}"	rendered="#{request.isUserInRole('client')}"/>
+								action="#{selectedCarBean.choose(carBean.car)}"
+								rendered="#{request.isUserInRole('client')}" />
 						</h:panelGrid>
 					</h:panelGrid>
 				</p:dialog>
