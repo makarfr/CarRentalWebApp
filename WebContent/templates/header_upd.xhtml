@@ -23,12 +23,13 @@
 		<div id="header-wrapper">
 
 			<div id="container">
+<h1>#{login.logged}</h1>
 
 				<h:form>
 					<c:if test="#{login.logged}">
 						<p:commandLink value="#{text.logout}" action="#{login.logout}"
 							ajax="false" />
-						<br />
+						
 
 						<li><p:outputLabel
 								value="#{text.welcome}, #{sessionScope['userLogin']}" /></li>
@@ -36,6 +37,8 @@
 					<c:otherwise>
 						<p:commandLink value="#{text.register}"
 							action="addClientView.xhtml?faces-redirect=true" ajax="false" />
+						<p:spacer width="20" />
+						
 						<p:commandLink value="#{text.login}"
 							action="login.xhtml?faces-redirect=true" ajax="false" />
 						<br />
