@@ -113,11 +113,19 @@ public class RegisterUser implements Serializable {
 
 	    @Override
 	    public int hashCode() {
-	        long result = registerId;
+	        long result = registerId == null ? 0L : registerId;
 	        result = 31 * result + (registerLogin != null ? registerLogin.hashCode() : 0);
 	        result = 31 * result + (registerPassword != null ? registerPassword.hashCode() : 0);
 	        return (int) result;
 	    }
+
+		@Override
+		public String toString() {
+			return "RegisterUser [registerId=" + registerId
+					+ ", registerLogin=" + registerLogin
+					+ ", registerPassword=" + registerPassword + ", role="
+					+ role + "]";
+		}
 
 		
 }

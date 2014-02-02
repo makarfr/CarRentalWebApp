@@ -10,15 +10,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import model.Client;
-import model.RegisterUser;
 
 import org.primefaces.model.LazyDataModel;
 
 import common.Actions;
 
-import dao.implementations.RegisterUserDAO;
 import dao.interfaces.ClientDAOInterface;
-import dao.interfaces.RegisterUserDAOInterface;
 
 @ManagedBean(name = "clientBean")
 @SessionScoped
@@ -30,21 +27,21 @@ public class ClientBean implements Serializable{
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
 	private LazyDataModel<Client> lazyModel;
-	
+
 	@PostConstruct
 	public void init(){
 		lazyModel = new ClientLazyDataModel(new LinkedList<Client>(), clientDao);
 	}
 
 	public ClientBean() {
-        instantiateClient();
-    }
+		instantiateClient();
+	}
 
-    private void instantiateClient() {
-    	selectedClient = new Client();
-    	       
-    }
-	
+	private void instantiateClient() {
+		selectedClient = new Client();
+
+	}
+
 	public LazyDataModel<Client> getLazyModel() {
 		return lazyModel;
 	}
@@ -62,15 +59,16 @@ public class ClientBean implements Serializable{
 	public void setSelectedClient(Client client) {
 		this.selectedClient = client;
 	}
-	
-	
+
+
 	public String save() {
-		 BigDecimal startDisc = new BigDecimal(3);
-		 selectedClient.setClientDiscount(startDisc);
-	        clientDao.create(selectedClient);
-	        return "clientView";
-	    }
-	
+		BigDecimal startDisc = new BigDecimal(3);
+		selectedClient.setClientDiscount(startDisc);
+		selectedClient.setClientCardNumber(0L);
+		clientDao.create(selectedClient);
+		return "login";
+	}
+
 	public String update() {
 		clientDao.update(selectedClient);
 		return Actions.CLIENTS_VIEW.getViewUrl();

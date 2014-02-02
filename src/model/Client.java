@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +67,7 @@ public class Client implements Serializable {
 	@Column(name="client_surname", nullable=false, length=50)
 	private String clientSurname;
 
-	@OneToOne(cascade= CascadeType.ALL)
+	@OneToOne(cascade= CascadeType.ALL, optional = false)
 	@JoinColumn(name = "register_id")
 	private RegisterUser registerUser;
 
@@ -210,6 +211,19 @@ public class Client implements Serializable {
 	        result = 31 * result + clientDiscount.longValue();
 	        return (int) result;
 	    }
+
+		@Override
+		public String toString() {
+			return "Client [clientId=" + clientId + ", clientAddress="
+					+ clientAddress + ", clientCardNumber=" + clientCardNumber
+					+ ", clientDiscount=" + clientDiscount
+					+ ", clientDriverLicenseNumber="
+					+ clientDriverLicenseNumber + ", clientMiddleName="
+					+ clientMiddleName + ", clientName=" + clientName
+					+ ", clientPhoneNumber=" + clientPhoneNumber
+					+ ", clientSurname=" + clientSurname + ", registerUser="
+					+ registerUser + "]";
+		}
 
 
 }
