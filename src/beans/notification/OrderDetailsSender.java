@@ -10,9 +10,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import dao.interfaces.ClientDAOInterface;
+import org.stringtemplate.v4.ST;
 
-import model.Car;
+import dao.interfaces.ClientDAOInterface;
 import model.Client;
 import model.Contract;
 
@@ -58,15 +58,15 @@ public class OrderDetailsSender {
 		attributes.put("date_to", dateFormat.format(contract.getContractDateTo()));
 		attributes.put("car_details", contract.getCar().getCarInfo());
 		attributes.put("total_sum", contract.getTotalPrice());
-		attributes.put("pick_up_location", "Kiev, Kudryashova 18-b st.");
-		attributes.put("company_cell_phone", "007-1234567");
+		attributes.put("pick_up_location", "Ukraine, Kiev, st.Street");
+		attributes.put("company_cell_phone", "+38 012 345-67-89");
 		return attributes;
 	}
 	
 	
 	private String getFormattedText(String text, Map<String, Object> attributes) {		
-		StringTemplate st = new StringTemplate(text);
-		st.setAttributes(attributes);
+		ST st = new ST(text);
+		st.getAttributes().putAll(attributes);
 		return st.toString();
 	}
 	
