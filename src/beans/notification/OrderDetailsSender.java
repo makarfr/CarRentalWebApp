@@ -3,44 +3,39 @@ package beans.notification;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import org.stringtemplate.v4.ST;
-
-import dao.interfaces.ClientDAOInterface;
 import model.Client;
 import model.Contract;
 
-@ManagedBean
-@RequestScoped
+import org.stringtemplate.v4.ST;
+
+import common.SessionHelper;
+
 public class OrderDetailsSender {
 
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-	@EJB
-	private ClientDAOInterface<Client> clientDao;
 
 	public OrderDetailsSender() {		
 	}
 	
 	public void send(Contract contract) {
 		System.out.println("preparing to send email...");
-		
-		ResourceBundle rb = ResourceBundle.getBundle("email_template", 
+		ResourceBundle rb = ResourceBundle.getBundle("beans/notification/email_template", 
                 FacesContext.getCurrentInstance().getViewRoot().getLocale());
 		
-		Client client = clientDao.getByUser(contract.getRegisterUser().getRegisterId());
+		Client client = (Client) SessionHelper.getAttribute("client");
 		Map<String, Object> attributes = getAttributes(contract, client);
 		
 		String subject = getFormattedText(rb.getString("email.subject"), attributes);
 		String body = getFormattedText(rb.getString("email.body"), attributes);
-		
+		System.out.println("body = " + body);
 		boolean sent = EmailSender.INSTANCE.sendEmailMessage(
-												contract.getRegisterUser().getRegisterLogin(), 
+											//	contract.getRegisterUser().getRegisterLogin(), 
+				"makarfr@gmail.com",
 												subject, 
 												body);
 		
@@ -64,10 +59,13 @@ public class OrderDetailsSender {
 	}
 	
 	
-	private String getFormattedText(String text, Map<String, Object> attributes) {		
+	private String getFormattedText(String text, Map<String, Object> attributes) {	
 		ST st = new ST(text);
-		st.getAttributes().putAll(attributes);
-		return st.toString();
+		for (Entry<String, Object> entry : attributes.entrySet()) {
+			st.add(entry.getKey(), entry.getValue());
+		}
+		System.out.println(st.toString());
+		return st.render();
 	}
 	
 }

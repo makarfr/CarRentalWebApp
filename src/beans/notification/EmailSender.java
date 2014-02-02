@@ -7,6 +7,7 @@ public enum EmailSender {
 	INSTANCE;
 
 	private final String SENDER_EMAIL = "iryna.v.kovalenko@gmail.com";
+	private final String SENDER_PASSWORD = "rustySc0lpel";
 
 	/**
 	 * Returns true if email is successfully sent, false otherwise
@@ -24,17 +25,16 @@ public enum EmailSender {
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
 
-		Session s = Session.getDefaultInstance(props);
-		/*Session session = Session.getInstance(props,
+		Session session = Session.getInstance(props,
 				new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(USER_NAME, PASSSWORD);
+				return new PasswordAuthentication(SENDER_EMAIL, SENDER_PASSWORD);
 			}
-		});*/
+		});
 
 		try {
 
-			Message message = new MimeMessage(s);
+			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(SENDER_EMAIL));
 			message.setContent(msgText,"text/html");
 

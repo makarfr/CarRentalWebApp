@@ -15,6 +15,7 @@ import model.RegisterUser;
 import model.enums.StatusContract;
 import beans.cars.SelectedCarBean;
 import beans.clients.ClientBeanAddOrder;
+import beans.notification.OrderDetailsSender;
 
 import common.SessionHelper;
 
@@ -40,6 +41,7 @@ public class OrderPostBean {
     private Contract contract = new Contract();
     private DecimalFormat df=new DecimalFormat("#.##");
     
+    private OrderDetailsSender orderDetailsSender = new OrderDetailsSender();
     
     public void precalculate() {
         contract.setCar(selectedCarBean.getCar());
@@ -71,7 +73,9 @@ public class OrderPostBean {
     public String postOrder() {
         precalculate();
         contractDAO.create(contract);
-          return "viewOrder";
+        
+        orderDetailsSender.send(contract);
+        return "viewOrder";
     }
 
     public BigDecimal getTotalSum() {
@@ -131,4 +135,12 @@ public class OrderPostBean {
     public void setRentDays(int rentDays) {
         this.rentDays = rentDays;
     }
+
+	public OrderDetailsSender getOrderDetailsSender() {
+		return orderDetailsSender;
+	}
+
+	public void setOrderDetailsSender(OrderDetailsSender orderDetailsSender) {
+		this.orderDetailsSender = orderDetailsSender;
+	}
 }
