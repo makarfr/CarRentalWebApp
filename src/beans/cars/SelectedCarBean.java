@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import common.Actions;
+
 import model.Car;
 
 
@@ -20,7 +22,7 @@ public class SelectedCarBean implements Serializable {
 
     public String choose(Car car) {
         this.car = car;
-        return "orderPost";
+        return Actions.ORDER_POST.getFullUrl();
     }
 
     public Car getCar() {

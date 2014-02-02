@@ -81,10 +81,10 @@
 		</auth-constraint>
 	</security-constraint>
 
-	<security-constraint>
+	<!-- <security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Access</web-resource-name>
-			<url-pattern>/client/carView.xhtml</url-pattern>
+			<url-pattern>/carView.xhtml</url-pattern>
 			<http-method>POST</http-method>
 			<http-method>GET</http-method>
 			<http-method>PUT</http-method>
@@ -95,7 +95,7 @@
 			<role-name>dealer</role-name>
 		</auth-constraint>
 	</security-constraint>
-
+ -->
 
 	<security-role>
 		<role-name>client</role-name>
@@ -117,7 +117,7 @@
 	</login-config>
 
 	<welcome-file-list>
-		<welcome-file>client/carView.xhtml</welcome-file>
+		<welcome-file>/carView.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

@@ -17,6 +17,7 @@ import beans.cars.SelectedCarBean;
 import beans.clients.ClientBeanAddOrder;
 import beans.notification.OrderDetailsSender;
 
+import common.Actions;
 import common.SessionHelper;
 
 import dao.interfaces.ContractDAOInterface;
@@ -76,7 +77,7 @@ public class OrderPostBean {
         contractDAO.create(contract);
         
         orderDetailsSender.send(contract, clientBeanOrder.getSelectedClient());
-        return "viewOrder";
+        return Actions.CARS_VIEW.getFullUrl();
     }
 
     public BigDecimal getTotalSum() {
