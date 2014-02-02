@@ -24,14 +24,14 @@
 						<h:panelGrid style="margin: auto">
 							<h:outputLabel for="name" value="#{text.username}" />
 							<p:inputText id="name" required="true" label="Name"
-								value="#{login.name}" placeholder="#{text.input_login}">
-							</p:inputText>
+								value="#{login.name}" placeholder="#{text.input_login}"/>
+							
 
 							<h:outputLabel for="password" value="#{text.password}" />
 							<p:inputText id="password" required="true" label="password"
 								type="password" value="#{login.password}"
 								placeholder="#{text.input_password}" />
-						</h:panelGrid>
+							</h:panelGrid>
 
 						<p:commandButton ajax="false" value="#{text.login}"
 							update="panel,:form:messages" action="#{login.login}" />

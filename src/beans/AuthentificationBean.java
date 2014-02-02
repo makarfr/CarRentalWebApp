@@ -1,6 +1,8 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -17,8 +19,10 @@ import common.SessionHelper;
 import common.UserRole;
 
 import model.Client;
+import model.Dealer;
 import model.RegisterUser;
 import dao.interfaces.ClientDAOInterface;
+import dao.interfaces.DealerDAOInterface;
 import dao.interfaces.RegisterUserDAOInterface;
 
 @ManagedBean(name = "login")
@@ -34,7 +38,8 @@ public class AuthentificationBean implements Serializable {
 	private RegisterUserDAOInterface<RegisterUser> dao;
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
-
+	private ResourceBundle text;
+	
 	public Client getClient() {
 		return client;
 	}
@@ -89,8 +94,8 @@ public class AuthentificationBean implements Serializable {
 			RegisterUser user = dao.findByLogin(name);
 			System.out.println("RegisterUser Role : " + user.getRole().getRoleName());
 			SessionHelper.putAtrributeToSession("regId", user.getRegisterId());
-			SessionHelper.putAtrributeToSession("userLogin",
-					user.getRegisterLogin());
+			SessionHelper.putAtrributeToSession("userLogin", user.getRegisterLogin());
+		
 
 			if (request.isUserInRole(UserRole.CLIENT.name().toLowerCase())) {
 				System.out.println(" Role is client ");
@@ -102,13 +107,10 @@ public class AuthentificationBean implements Serializable {
 				return Actions.CARS_VIEW.getFullUrl();
 			} else if (request.isUserInRole(UserRole.ADMIN.name().toLowerCase())) {
 				System.out.println(" Role is admin ");
-				
 				isLogged = true;
 				return Actions.DEALER_VIEW.getFullUrl();
 			} else {
-				// TODO: Handle dealer
 				System.out.println(" Role is dealer ");
-				
 				isLogged = true;
 				return Actions.CONTRACTS_VIEW.getFullUrl();
 			}
@@ -116,8 +118,9 @@ public class AuthentificationBean implements Serializable {
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sample error message", "PrimeFaces makes no mistakes")); 
-			return Actions.LOGIN_VIEW.getFullUrl();
+			text = ResourceBundle.getBundle("i18n/text", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,text.getString("error_login"), text.getString("error_login_message"))); 	
+			return null;
 		}
 	}
 

@@ -12,6 +12,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import org.hibernate.Session;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 
 import common.SessionHelper;
 
@@ -51,8 +53,8 @@ public class OrderPostBean {
         reg.setRegisterId((Long) SessionHelper.getAttribute("regId"));
         System.out.println("RegisterID in OrderBean " + reg.getRegisterId());
         contract.setRegisterUser(reg);
-        /*Dealer del = null;// = new Dealer();
-        del.setDealerId((Long) SessionHelper.getAttribute("id"));
+      
+    /*    del.setDealerId((Long) SessionHelper.getAttribute("id"));
         contract.setDealer(del);*/
         contract.setStatus(StatusContract.NEW);
         
@@ -86,12 +88,13 @@ public class OrderPostBean {
     }
 
     private int calculateNumberOfDaysBetween(Date dateFrom, Date dateTo) {
-        long startDateTime = dateFrom.getTime();
+        /*long startDateTime = dateFrom.getTime();
         long endDateTime = dateTo.getTime();
         long secondsPerDay = 1000 * 60 * 60 * 24;
         int numOfDays = (int) ((endDateTime - startDateTime) / secondsPerDay);
-        System.out.println(numOfDays + "Days");
-        rentDays = numOfDays + 1;
+        rentDays = numOfDays + 1;*/
+    	rentDays = Days.daysBetween(new DateTime(dateFrom), new DateTime(dateTo)).getDays();
+    	System.out.println("Rent days is " + rentDays);
         return rentDays;
     }
 
