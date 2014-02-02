@@ -56,7 +56,6 @@ public class DealerBean implements Serializable {
 	}
 
 	public void setDealer(Dealer dealer) {
-		System.out.println("set dealer: " + dealer);
 		this.dealer = dealer;
 	}
 
