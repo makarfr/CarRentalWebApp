@@ -3,11 +3,10 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
 
-public enum EmailSender {
-	INSTANCE;
+public class EmailSender {
 
-	private final String SENDER_EMAIL = "iryna.v.kovalenko@gmail.com";
-	private final String SENDER_PASSWORD = "rustySc0lpel";
+	private final String SENDER_EMAIL = "carrentalweb@gmail.com";
+	private final String SENDER_PASSWORD = "testParole";
 
 	/**
 	 * Returns true if email is successfully sent, false otherwise
@@ -35,17 +34,19 @@ public enum EmailSender {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(SENDER_EMAIL));
-			message.setContent(msgText,"text/html");
-
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAddressTo));
-			message.setSubject(msgSubject);
 			
+			message.setFrom(new InternetAddress(SENDER_EMAIL));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailAddressTo));
+
+			message.setSubject(msgSubject);
+			message.setContent(msgText,"text/html; charset=\"UTF-8\"");
+			message.setHeader("Content-Transfer-Encoding", "base64");
 			Transport.send(message);
 
 			return true;
 
 		} catch (MessagingException e) {
+			e.printStackTrace();
 			System.err.println(e.getMessage());
 			return false;
 		}
