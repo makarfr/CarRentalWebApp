@@ -34,15 +34,20 @@
 								value="#{text.welcome}, #{sessionScope['userLogin']}" /></li>
 					</c:if>
 					<c:otherwise>
-						<p:commandLink value="#{text.register}" action="addClientView.xhtml?faces-redirect=true"
-								ajax="false" />
-							<br />
-						
-						<p:commandLink value="#{text.login}" action="login.xhtml?faces-redirect=true"
-								ajax="false" />
-							<br />
-					
+						<p:commandLink value="#{text.register}"
+							action="addClientView.xhtml?faces-redirect=true" ajax="false" />
+						<p:commandLink value="#{text.login}"
+							action="login.xhtml?faces-redirect=true" ajax="false" />
+						<br />
 					</c:otherwise>
+					
+					<f:view locale="#{localeBean.localeCode}" contentType="text/html" />
+					<h:selectOneMenu value="#{localeBean.localeCode}"
+						onchange="submit()"
+						valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
+						<f:selectItems value="#{localeBean.languages}" />
+					</h:selectOneMenu>
+					
 				</h:form>
 			</div>
 		</div>
