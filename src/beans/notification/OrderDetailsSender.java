@@ -17,29 +17,32 @@ public class OrderDetailsSender {
 	public OrderDetailsSender() {		
 	}
 
-	public void send(Contract contract) {
-		System.out.println("preparing to send email...");
-		ResourceBundle rb = ResourceBundle.getBundle("beans/notification/email_template", 
-				FacesContext.getCurrentInstance().getViewRoot().getLocale());
+	public void send(final Contract contract) {
+		Runnable runnable = new Runnable() {
+			
+			@Override
+			public void run() {
+				System.out.println("preparing to send email...");
+				ResourceBundle rb = ResourceBundle.getBundle("beans/notification/email_template", 
+						FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
-		Client client = (Client) SessionHelper.getAttribute("client");
+				Client client = (Client) SessionHelper.getAttribute("client");
 
-		String subject = String.format(rb.getString("email.subject"), "Car Rental");
-		String body = String.format(rb.getString("email.body"), getAttributes(contract, client));
+				String subject = String.format(rb.getString("email.subject"), "Car Rental");
+				String body = String.format(rb.getString("email.body"), getAttributes(contract, client));
 
-		boolean sent = new EmailSender().sendEmailMessage(
-				//	contract.getRegisterUser().getRegisterLogin(),
-				"makarfr@gmail.com",
-				subject, 
-				body);
+				boolean sent = new EmailSender().sendEmailMessage(
+						//	contract.getRegisterUser().getRegisterLogin(),
+						"makarfr@gmail.com",
+						subject, 
+						body);
 
-		System.out.println("email is successfully sent: " + sent);
-	}
-
-	public static void main(String args[]) {
-		OrderDetailsSender s = new OrderDetailsSender();
-		s.send(null);
-
+				System.out.println("email is successfully sent: " + sent);
+				
+			}
+		};
+		new Thread(runnable).start();
+		
 	}
 
 	private Object[] getAttributes(Contract contract, Client client) {
