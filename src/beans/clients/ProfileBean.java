@@ -32,8 +32,10 @@ public class ProfileBean {
     @ManagedProperty("#{clientBean}")
     private ClientBean clientBean;
 
-    private List<Car> cars = new ArrayList<Car>();
+  //  private List<Car> cars = new ArrayList<Car>();
 
+    private List<Contract> contract = new ArrayList<Contract>();
+    
     private Car selectedCar;
     
     private Client selectedClient;
@@ -43,14 +45,15 @@ public class ProfileBean {
     //	Client client = new Client();
     	Client client = (Client) SessionHelper.getAttribute("client");
     	selectedClient = client;
-    	System.out.println("In clientProfile " +client.getClientName() );
+    	
        // Client client = clientDao.find(clientBean.getSelectedClient().getClientId());
-        Collection<Contract> clientCars = contractDao.getClientContractsByRegisterId(client.getRegisterUser().getRegisterId());
-        Iterator it = clientCars.iterator();
+        Collection<Contract> clientContracts = contractDao.getClientContractsByRegisterId(client.getRegisterUser().getRegisterId());
+        Iterator it = clientContracts.iterator();
         while (it.hasNext()) {
-            Car car = ((Contract) it.next()).getCar();
-            if (!cars.contains(car))
-                cars.add(car);
+        	//	Car car = ((Contract) it.next()).getCar();
+            Contract car = ((Contract) it.next());
+            if (!contract.contains(car))
+                contract.add(car);
         }
     }
 
@@ -64,14 +67,14 @@ public class ProfileBean {
 		this.clientBean = clientBean;
 	}
 
-
+/*
 	public List<Car> getCars() {
         return cars;
     }
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
-    }
+    }*/
 
     public Car getSelectedCar() {
         return selectedCar;
@@ -89,5 +92,15 @@ public class ProfileBean {
 
 	public void setSelectedClient(Client selectedClient) {
 		this.selectedClient = selectedClient;
+	}
+
+
+	public List<Contract> getContract() {
+		return contract;
+	}
+
+
+	public void setContract(List<Contract> contract) {
+		this.contract = contract;
 	}
 }
