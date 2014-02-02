@@ -22,27 +22,27 @@
 
 						<h:outputText value="#{text.login}:" />
 						<h:inputText label="DealerLogin" required="true" id="login"
-							value="#{dealerBean.dealer.registerUser.registerLogin}" />
+							value="#{addDealerBean.selectedDealer.registerUser.registerLogin}" />
 
 						<h:outputText value="#{text.password}:" />
 						<h:inputSecret label="Pass" required="true" id="pass"
-							value="#{dealerBean.dealer.registerUser.registerPassword}" />
+							value="#{addDealerBean.selectedDealer.registerUser.registerPassword}" />
 
 						<h:outputText value="#{text.client_name}" />
 						<h:inputText label="Name" required="true" id="name"
-							value="#{dealerBean.dealer.dealerName}" />
+							value="#{addDealerBean.selectedDealer.dealerName}" />
 
 						<h:outputText value="#{text.client_surname}" />
 						<h:inputText label="Surname" required="true" id="s"
-							value="#{dealerBean.dealer.dealerSurname}" />
+							value="#{addDealerBean.selectedDealer.dealerSurname}" />
 
 						<h:outputText value="#{text.client_address}:" />
 						<h:inputText label="Address" required="true" id="adress"
-							value="#{dealerBean.dealer.dealerAddress}" />
+							value="#{addDealerBean.selectedDealer.dealerAddress}" />
 
 						<h:outputText value="#{text.client_phone_number}:" />
 						<h:inputText label="PhoneNumber" required="true" id="number"
-							value="#{dealerBean.dealer.dealerPhoneNumber}" />
+							value="#{addDealerBean.selectedDealer.dealerPhoneNumber}" />
 
 
 					</h:panelGrid>
@@ -50,7 +50,7 @@
 				</h:panelGrid>
 				<p:commandButton value="#{text.reset}" type="reset" />
 
-				<p:commandButton value="#{text.ok}" action="#{dealerBean.save}"
+				<p:commandButton value="#{text.ok}" action="#{addDealerBean.save}"
 					oncomplete="dlgConfirm.show();" />
 			</h:form>
 			<h:form>

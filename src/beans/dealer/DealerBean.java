@@ -24,7 +24,7 @@ public class DealerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Dealer dealer = new Dealer();;
+	private Dealer dealer;
 	@EJB
 	private DealerDAOInterface<Dealer> dealDAO;
 	private LazyDataModel<Dealer> lazyModel;
@@ -35,13 +35,13 @@ public class DealerBean implements Serializable {
 	}
 	
 	public DealerBean() {
-		//instantiateDealer();
+		instantiateDealer();
 	}
 
-/*	private void instantiateDealer() {
+	private void instantiateDealer() {
 		dealer = new Dealer();
 
-	}*/
+	}
 
 	public LazyDataModel<Dealer> getLazyModel() {
 		return lazyModel;
@@ -56,6 +56,7 @@ public class DealerBean implements Serializable {
 	}
 
 	public void setDealer(Dealer dealer) {
+		System.out.println("set dealer: " + dealer);
 		this.dealer = dealer;
 	}
 
@@ -63,11 +64,7 @@ public class DealerBean implements Serializable {
 		List<Dealer> list = dealDAO.findAll();
 		return list;
 	}
-	public String save() {
-		dealDAO.create(dealer);
-		return Actions.DEALER_VIEW.getViewUrl();
-		
-	}
+	
 	
 	public String update() {
 		dealDAO.update(dealer);

@@ -164,4 +164,13 @@ public class Dealer implements Serializable {
 	        result = 31 * result + (dealerAddress != null ? dealerAddress.hashCode() : 0);
 	        return (int) result;
 	    }
+
+		@Override
+		public String toString() {
+			return "Dealer [dealerId=" + dealerId + ", dealerAddress="
+					+ dealerAddress + ", dealerName=" + dealerName
+					+ ", dealerPhoneNumber=" + dealerPhoneNumber
+					+ ", dealerSurname=" + dealerSurname + ", registerUser="
+					+ registerUser + ", contracts=" + contracts + "]";
+		}
 }
