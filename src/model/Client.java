@@ -46,6 +46,8 @@ public class Client implements Serializable {
 	@Column(name="client_address", nullable=false, length=200)
 	private String clientAddress;
 
+	@SequenceGenerator(name="CLIENT_CARD_NUMBER_GENERATOR" )
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="client_card_number", nullable=false)
 	private Long clientCardNumber;
 
