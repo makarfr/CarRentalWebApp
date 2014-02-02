@@ -117,7 +117,7 @@
 	</login-config>
 
 	<welcome-file-list>
-		<welcome-file>login.xhtml</welcome-file>
+		<welcome-file>client/carView.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>
