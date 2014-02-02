@@ -41,7 +41,8 @@ public class OrderPostBean {
     private Contract contract = new Contract();
     private DecimalFormat df=new DecimalFormat("#.##");
     
-    private OrderDetailsSender orderDetailsSender = new OrderDetailsSender();
+    @ManagedProperty(value = "#{sender}")
+    private OrderDetailsSender orderDetailsSender;	// = new OrderDetailsSender();
     
     public void precalculate() {
         contract.setCar(selectedCarBean.getCar());
@@ -74,7 +75,7 @@ public class OrderPostBean {
         precalculate();
         contractDAO.create(contract);
         
-        orderDetailsSender.send(contract);
+        orderDetailsSender.send(contract, clientBeanOrder.getSelectedClient());
         return "viewOrder";
     }
 

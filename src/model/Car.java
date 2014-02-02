@@ -201,7 +201,7 @@ public class Car implements Serializable {
 	    }
 
 		public String getCarInfo() {
-			return carModel + " #" + carNumber + "," + carType + "," + carYear ;
+			return carModel.getCarModelName() + " " + carModel.getCarModelDescription() +  "," + carType.getValue().toLowerCase() ;
 		}
 
 	
