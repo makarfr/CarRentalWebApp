@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import common.Actions;
+import common.I18nHelper;
 import common.SessionHelper;
 import common.UserRole;
 
@@ -38,8 +39,7 @@ public class AuthentificationBean implements Serializable {
 	private RegisterUserDAOInterface<RegisterUser> dao;
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
-	private ResourceBundle text;
-	
+
 	public Client getClient() {
 		return client;
 	}
@@ -118,8 +118,7 @@ public class AuthentificationBean implements Serializable {
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
-			text = ResourceBundle.getBundle("i18n/text", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,text.getString("error_login"), text.getString("error_login_message"))); 	
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,I18nHelper.INSTANCE.getI18Message("error_login"), I18nHelper.INSTANCE.getI18Message("error_login_message"))); 	
 			return null;
 		}
 	}

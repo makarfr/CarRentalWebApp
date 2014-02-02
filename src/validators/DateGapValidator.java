@@ -1,7 +1,8 @@
 package validators;
 
-import model.Car;
-import model.Contract;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.ResourceBundle;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -11,12 +12,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
+import common.I18nHelper;
 
 
 @FacesValidator("dateGapValidator")
@@ -35,12 +31,19 @@ public class DateGapValidator implements Validator {
         Calendar calTo = Calendar.getInstance();
         calTo.setTime(dateTo);
 
-        Car car = (Car) uiComponent.getAttributes().get("car");
+       Calendar calMaxToDate = Calendar.getInstance();
+    		  calMaxToDate.setTime(dateFrom);
+    		  calMaxToDate.add(Calendar.DATE, 30); 
 
         if (calTo.before(calFrom)) {
-            makeErrorMessage("End date should be grater or equals to start date");
-        } else if (!compareDatesTo30DaysGap(calFrom, calTo)) {
-            makeErrorMessage("Rent period mast be less then 30 days");
+        	System.out.println("in Validator days gap " + calTo.before(calFrom));
+            makeErrorMessage(I18nHelper.INSTANCE.getI18Message("day_gap_validate_end_date_greater_from_date"));
+        } else if (calTo.after(calMaxToDate)) {
+            makeErrorMessage(I18nHelper.INSTANCE.getI18Message("day_gap_validate_period_less_30_days"));
+        }
+        Calendar now = Calendar.getInstance();
+        if (calFrom.before(now) || calTo.before(now)) {
+            makeErrorMessage(I18nHelper.INSTANCE.getI18Message("day_gap_validate_date_greater_today"));
         }
       
     }
@@ -50,9 +53,5 @@ public class DateGapValidator implements Validator {
         msg.setSeverity(FacesMessage.SEVERITY_ERROR);
         throw new ValidatorException(msg);
     }
-    
-    public  boolean compareDatesTo30DaysGap(Calendar from, Calendar to) {
-        int days = Days.daysBetween(new DateTime(from), new DateTime(to)).getDays();
-        return days < 30;
-    }
+   
 }

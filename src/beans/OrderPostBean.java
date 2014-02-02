@@ -9,21 +9,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-
-import org.hibernate.Session;
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-
-import common.SessionHelper;
 
 import model.Contract;
-import model.Dealer;
 import model.RegisterUser;
 import model.enums.StatusContract;
 import beans.cars.SelectedCarBean;
-import beans.clients.ClientBean;
 import beans.clients.ClientBeanAddOrder;
+
+import common.SessionHelper;
+
 import dao.interfaces.ContractDAOInterface;
 
 @ManagedBean
@@ -88,13 +82,13 @@ public class OrderPostBean {
     }
 
     private int calculateNumberOfDaysBetween(Date dateFrom, Date dateTo) {
-        /*long startDateTime = dateFrom.getTime();
+        long startDateTime = dateFrom.getTime();
         long endDateTime = dateTo.getTime();
         long secondsPerDay = 1000 * 60 * 60 * 24;
         int numOfDays = (int) ((endDateTime - startDateTime) / secondsPerDay);
-        rentDays = numOfDays + 1;*/
-    	rentDays = Days.daysBetween(new DateTime(dateFrom), new DateTime(dateTo)).getDays();
-    	System.out.println("Rent days is " + rentDays);
+        rentDays = numOfDays + 1;
+    	/*rentDays = Days.daysBetween(new DateTime(dateFrom), new DateTime(dateTo)).getDays();
+    	System.out.println("Rent days is " + rentDays);*/
         return rentDays;
     }
 

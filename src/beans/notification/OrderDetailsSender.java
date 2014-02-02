@@ -19,7 +19,7 @@ import model.Contract;
 @ManagedBean
 @RequestScoped
 public class OrderDetailsSender {
-
+/*
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
@@ -68,6 +68,6 @@ public class OrderDetailsSender {
 		StringTemplate st = new StringTemplate(text);
 		st.setAttributes(attributes);
 		return st.toString();
-	}
+	}*/
 	
 }
