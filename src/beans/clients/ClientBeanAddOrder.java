@@ -19,7 +19,6 @@ public class ClientBeanAddOrder implements Serializable{
 	
 	
 	public ClientBeanAddOrder() {
-		System.out.println(" In ClientBeanAddOrder");
 		selectedClient = (Client) SessionHelper.getAttribute("client");
     }
 

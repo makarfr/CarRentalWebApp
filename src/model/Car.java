@@ -200,6 +200,10 @@ public class Car implements Serializable {
 	        return (int) result;
 	    }
 
+		public String getCarInfo() {
+			return carModel + " #" + carNumber + "," + carType + "," + carYear ;
+		}
+
 	
 
 }
