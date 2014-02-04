@@ -18,44 +18,55 @@
 				<f:facet name="header">#{text.create_new_member}</f:facet>
 
 				<h:panelGrid style="margin-top:20px">
-					<h:panelGrid columns="1">
-										
+					<p:panelGrid columns="1">
+
 						<h:outputText value="#{text.login}:" />
 						<h:inputText label="ClientLogin" required="true" id="login"
-							value="#{clientBean.selectedClient.registerUser.registerLogin}" />
-					
-					<h:outputText value="#{text.password}:" />
+							value="#{clientBean.selectedClient.registerUser.registerLogin}" maxlength="20">
+
+						<!-- 	<f:validator validatorId="loginValidator" for="login" /> -->
+						</h:inputText>
+						<!-- <p:message for="login" style="color:red" /> -->
+
+						<h:outputText value="#{text.password}:" />
 						<h:inputSecret label="ClientPass" required="true" id="pass"
-							value="#{clientBean.selectedClient.registerUser.registerPassword}" />
-					
+							value="#{clientBean.selectedClient.registerUser.registerPassword}" maxlength="20"/>
+
 						<h:outputText value="#{text.client_name}" />
 						<h:inputText label="ClientName" required="true" id="name"
-							value="#{clientBean.selectedClient.clientName}" />
+							value="#{clientBean.selectedClient.clientName}" maxlength="200"/>
 
 						<h:outputText value="#{text.client_surname}" />
 						<h:inputText label="ClientSurname" required="true" id="s"
-							value="#{clientBean.selectedClient.clientSurname}" />
+							value="#{clientBean.selectedClient.clientSurname}" maxlength="200"/>
 
 						<h:outputText value="#{text.client_address}:" />
 						<h:inputText label="ClientAddress" required="true" id="adress"
-							value="#{clientBean.selectedClient.clientAddress}" />
+							value="#{clientBean.selectedClient.clientAddress}" maxlength="200"/>
 
 						<h:outputText value="#{text.client_phone_number}:" />
 						<h:inputText label="ClientPhoneNumber" required="true" id="number"
-							value="#{clientBean.selectedClient.clientPhoneNumber}" />
+							value="#{clientBean.selectedClient.clientPhoneNumber}" maxlength="20"/>
 
 						<h:outputText value="#{text.client_driver_license}:" />
 						<h:inputText label="ClientDriverLic" required="true" id="license"
-							value="#{clientBean.selectedClient.clientDriverLicenseNumber}" />
+							value="#{clientBean.selectedClient.clientDriverLicenseNumber}"  maxlength="20"/>
 
-					</h:panelGrid>
+					</p:panelGrid>
 
 				</h:panelGrid>
 				<p:commandButton value="Reset" type="reset" />
 
-				<p:commandButton value="Ok" action="#{clientBean.save}"
-					oncomplete="dlgConfirm.show();" />
-
+				<p:commandButton value="Ok" actionListener="#{clientBean.save}" update="@form">
+					 <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				</p:commandButton>
+				
+				 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/> 	
+    </p:confirmDialog>
+				
+				
 				<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
 					resizable="false">
 					<h:panelGrid columns="1">

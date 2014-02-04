@@ -38,8 +38,9 @@ public class OrderDetailsSender {
 						getAttributes(contract, client));
 
 				boolean sent = new EmailSender().sendEmailMessage(
-				// contract.getRegisterUser().getRegisterLogin(),
-						"makarfr@gmail.com", subject, body);
+				 contract.getRegisterUser().getRegisterLogin(),
+					//	"makarfr@gmail.com",
+						subject, body);
 
 				System.out.println("email is successfully sent: " + sent);
 

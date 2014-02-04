@@ -6,14 +6,18 @@ import java.util.LinkedList;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import model.Client;
 
 import org.primefaces.model.LazyDataModel;
 
 import common.Actions;
+import common.I18nHelper;
 
 import dao.interfaces.ClientDAOInterface;
 
@@ -61,7 +65,9 @@ public class ClientBean implements Serializable{
 	}
 
 
-	public String save() {
+	public String save(ActionEvent actionEvent) {
+		System.out.println("In save method start");
+		
 		BigDecimal startDisc = new BigDecimal(3);
 		selectedClient.setClientDiscount(startDisc);
 		selectedClient.setClientCardNumber(0L);
