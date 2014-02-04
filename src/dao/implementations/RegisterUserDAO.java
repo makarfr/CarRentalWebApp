@@ -18,14 +18,11 @@ RegisterUserDAOInterface<RegisterUser> {
 	public RegisterUser findByLogin(String name) {
 		Query query = em.createNamedQuery("RegisterUser.findByLogin", RegisterUser.class);
 		query.setParameter("login", name);
-		try{
-			System.out.println("in find by login block try");
+		try {
 			if (query.getResultList() != null && !query.getResultList().isEmpty()){
 				RegisterUser result =  (RegisterUser) query.getResultList().get(0);
-				System.out.println("in RegisterUserDAO findByLogin " + result);
 				return result;
 			}else {
-				System.out.println("in RegisterUserDAO findByLogin : null");
 				return null;
 			}
 

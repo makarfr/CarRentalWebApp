@@ -14,7 +14,7 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="addClientForm" rendered="true">
+			<h:form id="addClientForm" >
 				<f:facet name="header">#{text.create_new_member}</f:facet>
 
 				<h:panelGrid style="margin-top:20px">
@@ -68,7 +68,7 @@
 
 				<p:commandButton value="Ok" actionListener="#{clientBean.save}"
 					update="addClientForm:messages" ajax="false" >
-					<p:confirm header="Confirmation" message="Are you sure?"
+					 <p:confirm header="Confirmation" message="Are you sure?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
 

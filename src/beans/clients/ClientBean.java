@@ -68,10 +68,7 @@ public class ClientBean implements Serializable {
 	}
 
 	public String save(ActionEvent actionEvent) {
-		System.out.println("In save method start");
-		// BeanHelper help = new BeanHelper();
-		String registerLogin = selectedClient.getRegisterUser()
-				.getRegisterLogin();
+	   String registerLogin = selectedClient.getRegisterUser().getRegisterLogin();
 		if (isLoginUnique(registerLogin)) {
 			BigDecimal startDisc = new BigDecimal(3);
 			selectedClient.setClientDiscount(startDisc);
@@ -80,13 +77,6 @@ public class ClientBean implements Serializable {
 			System.out.println("client created, going to redirect to " + Actions.LOGIN_VIEW.getViewUrl());
 			return Actions.LOGIN_VIEW.getViewUrl();
 		} else {
-			System.out.println("in else throw message");
-			/*
-			 * FacesMessage msg = new FacesMessage(null, I18nHelper.INSTANCE
-			 * .getI18Message("error_login_already_exist"));
-			 * msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			 */
-
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
