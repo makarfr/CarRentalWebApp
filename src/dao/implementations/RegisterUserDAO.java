@@ -7,7 +7,7 @@ import model.RegisterUser;
 import dao.interfaces.RegisterUserDAOInterface;
 @Stateless
 public class RegisterUserDAO extends EntityDAO<RegisterUser> implements
-		RegisterUserDAOInterface<RegisterUser> {
+RegisterUserDAOInterface<RegisterUser> {
 
 	@Override
 	public Class<RegisterUser> getEntityClass() {
@@ -18,12 +18,21 @@ public class RegisterUserDAO extends EntityDAO<RegisterUser> implements
 	public RegisterUser findByLogin(String name) {
 		Query query = em.createNamedQuery("RegisterUser.findByLogin", RegisterUser.class);
 		query.setParameter("login", name);
-		 try{
-	            RegisterUser result =  (RegisterUser) query.getResultList().get(0);
-	            return result;
-	        } catch(javax.persistence.NoResultException e){       // Exception shows there is nothing in DB :\
-	            return null;
-	        }
+		try{
+			System.out.println("in find by login block try");
+			if (query.getResultList() != null && !query.getResultList().isEmpty()){
+				RegisterUser result =  (RegisterUser) query.getResultList().get(0);
+				System.out.println("in RegisterUserDAO findByLogin " + result);
+				return result;
+			}else {
+				System.out.println("in RegisterUserDAO findByLogin : null");
+				return null;
+			}
+
+		} catch(javax.persistence.NoResultException e){       // Exception shows there is nothing in DB :\
+			return null;
+		}
+
 	}
 
 }

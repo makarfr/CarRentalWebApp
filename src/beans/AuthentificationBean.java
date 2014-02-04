@@ -118,7 +118,12 @@ public class AuthentificationBean implements Serializable {
 		} catch (ServletException e1) {
 			// UtilityMethods.facesMessage("Authentification has failed");
 			// UtilityMethods.logSevere(e1);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,I18nHelper.INSTANCE.getI18Message("error_login"), I18nHelper.INSTANCE.getI18Message("error_login_message"))); 	
+			FacesContext.getCurrentInstance().addMessage(
+					null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR,
+							I18nHelper.INSTANCE.getI18Message("error_login"),
+							I18nHelper.INSTANCE
+									.getI18Message("error_login_message")));
 			return null;
 		}
 	}

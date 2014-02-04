@@ -53,7 +53,8 @@ public class LoginValidator implements Validator {
 	}
 
 	private static void makeErrorMessage(String message) {
-		FacesMessage msg = new FacesMessage(null, message);
+		FacesMessage msg = new FacesMessage(null, I18nHelper.INSTANCE
+				.getI18Message("error_login_already_exist"));
 		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 		throw new ValidatorException(msg);
 	}

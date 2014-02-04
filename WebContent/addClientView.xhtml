@@ -14,59 +14,74 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="addClientForm">
+			<h:form id="addClientForm" rendered="true">
 				<f:facet name="header">#{text.create_new_member}</f:facet>
 
 				<h:panelGrid style="margin-top:20px">
 					<p:panelGrid columns="1">
-
+						<p:growl id="messages" showDetail="true" />
 						<h:outputText value="#{text.login}:" />
 						<h:inputText label="ClientLogin" required="true" id="login"
-							value="#{clientBean.selectedClient.registerUser.registerLogin}" maxlength="20">
-
-						<!-- 	<f:validator validatorId="loginValidator" for="login" /> -->
-						</h:inputText>
-						<!-- <p:message for="login" style="color:red" /> -->
+							value="#{clientBean.selectedClient.registerUser.registerLogin}"
+							maxlength="20" />
+						<p:message for="login" style="color:red" />
 
 						<h:outputText value="#{text.password}:" />
-						<h:inputSecret label="ClientPass" required="true" id="pass"
-							value="#{clientBean.selectedClient.registerUser.registerPassword}" maxlength="20"/>
+						<h:inputSecret label="ClientPassword" required="true" id="pass"
+							value="#{clientBean.selectedClient.registerUser.registerPassword}"
+							maxlength="20" />
+						<p:message for="pass" style="color:red" />
 
 						<h:outputText value="#{text.client_name}" />
-						<h:inputText label="ClientName" required="true" id="name"
-							value="#{clientBean.selectedClient.clientName}" maxlength="200"/>
+						<h:inputText label="Name" required="true" id="name"
+							value="#{clientBean.selectedClient.clientName}" maxlength="200" />
+						<p:message for="name" style="color:red" />
 
 						<h:outputText value="#{text.client_surname}" />
-						<h:inputText label="ClientSurname" required="true" id="s"
-							value="#{clientBean.selectedClient.clientSurname}" maxlength="200"/>
+						<h:inputText label="Surname" required="true" id="s"
+							value="#{clientBean.selectedClient.clientSurname}"
+							maxlength="200" />
+						<p:message for="s" style="color:red" />
 
 						<h:outputText value="#{text.client_address}:" />
-						<h:inputText label="ClientAddress" required="true" id="adress"
-							value="#{clientBean.selectedClient.clientAddress}" maxlength="200"/>
+						<h:inputText label="Address" required="true" id="adress"
+							value="#{clientBean.selectedClient.clientAddress}"
+							maxlength="200" />
+						<p:message for="adress" style="color:red" />
 
 						<h:outputText value="#{text.client_phone_number}:" />
-						<h:inputText label="ClientPhoneNumber" required="true" id="number"
-							value="#{clientBean.selectedClient.clientPhoneNumber}" maxlength="20"/>
+						<h:inputText label="PhoneNumber" required="true" id="number"
+							value="#{clientBean.selectedClient.clientPhoneNumber}"
+							maxlength="20" />
+						<p:message for="number" style="color:red" />
 
 						<h:outputText value="#{text.client_driver_license}:" />
-						<h:inputText label="ClientDriverLic" required="true" id="license"
-							value="#{clientBean.selectedClient.clientDriverLicenseNumber}"  maxlength="20"/>
-
+						<h:inputText label="ClientDriverlicense" required="true"
+							id="license"
+							value="#{clientBean.selectedClient.clientDriverLicenseNumber}"
+							maxlength="20" />
+						<p:message for="license" style="color:red" />
 					</p:panelGrid>
 
 				</h:panelGrid>
 				<p:commandButton value="Reset" type="reset" />
 
-				<p:commandButton value="Ok" actionListener="#{clientBean.save}" update="@form">
-					 <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				<p:commandButton value="Ok" actionListener="#{clientBean.save}"
+					update="addClientForm:messages" ajax="false" >
+					<p:confirm header="Confirmation" message="Are you sure?"
+						icon="ui-icon-alert" />
 				</p:commandButton>
-				
-				 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/> 	
-    </p:confirmDialog>
-				
-				
+
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+					<p:commandButton value="Yes" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="No" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+			</h:form>
+
+			<h:form id="edit">
+
 				<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
 					resizable="false">
 					<h:panelGrid columns="1">

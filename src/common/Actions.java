@@ -6,7 +6,8 @@ public enum Actions {
 	CARS_VIEW("carView", ""), ADD_CAR_VIEW("addCarView", "admin"),
 	CONTRACTS_VIEW("orderView", "dealer"),
 	DEALER_VIEW("dealerView", "admin"),
-	ORDER_POST("orderPost", "client");
+	ORDER_POST("orderPost", "client"),
+	REGISTER("addClientView", "");
 	
 	private String path;
 	private String view;
