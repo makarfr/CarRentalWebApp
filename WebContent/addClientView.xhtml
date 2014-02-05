@@ -66,13 +66,13 @@
 				</h:panelGrid>
 				<p:commandButton value="Reset" type="reset" />
 
-				<p:commandButton value="Ok" actionListener="#{clientBean.save}"
-					update="addClientForm:messages" ajax="false" >
+				<p:commandButton value="Ok" action="#{clientBean.save}"
+					update="addClientForm:messages"  >
 					 <p:confirm header="Confirmation" message="Are you sure?"
 						icon="ui-icon-alert" />
 				</p:commandButton>
 
-				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" appendTo="(@body)">
 					<p:commandButton value="Yes" type="button"
 						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
 					<p:commandButton value="No" type="button"
@@ -103,3 +103,5 @@
 
 </h:body>
 </html>
+
+

@@ -66,8 +66,10 @@ public class ClientBean implements Serializable {
 	public void setSelectedClient(Client client) {
 		this.selectedClient = client;
 	}
+	
 
-	public String save(ActionEvent actionEvent) {
+	public String save() {
+		System.out.println("in save method");
 	   String registerLogin = selectedClient.getRegisterUser().getRegisterLogin();
 		if (isLoginUnique(registerLogin)) {
 			BigDecimal startDisc = new BigDecimal(3);
@@ -75,7 +77,7 @@ public class ClientBean implements Serializable {
 			selectedClient.setClientCardNumber(0L);
 			clientDao.create(selectedClient);
 			System.out.println("client created, going to redirect to " + Actions.LOGIN_VIEW.getViewUrl());
-			return Actions.LOGIN_VIEW.getViewUrl();
+			return Actions.LOGIN_VIEW.getFullUrl();
 		} else {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
