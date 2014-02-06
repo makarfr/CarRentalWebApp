@@ -27,15 +27,15 @@
 						oncomplete="PF('clientDialog').show()" />
 
 					<p:column headerText="#{text.client_card_number}:"
-						sortBy="clientCardNumber">
-						<h:outputText value="#{clientItem.clientCardNumber}" />
+						sortBy="clientId">
+						<h:outputText value="#{clientItem.clientId}" />
 
 					</p:column>
 
 					<p:column headerText="#{text.client_full_name}:"
-						sortBy="clientSurname" filterBy="#{clientItem.clientSurname}">
+						sortBy="clientSurname" filterBy="#{clientItem.clientSurname}" >
 						<h:outputText
-							value="#{clientItem.clientName} #{clientItem.clientMiddleName} #{clientItem.clientSurname}" />
+							value="#{clientItem.clientSurname} #{clientItem.clientMiddleName} #{clientItem.clientName}" />
 
 					</p:column>
 

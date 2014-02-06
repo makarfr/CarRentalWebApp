@@ -33,22 +33,22 @@
 						<h:outputText value="#{order.registerUser.registerLogin}" />
 					</p:column>
 					
-					<p:column headerText="#{text.booked_date_from} :" filterBy="#{order.contractDateFrom}">
+					<p:column headerText="#{text.booked_date_from} :" sortBy="#{order.contractDateFrom}">
 						
 						 <h:outputText value="#{order.contractDateFrom}">
                             <f:convertDateTime pattern="dd-MMM-yyyy"/>
                         </h:outputText>
 					</p:column>
 					
-					<p:column headerText="#{text.booked_date_to}:" >
+					<p:column headerText="#{text.booked_date_to}:" sortBy ="#{order.contractDateTo}" >
 						<h:outputText value="#{order.contractDateTo}" converter="javax.faces.DateTime" />
 					</p:column>
 					
-					<p:column headerText="#{text.status}:" filterBy="#{order.status}">
+					<p:column headerText="#{text.status}:" >
 						<h:outputText value="#{order.status}"  />
 					</p:column>
 					
-					<p:column headerText="#{text.price}:" filterBy="#{order.totalPrice}" >
+					<p:column headerText="#{text.price}:" sortBy="#{order.totalPrice}">
 						<h:outputText value="#{order.totalPrice}"  />
 					</p:column>
 					

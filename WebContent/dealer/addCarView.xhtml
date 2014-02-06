@@ -16,7 +16,7 @@
 		<ui:define name="content">
 			<h:form id="addCarForm">
 				<f:facet name="header">#{text.create_new_car_title}</f:facet>
-
+<p:growl id="messages" showDetail="true" />
 				<p:panelGrid columns="2" cellpadding="5" id="addCarPanel">
 
 					<h:outputText value="#{text.number}: " />
@@ -43,7 +43,8 @@
 
 					<h:outputText value="#{text.model}: " />
 					<p:selectOneMenu id="mod" value="#{addCarBean.car.carModel}"
-						converter="carModelConverter" required="true">
+						converter="carModelConverter" required="true"
+						requiredMessage="#{text.model_is_required}">
 						<f:selectItem itemLabel="" itemValue="" />
 						<f:selectItems value="#{addCarBean.carModels}" var="model"
 							itemLabel="#{model.carModelName}, #{model.carModelDescription}"
@@ -53,7 +54,7 @@
 	
 					<h:outputText value="#{text.type}: " />
 					<p:selectOneMenu id="type" value="#{addCarBean.car.carType}" required="true"
-						requiredMessage="#{text.type} required">
+						requiredMessage="#{text.type_required}">
 						<f:selectItem itemLabel="#{text.select_one}" itemValue="" />
 						<f:selectItems value="#{addCarBean.types}" />
 					</p:selectOneMenu>

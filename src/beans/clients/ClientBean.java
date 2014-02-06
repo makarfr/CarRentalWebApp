@@ -79,6 +79,7 @@ public class ClientBean implements Serializable {
 			System.out.println("client created, going to redirect to " + Actions.LOGIN_VIEW.getViewUrl());
 			return Actions.LOGIN_VIEW.getFullUrl();
 		} else {
+			System.out.println("in else save throw msg");
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -87,7 +88,7 @@ public class ClientBean implements Serializable {
 							  .getI18Message("error_login_already_exist")));
 			return Actions.REGISTER.getViewUrl();
 		}
-
+		
 	}
 
 	public String update() {

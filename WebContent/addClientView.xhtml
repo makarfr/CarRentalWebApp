@@ -14,12 +14,12 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="addClientForm" >
+			<h:form id="addClientForm" style="margin-left: 40%">
 				<f:facet name="header">#{text.create_new_member}</f:facet>
-
+				<p:growl id="messages" showDetail="true" />
 				<h:panelGrid style="margin-top:20px">
 					<p:panelGrid columns="1">
-						<p:growl id="messages" showDetail="true" />
+						
 						<h:outputText value="#{text.login}:" />
 						<h:inputText label="ClientLogin" required="true" id="login"
 							value="#{clientBean.selectedClient.registerUser.registerLogin}"
@@ -64,6 +64,7 @@
 					</p:panelGrid>
 
 				</h:panelGrid>
+				<h:panelGrid columns="2">
 				<p:commandButton value="Reset" type="reset" />
 
 				<p:commandButton value="Ok" action="#{clientBean.save}"
@@ -78,24 +79,9 @@
 					<p:commandButton value="No" type="button"
 						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
 				</p:confirmDialog>
+				</h:panelGrid>
 			</h:form>
 
-			<h:form id="edit">
-
-				<p:dialog header="#{text.edit}" widgetVar="dlgConfirm"
-					resizable="false">
-					<h:panelGrid columns="1">
-						<h:outputText value="#{text.dialog_success_edit}" />
-
-						<p:commandButton id="closeButton" value="Ok"
-							oncomplete="dlgConfirm.hide();"
-							action="/admin/clientView.xhtml?faces-redirect=true "
-							ajax="false" />
-					</h:panelGrid>
-
-
-				</p:dialog>
-			</h:form>
 
 		</ui:define>
 	</ui:composition>

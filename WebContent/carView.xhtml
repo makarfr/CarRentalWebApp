@@ -39,8 +39,7 @@
 							alt="no foto" width="130" height="80" />
 
 					</p:column>
-					<p:column headerText="#{text.model}" sortBy="model"
-						filterBy="#{carView.carModel}">
+					<p:column headerText="#{text.model}" sortBy="#{carView.carModel}" >
 						<h:outputText value="#{carView.carModel}"
 							converter="carModelConverter" />
 					</p:column>
@@ -57,12 +56,12 @@
 						<h:outputText value="#{carView.carPrice}" />
 					</p:column>
 
-					<p:column headerText="#{text.type}" sortBy="type"
+					<p:column headerText="#{text.type}" sortBy="#{carView.carType}"
 						filterBy="#{carView.carType}">
 						<h:outputText value="#{carView.carType}" />
 					</p:column>
 
-					<p:column headerText="#{text.number}" sortBy="number"
+					<p:column headerText="#{text.number}" sortBy="#{carView.carNumber}"
 						filterBy="#{carView.carNumber}">
 						<h:outputText value="#{carView.carNumber}" />
 					</p:column>

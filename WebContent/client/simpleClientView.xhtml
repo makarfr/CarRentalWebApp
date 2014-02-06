@@ -16,9 +16,9 @@
 		<ui:define name="content">
 
 <h:form>
-    <p:dataTable var="clientItem" value="#{clientBean.clientsList}">
+    <p:dataTable var="clientItem" value="#{clientBean.lazyModel}">
         <p:column headerText="#{text.client_card_number}">
-            <h:outputText value="#{clientItem.clientCardNumber}" />
+            <h:outputText value="#{clientItem.clientId}" />
          
         </p:column>
 
