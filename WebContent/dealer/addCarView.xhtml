@@ -15,28 +15,28 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<h:form id="addCarForm">
-				<f:facet name="header">#{text.create_new_car_title}</f:facet>
-<p:growl id="messages" showDetail="true" />
+				<p:panel header = "#{text.create_new_car_title}" >
+								<p:growl id="messages" showDetail="true" />
 				<p:panelGrid columns="2" cellpadding="5" id="addCarPanel">
 
 					<h:outputText value="#{text.number}: " />
 					<p:inputMask id="numb" value="#{addCarBean.car.carNumber}"
 						mask="a*-9999-a*" required="true"
 						requiredMessage="#{text.number_required}" />
-				
+
 
 					<h:outputText value="#{text.price_per_day}: " />
 					<p:inputMask id="price" value="#{addCarBean.car.carPrice}"
 						mask="9?999" maxlength="5" required="true"
 						requiredMessage="#{text.price_per_day_required}" />
-				
+
 
 					<h:outputText value=" #{text.year}: " />
 					<p:calendar id="cal" value="#{addCarBean.car.carYear}"
 						navigator="true" display="inline" required="true"
 						requiredMessage="#{text.date_is_required}"
 						converterMessage="#{text.invalid_date_format}" />
-				
+
 
 					<h:outputText value="#{text.description}: " />
 					<p:inputText value="#{addCarBean.car.carDescription}" />
@@ -50,37 +50,38 @@
 							itemLabel="#{model.carModelName}, #{model.carModelDescription}"
 							itemValue="#{carModelName}" />
 					</p:selectOneMenu>
-					
-	
+
+
 					<h:outputText value="#{text.type}: " />
-					<p:selectOneMenu id="type" value="#{addCarBean.car.carType}" required="true"
-						requiredMessage="#{text.type_required}">
+					<p:selectOneMenu id="type" value="#{addCarBean.car.carType}"
+						required="true" requiredMessage="#{text.type_required}">
 						<f:selectItem itemLabel="#{text.select_one}" itemValue="" />
 						<f:selectItems value="#{addCarBean.types}" />
 					</p:selectOneMenu>
-				
+
 				</p:panelGrid>
-				
+
 				<p:commandButton value="#{text.reset}" type="reset" />
 
 				<p:commandButton value="#{text.ok}" action="#{addCarBean.addCar}"
-					oncomplete="#{text.car_added}" onclick="dlg.show();" />
+					update="addCarForm:messages">
+					<p:confirm header="#{text.confirmation}" message="#{text.confirm_are_you_sure}"
+						icon="ui-icon-alert" />
+				</p:commandButton>
 
-				<p:dialog header="#{text.add_new_car}" widgetVar="dlg"
-					resizable="false">
-
-					<h:panelGrid columns="1">
-						<h:outputText value="#{text.dialog_success_add_car}" />
-
-						<p:commandButton id="closeButton" value="Ok"
-							oncomplete="dlg.hide();" />
-					</h:panelGrid>
-
-				</p:dialog>
-
-
-
+</p:panel>
 			</h:form>
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				appendTo="@(body)">
+				<h:form>
+					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" />
+					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</h:form>
+			</p:confirmDialog>
+			
 
 		</ui:define>
 	</ui:composition>

@@ -19,6 +19,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+
+import org.jboss.logging.Message;
 
 import model.enums.CarType;
 
@@ -50,7 +54,9 @@ public class Car implements Serializable {
 
 	@Column(name="car_number", nullable=false, length=20)
 	private String carNumber;
-
+	
+	
+	@DecimalMin("1.00")
 	@Column(name="car_price")
 	private BigDecimal carPrice;
 	

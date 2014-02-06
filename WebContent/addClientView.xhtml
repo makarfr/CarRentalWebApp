@@ -14,14 +14,14 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="addClientForm" >
-				<f:facet name="header">#{text.create_new_member}</f:facet>
+			<h:form id="addClientForm">
+				<p:panel header="#{text.create_new_member}">
 
 				<h:panelGrid style="margin-top:20px">
 					<p:panelGrid columns="1">
 						<p:growl id="messages" showDetail="true" />
 						<h:outputText value="#{text.login}:" />
-						<h:inputText label="ClientLogin" required="true" id="login"
+							<h:inputText label="ClientLogin" required="true" id="login"
 							value="#{clientBean.selectedClient.registerUser.registerLogin}"
 							maxlength="20" />
 						<p:message for="login" style="color:red" />
@@ -50,16 +50,19 @@
 						<p:message for="adress" style="color:red" />
 
 						<h:outputText value="#{text.client_phone_number}:" />
-						<h:inputText label="PhoneNumber" required="true" id="number"
+						<p:inputMask label="PhoneNumber" required="true" id="number"
 							value="#{clientBean.selectedClient.clientPhoneNumber}"
-							maxlength="20" />
+							mask="+ 38(999) 999-99-99" />
+						<!-- <h:inputText label="PhoneNumber" required="true" id="number"
+							value="#{clientBean.selectedClient.clientPhoneNumber}"
+							maxlength="20" /> -->
 						<p:message for="number" style="color:red" />
 
 						<h:outputText value="#{text.client_driver_license}:" />
-						<h:inputText label="ClientDriverlicense" required="true"
+						<p:inputMask label="ClientDriverlicense" required="true"
 							id="license"
 							value="#{clientBean.selectedClient.clientDriverLicenseNumber}"
-							maxlength="20" />
+							mask = "a*-9999-a*" />
 						<p:message for="license" style="color:red" />
 					</p:panelGrid>
 
@@ -67,24 +70,25 @@
 				<p:commandButton value="Reset" type="reset" />
 
 				<p:commandButton value="Ok" action="#{clientBean.save}"
-					update="addClientForm:messages" >
-					 <p:confirm header="Confirmation" message="Are you sure?"
+					update="addClientForm:messages">
+					<p:confirm header="#{text.confirmation}" message="#{text.confirm_are_you_sure}"
 						icon="ui-icon-alert" />
 				</p:commandButton>
 
-				
+</p:panel>
 			</h:form>
-			
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" appendTo="@(body)">
-			<h:form>
-					<p:commandButton value="Yes" 
-						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-					<p:commandButton value="No" 
-						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-						</h:form>
-				</p:confirmDialog>
 
-			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				appendTo="@(body)">
+				<h:form>
+					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" />
+					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</h:form>
+			</p:confirmDialog>
+
+
 
 		</ui:define>
 	</ui:composition>
