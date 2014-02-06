@@ -25,7 +25,7 @@
 								<h:outputText
 									value="#{selectedCarBean.car.carModel.carModelName}" id="model" />
 
-								<h:outputText value="#{text.type}"/>
+								<h:outputText value="#{text.type}" />
 								<h:outputText value="#{selectedCarBean.car.carType.value}"
 									id="type" />
 
@@ -68,7 +68,7 @@
 												value="#{fromTimeComponent}" />
 											<f:attribute name="car"
 												value="#{orderPostBean.selectedCarBean.car}" />
-											  <f:validator validatorId="dateGapValidator"/>
+											<f:validator validatorId="dateGapValidator" />
 										</p:calendar>
 										<p:message for="to_time" style="color:red" />
 									</h:panelGrid>
@@ -99,13 +99,11 @@
 								<p:commandButton value="#{text.calculate}"
 									action="#{orderPostBean.precalculate}" update="display, panel" />
 								<p:commandButton value="#{text.post_order}"
-									action="#{orderPostBean.postOrder}" onsuccess="dlg1.show();" />
-
-								<p:dialog header="#{text.post_order}" widgetVar="dlg1">
-									<h:outputText value="#{text.dialogSuccessBook}" />
-								</p:dialog>
-
-							</h:form>
+									action="#{orderPostBean.postOrder}" update="display, panel">
+									<p:confirm header="#{text.confirmation}"
+										message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+								</p:commandButton>
+								</h:form>
 
 						</div>
 					</h:panelGroup>
@@ -114,8 +112,18 @@
 			</h:form>
 			<h:form>
 				<p:commandButton value="#{text.cancel}"
-					action="/client/carView.xhtml?faces-redirect=true" ajax="false" />
+					action="/carView.xhtml?faces-redirect=true" />
 			</h:form>
+			
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				appendTo="@(body)">
+				<h:form id = "conf">
+					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" />
+					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</h:form>
+			</p:confirmDialog>
 		</ui:define>
 	</ui:composition>
 

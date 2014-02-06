@@ -31,7 +31,7 @@
 				</p:panelGrid>
 			</div>
 			<div id="client_cars_view">
-				<h:form id="form">
+				<h:form id="formAcc">
 					<p:accordionPanel id="accordion" value="#{profileBean.contract}"
 						var="contract" itemStyleClass="carItem" headerText="Your cars"
 						numVisible="1">
@@ -41,33 +41,40 @@
 								alt="no foto" width="130" height="80" />
 
 							<h:panelGrid columns="2" cellpadding="5">
-								<h:outputText value="#{text.model}" />
+								<h:outputText value="#{text.model} :" />
 								<h:outputText value="#{contract.car.carModel.carModelName}"
 									id="model" />
 
-								<h:outputText value="#{text.type}" />
+								<h:outputText value="#{text.type} :" />
 								<h:outputText value="#{contract.car.carType.value}" id="type" />
 
 
-								<h:outputText value="#{text.year}" />
+								<h:outputText value="#{text.year} :" />
 								<h:outputText value="#{contract.car.carYear}" id="year">
 									<f:convertDateTime pattern="yyyy" />
 								</h:outputText>
 
-								<h:outputText value="#{text.price}" />
+								<h:outputText value="#{text.price} :" />
 								<h:outputText value="#{contract.car.carPrice}" id="price" />
 
-								<h:outputText value="#{text.from}" />
+								<h:outputText value="#{text.from} :" />
 								<h:outputText value="#{contract.contractDateFrom}" id="dateFrom"
 									converter="javax.faces.DateTime" />
 
-								<h:outputText value="#{text.to}" />
+								<h:outputText value="#{text.to} :" />
 								<h:outputText value="#{contract.contractDateTo}" id="dateTo"
 									converter="javax.faces.DateTime" />
 
+								<h:outputText value="#{text.total_sum} :" />
+								<h:outputText value="#{contract.totalPrice}" id="totSum" />
+
 							</h:panelGrid>
-							<p:commandButton value="Rent It Again"
-								action="#{selectedCarBean.choose(contract.car)}" />
+							<p:commandButton value="#{text.rent_it_again}"
+								action="#{selectedCarBean.choose(contract.car)}"
+								update="@(page)">
+								<p:confirm header="#{text.confirmation}"
+									message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+							</p:commandButton>
 						</p:tab>
 					</p:accordionPanel>
 
@@ -78,7 +85,15 @@
 
 				</h:form>
 			</div>
-
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				appendTo="@(body)">
+				<h:form id="conf">
+					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" />
+					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</h:form>
+			</p:confirmDialog>
 		</ui:define>
 	</ui:composition>
 

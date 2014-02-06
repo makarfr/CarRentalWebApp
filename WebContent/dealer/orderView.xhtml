@@ -54,20 +54,39 @@
 					
 				</p:dataTable>
 
-				<p:dialog header="Car Detail" widgetVar="contractDialog"
-					resizable="false" showEffect="explode" hideEffect="explode">
+				<p:dialog header="Order Detail" widgetVar="contractDialog"
+					resizable="true" showEffect="explode" hideEffect="explode">
 
-					<h:panelGrid id="display" columns="2" cellpadding="4">
+						<h:panelGrid id="display" columns="1" cellpadding="4">
+						<p:graphicImage
+							value="../resources/foto/#{carBean.car.carModel.carModelName}_#{carBean.car.carModel.carModelDescription}.jpg"
+							alt="no foto" width="150" height="100" />
 
-						<f:facet name="header">
-							<p:graphicImage
-								value="/images/cars/#{tableBean.selectedCar.manufacturer}.jpg" />
-						</f:facet>
+						<h:panelGrid columns="2" cellpadding="4">
 
-						<h:outputText value="#{text.model}:" />
-						<h:outputText value="#{order.carModelName()}"
-							style="font-weight:bold" />
+							<h:outputText value="#{text.model}" />
+							<h:outputText value="#{carBean.car.carModel.carModelName}"
+								id="model" />
 
+							<h:outputText value="#{text.type}" />
+							<h:outputText value="#{carBean.car.carType.value}" id="type" />
+
+							<h:outputText value="#{text.number}" />
+							<h:outputText value="#{carBean.car.carNumber}" id="number" />
+
+							<h:outputText value="#{text.year}" />
+							<h:outputText value="#{carBean.car.carYear}" id="year">
+								<f:convertDateTime pattern="yyyy" />
+							</h:outputText>
+
+							<h:outputText value="#{text.price}" />
+							<h:outputText value="#{contractBean.contract.totalPrice}" id="price" />
+
+
+							<p:commandButton value="#{text.rent}"
+								action="#{selectedCarBean.choose(carBean.car)}"
+								rendered="#{request.isUserInRole('client')}" />
+						</h:panelGrid>
 					</h:panelGrid>
 				</p:dialog>
 
