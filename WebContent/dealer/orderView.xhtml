@@ -19,7 +19,7 @@
 				<p:dataTable var="order" value="#{contractBean.lazyModel}"
 					paginator="true" rows="10"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-					rowsPerPageTemplate="5,10,15" selectionMode="single"
+					selectionMode="single"
 					selection="#{contractBean.contract}" id="contractTable" lazy="true">
 
 					<p:ajax event="rowSelect" update=":formOrder:display"

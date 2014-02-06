@@ -19,7 +19,7 @@
 				<p:dataTable var="clientItem" value="#{clientBean.lazyModel}"
 					paginator="true" rows="10"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-					rowsPerPageTemplate="5,10,15" selectionMode="single"
+					selectionMode="single"
 					selection="#{clientBean.selectedClient}" id="clientTable"
 					lazy="true">
 
