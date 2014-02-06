@@ -52,7 +52,7 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="#{text.price}" sortBy="price"
+					<p:column headerText="#{text.price}" sortBy="#{carView.carPrice}"
 						filterBy="#{carView.carPrice}">
 						<h:outputText value="#{carView.carPrice}" />
 					</p:column>
