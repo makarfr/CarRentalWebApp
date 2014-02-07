@@ -22,27 +22,27 @@
 
 							<h:outputText value="#{text.login}:" />
 							<p:inputText label="DealerLogin" required="true" id="login"
-								value="#{addDealerBean.dealer.registerUser.registerLogin}" />
+								value="#{addDealerBean.dealer.registerUser.registerLogin}" maxlength="200"/>
 							<p:message for="login" style="color:red" />
 							
 							<h:outputText value="#{text.password}:" />
 							<p:password label="Pass" required="true" id="pass"
-								value="#{addDealerBean.dealer.registerUser.registerPassword}" />
+								value="#{addDealerBean.dealer.registerUser.registerPassword}" maxlength="200"/>
 <p:message for="pass" style="color:red" />
 
 							<h:outputText value="#{text.client_name}" />
 							<p:inputText label="Name" required="true" id="name"
-								value="#{addDealerBean.dealer.dealerName}" />
+								value="#{addDealerBean.dealer.dealerName}" maxlength="200"/>
 <p:message for="name" style="color:red" />
 
 							<h:outputText value="#{text.client_surname}" />
 							<p:inputText label="Surname" required="true" id="s"
-								value="#{addDealerBean.dealer.dealerSurname}" />
+								value="#{addDealerBean.dealer.dealerSurname}" maxlength="200"/>
 <p:message for="s" style="color:red" />
 
 							<h:outputText value="#{text.client_address}:" />
 							<p:inputText label="Address" required="true" id="adress"
-								value="#{addDealerBean.dealer.dealerAddress}" />
+								value="#{addDealerBean.dealer.dealerAddress}" maxlength="200"/>
 								<p:message for="adress" style="color:red" />
 
 							<h:outputText value="#{text.client_phone_number}:" />

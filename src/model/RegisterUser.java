@@ -38,11 +38,11 @@ public class RegisterUser implements Serializable {
 	private Long registerId;
 
 	@Email(message = "Invalid email")
-	@Column(name="register_login", nullable=false, length=50, unique = true)
+	@Column(name="register_login", nullable=false, length=200, unique = true)
 	private String registerLogin;
 
 	@Length(min=3, max=25, message = "your password must be at least 3 symbols") 
-	@Column(name="register_password", nullable=false, length=25)
+	@Column(name="register_password", nullable=false, length=200)
 	private String registerPassword;
 	
 	@ManyToOne

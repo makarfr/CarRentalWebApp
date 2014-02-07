@@ -42,13 +42,13 @@ public class Dealer implements Serializable {
 	@Column(name="dealer_address", nullable=false, length=200)
 	private String dealerAddress;
 
-	@Column(name="dealer_name", nullable=false, length=50)
+	@Column(name="dealer_name", nullable=false, length=200)
 	private String dealerName;
 
-	@Column(name="dealer_phone_number", nullable=false, length=50)
+	@Column(name="dealer_phone_number", nullable=false, length=200)
 	private Long dealerPhoneNumber;
 
-	@Column(name="dealer_surname", nullable=false, length=50)
+	@Column(name="dealer_surname", nullable=false, length=200)
 	private String dealerSurname;
 	
 	@OneToOne(cascade= CascadeType.ALL)
