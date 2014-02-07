@@ -1,6 +1,7 @@
 package dao.implementations;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -21,6 +22,7 @@ import javax.persistence.metamodel.Metamodel;
 
 import model.Car;
 import model.CarModel;
+import model.Client;
 import model.enums.CarType;
 
 import org.primefaces.model.SortOrder;
@@ -48,8 +50,6 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Car> cq = cb.createQuery(getEntityClass());
 		Root<Car> rt = cq.from(getEntityClass());
-		Metamodel m = em.getMetamodel();
-		EntityType<Car> Car_ = m.entity(Car.class);
 		cq.select(rt);
 
 		if (!filters.isEmpty()) {
@@ -143,6 +143,62 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		}
 		Query q = em.createQuery(cq);
 		return ((Long) q.getSingleResult()).intValue();
+	}
+
+	@Override
+	public List<Car> findAvailableBeetwenDates(Date contractDateFrom, Date c) {
+		String dateFrom = new SimpleDateFormat("dd/MM/YYYY")
+				.format(contractDateFrom);
+		String dateTo = new SimpleDateFormat("dd/MM/YYYY").format(c);
+		System.out.println("findAvailableBeetwenDates DateFrom" + dateFrom);
+		System.out.println("findAvailableBeetwenDates DateTo" + dateTo);
+		Query query = em.createNamedQuery("Car.findAvailableBeetwenDates",
+				Car.class);
+		query.setParameter("from", dateFrom);
+		query.setParameter("to", dateTo);
+		List<Car> result = query.getResultList();
+		return result;
+	}
+
+	@Override
+	public List<Car> findRange(int first, int pageSize, String sortField,
+			SortOrder sortOrder, Map<String, String> filters,
+			String contractDateFrom, String contractDateTo) {
+	/*	CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Car> cq = cb.createQuery(getEntityClass());
+		Root<Car> rt = cq.from(getEntityClass());
+		cq.select(rt);
+
+		if (!filters.isEmpty()) {
+			Predicate predicate = cb.conjunction();
+			Iterator<String> it = filters.keySet().iterator();
+			while (it.hasNext()) {
+				String filterField = it.next();
+				String filterValue = filters.get(filterField);
+				System.out.println("In find Range CarDAO filterField "
+						+ filterField + "; filterValue : " + filterValue);
+				predicate = cb.and(
+							predicate,
+							cb.like(rt.<String> get(filterField), "%"
+									+ filterValue + "%"));
+				
+			}
+			cq.where(predicate);
+		}
+
+		if (sortField != null) {
+			if (sortOrder == SortOrder.ASCENDING) {
+				cq.orderBy(cb.asc(rt.get(sortField)));
+			} else if (sortOrder == SortOrder.DESCENDING) {
+				cq.orderBy(cb.desc(rt.get(sortField)));
+			}
+		}
+
+		Query q = em.createQuery(cq);
+		q.setMaxResults(count);
+		q.setFirstResult(start);
+		return q.getResultList();*/
+		return null;
 	}
 
 }

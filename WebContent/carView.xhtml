@@ -16,7 +16,43 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="form">
+	<!-- 	<h:panelGroup>
+						<div id="arend_time_form">
+							<h:form>
+								<p:panel id="panel" header="#{text.enter_dates}">
+									<h:panelGrid columns="3" cellpadding="7">
+										<p:outputLabel for="from_time" value="#{text.from}" />
+										<p:calendar id="from_time" binding="#{fromTimeComponent}"
+											value="#{carBean.contractDateFrom}"
+											navigator="true" display="inline" required="true"
+											requiredMessage="#{text.select_from_date}"
+											converterMessage="#{text.invalid_date}" />
+										<p:message for="from_time" style="color:red" />
+
+										<p:outputLabel for="to_time" value="#{text.to}" />
+										<p:calendar id="to_time"
+											value="#{carBean.contractDateTo}"
+											navigator="true" display="inline" required="true"
+											requiredMessage="#{text.select_to_date}"
+											converterMessage="#{text.invalid_date}">
+											<f:attribute name="fromTimeComponent"
+												value="#{fromTimeComponent}" />
+										
+											<f:validator validatorId="dateGapValidator" />
+										</p:calendar>
+										<p:message for="to_time" style="color:red" />
+										
+										<h:outputText/>
+										<p:commandButton value="#{text.calculate}"
+									action="#{carBean.getAvailableCars()}" update=":formCar:display" />
+									</h:panelGrid>
+								
+								
+									</p:panel>
+								</h:form>
+								</div>
+								</h:panelGroup> -->
+			<h:form id="formCar">
 
 				<p:commandButton value="#{text.create_new_car_title}"
 					action="/dealer/addCarView.xhtml?faces-redirect=true "
@@ -31,7 +67,7 @@
 					resizableColumns="true" liveResize="true">
 
 
-					<p:ajax event="rowSelect" update=":form:display"
+					<p:ajax event="rowSelect" update=":formCar:display"
 						oncomplete="carDialog.show()" />
 					<p:column>
 						<p:graphicImage
@@ -62,7 +98,7 @@
 					</p:column>
 
 					<p:column headerText="#{text.number}" sortBy="#{carView.carNumber}"
-						filterBy="#{carView.carNumber}">
+						filterBy="#{carView.carNumber}" rendered="#{request.isUserInRole('dealer')}" >
 						<h:outputText value="#{carView.carNumber}" />
 					</p:column>
 

@@ -26,7 +26,6 @@ import org.jboss.logging.Message;
 
 import model.enums.CarType;
 
-
 /**
  * The persistent class for the "car" database table.
  * 
@@ -34,53 +33,53 @@ import model.enums.CarType;
 @Entity
 @Table(name = "car")
 @NamedQueries({
-@NamedQuery(name="Car.findAll", query="SELECT c FROM Car c"),
-@NamedQuery(name="Car.count",query="SELECT count(*) from Car")
-})
+		@NamedQuery(name = "Car.findAll", query = "SELECT c FROM Car c"),
+		@NamedQuery(name = "Car.count", query = "SELECT count(*) from Car"),
+		@NamedQuery(name = "Car.findAvailableBeetwenDates", query = "select  c from Car c where c.carId NOT in " +
+				"(select cont.carId from Contract cont where 	(cont.contractDateFrom between to_date(:from, 'DD/MM/YYYY')" +
+				" and to_date(:to, 'DD/MM/YYYY') )	OR	 (cont.contractDateTo between to_date(:from, 'DD/MM/YYYY')" +
+				" and to_date(:to, 'DD/MM/YYYY') ))") })
 public class Car implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	 @Id
+	@Id
 	@GeneratedValue(generator = "car_id_generator", strategy = GenerationType.AUTO)
-	    @SequenceGenerator(name = "car_id_generator", sequenceName = "car_car_id_seq", allocationSize = 1)
-	@Column(name="car_id")
+	@SequenceGenerator(name = "car_id_generator", sequenceName = "car_car_id_seq", allocationSize = 1)
+	@Column(name = "car_id")
 	private Long carId;
 
-	@Column(name="car_description", length=200)
+	@Column(name = "car_description", length = 200)
 	private String carDescription;
 
-	@Column(name="car_model_id", nullable=false,  insertable=false, updatable=false)
+	@Column(name = "car_model_id", nullable = false, insertable = false, updatable = false)
 	private Long carModelId;
 
-	@Column(name="car_number", nullable=false, length=20)
+	@Column(name = "car_number", nullable = false, length = 20)
 	private String carNumber;
-	
-	
+
 	@DecimalMin("1.00")
-	@Column(name="car_price")
+	@Column(name = "car_price")
 	private BigDecimal carPrice;
-	
-	@Column(name="car_year", nullable=false)
+
+	@Column(name = "car_year", nullable = false)
 	private Date carYear;
 
-	//bi-directional many-to-one association to CarModel
+	// bi-directional many-to-one association to CarModel
 	@ManyToOne
 	@JoinColumn(name = "car_model_id")
 	private CarModel carModel;
 
-
-	@Column(name="car_type", nullable=false)
+	@Column(name = "car_type", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CarType carType;
 
-	//bi-directional many-to-one association to Contract
-	@OneToMany(mappedBy="car")
+	// bi-directional many-to-one association to Contract
+	@OneToMany(mappedBy = "car")
 	private List<Contract> contracts;
 
 	public Car() {
 	}
-	
-	
+
 	public Car(String carNumber, BigDecimal carPrice, Date carYear,
 			CarModel carModel, CarType carType) {
 		this.carNumber = carNumber;
@@ -90,8 +89,6 @@ public class Car implements Serializable {
 		this.carModelId = carModel.getCarModelId();
 		this.carType = carType;
 	}
-
-
 
 	public Long getCarId() {
 		return this.carId;
@@ -141,7 +138,6 @@ public class Car implements Serializable {
 		this.carModel = carModel;
 	}
 
- 	
 	public BigDecimal getCarPrice() {
 		return carPrice;
 	}
@@ -157,8 +153,6 @@ public class Car implements Serializable {
 	public void setCarType(CarType carType) {
 		this.carType = carType;
 	}
-
-
 
 	public List<Contract> getContracts() {
 		return this.contracts;
@@ -181,35 +175,46 @@ public class Car implements Serializable {
 
 		return contract;
 	}
-	 @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (o == null || getClass() != o.getClass()) return false;
 
-	        Car carEntity = (Car) o;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 
-	        if (carId != carEntity.carId) return false;
-	        if (carDescription != null ? !carDescription.equals(carEntity.carDescription) : carEntity.carDescription != null)
-	            return false;
-	        if (carNumber != null ? !carNumber.equals(carEntity.carNumber) : carEntity.carNumber != null) return false;
-	        if (carYear != null ? !carYear.equals(carEntity.carYear) : carEntity.carYear != null) return false;
+		Car carEntity = (Car) o;
 
-	        return true;
-	    }
+		if (carId != carEntity.carId)
+			return false;
+		if (carDescription != null ? !carDescription
+				.equals(carEntity.carDescription)
+				: carEntity.carDescription != null)
+			return false;
+		if (carNumber != null ? !carNumber.equals(carEntity.carNumber)
+				: carEntity.carNumber != null)
+			return false;
+		if (carYear != null ? !carYear.equals(carEntity.carYear)
+				: carEntity.carYear != null)
+			return false;
 
-	    @Override
-	    public int hashCode() {
-	        long result = carId;
-	        result = 31 * result + (carNumber != null ? carNumber.hashCode() : 0);
-	        result = 31 * result + (carYear != null ? carYear.hashCode() : 0);
-	        result = 31 * result + (carDescription != null ? carDescription.hashCode() : 0);
-	        return (int) result;
-	    }
+		return true;
+	}
 
-		public String getCarInfo() {
-			return carModel.getCarModelName() + " " + carModel.getCarModelDescription() +  "," + carType.getValue().toLowerCase() ;
-		}
+	@Override
+	public int hashCode() {
+		long result = carId;
+		result = 31 * result + (carNumber != null ? carNumber.hashCode() : 0);
+		result = 31 * result + (carYear != null ? carYear.hashCode() : 0);
+		result = 31 * result
+				+ (carDescription != null ? carDescription.hashCode() : 0);
+		return (int) result;
+	}
 
-	
+	public String getCarInfo() {
+		return carModel.getCarModelName() + " "
+				+ carModel.getCarModelDescription() + ","
+				+ carType.getValue().toLowerCase();
+	}
 
 }

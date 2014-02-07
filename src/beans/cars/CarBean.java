@@ -1,6 +1,7 @@
 package beans.cars;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class CarBean implements Serializable {
 	@EJB
 	private CarModelDAOInterface<CarModel> carModelDao;
 	private LazyDataModel<Car> lazyModel;
+	
+	private Date contractDateFrom;
+	private Date contractDateTo;
 
 
 	@PostConstruct
@@ -68,6 +72,22 @@ public class CarBean implements Serializable {
 		return list;
 	}
 
+	public Date getContractDateFrom() {
+		return contractDateFrom;
+	}
+
+	public void setContractDateFrom(Date contractDateFrom) {
+		this.contractDateFrom = contractDateFrom;
+	}
+
+	public Date getContractDateTo() {
+		return contractDateTo;
+	}
+
+	public void setContractDateTo(Date contractDateTo) {
+		this.contractDateTo = contractDateTo;
+	}
+
 	public String addCar() {
 		carDao.create(car); 
 		return Actions.CARS_VIEW.getFullUrl();
@@ -77,4 +97,12 @@ public class CarBean implements Serializable {
 		return Actions.ADD_CAR_VIEW.getViewUrl();
 	}
 
+	 public List<Car> getAvailableCars() {
+		 List<Car> list = new LinkedList<Car>();
+		 System.out.println("getAvailableCars");
+		 System.out.println("DateFrom" + contractDateFrom);
+		 System.out.println("DateTo" + contractDateTo);
+			list = carDao.findAvailableBeetwenDates(contractDateFrom, contractDateTo);
+			return list;
+	 }
 }

@@ -10,7 +10,7 @@ import org.primefaces.model.SortOrder;
 
 import dao.interfaces.CarDAOInterface;
 
-public class CarLazyDataModel extends LazyDataModel<Car> {
+public class CarLazyDataModelWithSelections extends LazyDataModel<Car> {
 
 	/**
 	 * 
@@ -21,16 +21,20 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
 	private int rowIndex;
 	private int rowCount;
 	private CarDAOInterface<Car> carDao;
+	private String contractDateFrom;
+	private String contractDateTo;
 
-	public CarLazyDataModel(CarDAOInterface<Car> carDao2 ) {
+	public CarLazyDataModelWithSelections(CarDAOInterface<Car> carDao2, String contractDateFrom, String contractDateTo) {
 		this.carDao = carDao2;
+		this.contractDateFrom = contractDateFrom;
+		this.contractDateTo = contractDateTo;
 	}
 
 	@Override
 	public List<Car> load(int first, int pageSize, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
 		try {
-			data = carDao.findRange(first, pageSize, sortField, sortOrder, filters);
+			data = carDao.findRange(first, pageSize, sortField, sortOrder, filters, contractDateFrom, contractDateTo);
 			//		findRange(first, pageSize, sortField, sortOrder,
 				//	filters);
 		
