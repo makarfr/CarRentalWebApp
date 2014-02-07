@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<ui:composition template="/templates/layout.xhtml">
+		<ui:define name="content">
+			<div>
+
+				<p:panelGrid columns="2">
+					<p:outputLabel value="#{text.your_name}" />
+					<p:outputLabel value="#{profileBean.selectedClient.clientName}" />
+					<p:outputLabel value="#{text.your_last_name}" />
+					<p:outputLabel value="#{profileBean.selectedClient.clientSurname}" />
+					<p:outputLabel value="#{text.your_licence_number}" />
+					<p:outputLabel
+						value="#{profileBean.selectedClient.clientDriverLicenseNumber}" />
+					<p:outputLabel value="#{text.your_discount}" />
+					<p:outputLabel
+						value="#{profileBean.selectedClient.clientDiscount} %" />
+
+				</p:panelGrid>
+			</div>
+			<div id="client_cars_view">
+				<h:form id="formAcc">
+					<p:accordionPanel id="accordion" value="#{profileBean.contract}"
+						var="contract" itemStyleClass="carItem" headerText="Your cars"
+						numVisible="1">
+						<p:tab
+							title="#{contract.car.carModel.carModelName} #{contract.status} ">
+							<p:graphicImage
+								value="../resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
+								alt="no foto" width="130" height="80" />
+
+							<h:panelGrid columns="2" cellpadding="5">
+								<h:outputText value="#{text.model} :" />
+								<h:outputText value="#{contract.car.carModel.carModelName}"
+									id="model" />
+
+								<h:outputText value="#{text.type} :" />
+								<h:outputText value="#{contract.car.carType.value}" id="type" />
+
+
+								<h:outputText value="#{text.year} :" />
+								<h:outputText value="#{contract.car.carYear}" id="year">
+									<f:convertDateTime pattern="yyyy" />
+								</h:outputText>
+
+								<h:outputText value="#{text.price} :" />
+								<h:outputText value="#{contract.car.carPrice}" id="price" />
+
+								<h:outputText value="#{text.from} :" />
+								<h:outputText value="#{contract.contractDateFrom}" id="dateFrom"
+									converter="javax.faces.DateTime" />
+
+								<h:outputText value="#{text.to} :" />
+								<h:outputText value="#{contract.contractDateTo}" id="dateTo"
+									converter="javax.faces.DateTime" />
+
+								<h:outputText value="#{text.status} :" />
+								<h:outputText value="#{contract.status}" id="stat" />
+
+								<h:outputText value="#{text.total_sum} :" />
+								<h:outputText value="#{contract.totalPrice}" id="totSum" />
+
+							</h:panelGrid>
+							<p:commandButton value="#{text.rent_it_again}"
+								action="#{selectedCarBean.choose(contract.car)}"
+								update="@(page)">
+								<p:confirm header="#{text.confirmation}"
+									message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:tab>
+					</p:accordionPanel>
+
+					<p:dialog>
+						<p:outputPanel id="carDetail" style="text-align:center;"
+							layout="block" />
+					</p:dialog>
+
+				</h:form>
+			</div>
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+				appendTo="@(body)">
+				<h:form id="conf">
+					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
+						icon="ui-icon-check" />
+					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
+						icon="ui-icon-close" />
+				</h:form>
+			</p:confirmDialog>
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        >
+<h:head>
+<!--  <link href="css/default.css" rel="Stylesheet" type="text/css" media="all"/>
+<link href="css/fonts.css" rel="Stylesheet" type="text/css" media="all"/> -->
+    <title>Rent Car</title>
+  </h:head>
+<h:body>
+
+    <div id="wrapper" style="width: 1020px;  text-align:center;   margin: 20px auto;">
+
+        <div id="header-container">
+            <ui:insert name="header" >
+                <ui:include src="/templates/header_upd.xhtml" />
+            </ui:insert>
+        </div>
+
+      <div id="content">
+	  	<ui:insert name="content" >
+	 	  <ui:include src="/templates/commonContent.xhtml" />
+	   	</ui:insert>
+	    </div>
+
+        <div id="footer-container">
+            <ui:insert name="footer" >
+                <ui:include src="/templates/footer.xhtml" />
+            </ui:insert>
+        </div>
+
+    </div>
+
+</h:body>
+</html>
