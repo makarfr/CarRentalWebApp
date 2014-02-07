@@ -14,6 +14,7 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
+		
 			<h:form id="formOrder">
 
 				<p:dataTable var="order" value="#{contractBean.lazyModel}"
@@ -47,7 +48,7 @@
 							converter="javax.faces.DateTime" />
 					</p:column>
 
-					<p:column headerText="#{text.status}:">
+					<p:column headerText="#{text.status}:" >
 						<h:outputText value="#{order.status}" />
 					</p:column>
 

@@ -35,7 +35,8 @@
 					<p:accordionPanel id="accordion" value="#{profileBean.contract}"
 						var="contract" itemStyleClass="carItem" headerText="Your cars"
 						numVisible="1">
-						<p:tab title="#{contract.car.carModel.carModelName}  ">
+						<p:tab
+							title="#{contract.car.carModel.carModelName} #{contract.status} ">
 							<p:graphicImage
 								value="../resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
 								alt="no foto" width="130" height="80" />
@@ -64,6 +65,9 @@
 								<h:outputText value="#{text.to} :" />
 								<h:outputText value="#{contract.contractDateTo}" id="dateTo"
 									converter="javax.faces.DateTime" />
+
+								<h:outputText value="#{text.status} :" />
+								<h:outputText value="#{contract.status}" id="stat" />
 
 								<h:outputText value="#{text.total_sum} :" />
 								<h:outputText value="#{contract.totalPrice}" id="totSum" />

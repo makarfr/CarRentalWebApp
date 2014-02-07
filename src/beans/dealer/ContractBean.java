@@ -42,9 +42,7 @@ public class ContractBean implements Serializable {
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
 	private Client client;
-	@EJB
-	private DealerDAOInterface<Dealer> dealerDao; 
-
+	
 	@PostConstruct
 	public void init() {
 		lazyModel = new ContractLazyDataModel(new LinkedList<Contract>(),
@@ -59,7 +57,7 @@ public class ContractBean implements Serializable {
 		dealer = new Dealer();
 		contract = new Contract();
 		client = new Client();
-	//	client = clientDao.getByUser( contract.getRegisterUser().getRegisterId());
+	
 	}
 
 	
@@ -69,7 +67,6 @@ public class ContractBean implements Serializable {
 	}
 
 	public void setLazyModel(LazyDataModel<Contract> lazyModel) {
-
 		this.lazyModel = lazyModel;
 	}
 
@@ -145,9 +142,15 @@ public class ContractBean implements Serializable {
 	}
 	
 	private Dealer getDealerForActions(){
-		dealer = dealerDao.getByUser(contract.getRegisterUser().getRegisterId());
+		dealer = (Dealer) SessionHelper.getAttribute("dealer");
 		System.out.println(" getDealerForActions " + dealer.getDealerName());
 		return dealer;
 	}
 
+	/*public String showAcceptedOrders() {
+		contract.setDealer(getDealerForActions());
+		contract.setStatus(StatusContract.CLOSED);
+		contractDAO.update(contract);
+		return Actions.CONTRACTS_VIEW.getViewUrl();
+	}*/
 }

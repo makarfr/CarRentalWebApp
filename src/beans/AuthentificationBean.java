@@ -39,6 +39,8 @@ public class AuthentificationBean implements Serializable {
 	private RegisterUserDAOInterface<RegisterUser> dao;
 	@EJB
 	private ClientDAOInterface<Client> clientDao;
+	@EJB
+	private DealerDAOInterface<Dealer> dealerDao;
 
 	public Client getClient() {
 		return client;
@@ -110,6 +112,8 @@ public class AuthentificationBean implements Serializable {
 				isLogged = true;
 				return Actions.DEALER_VIEW.getFullUrl();
 			} else {
+				Dealer dealer = dealerDao.getByUser(user.getRegisterId());
+				SessionHelper.putAtrributeToSession("dealer", dealer);
 				System.out.println(" Role is dealer ");
 				isLogged = true;
 				return Actions.CONTRACTS_VIEW.getFullUrl();

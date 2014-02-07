@@ -71,6 +71,7 @@ public class ContractDAO extends EntityDAO<Contract> implements ContractDAOInter
 	        return q.getResultList();
 	    }
 	
+	@Override
 	public int count(Map<String, String> filters) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery cq = cb.createQuery(getEntityClass());
@@ -79,9 +80,11 @@ public class ContractDAO extends EntityDAO<Contract> implements ContractDAOInter
 		if (!filters.isEmpty()) {
 			Predicate predicate = cb.conjunction();
 			Iterator<String> it = filters.keySet().iterator();
+			
 			while (it.hasNext()) {
 				String filterField = it.next();
 				String filterValue = filters.get(filterField);
+				System.out.println("ContractDAO filterField " + filterField);
 				  if (filterField.equals("status")) {
 	                    predicate = cb.and(predicate, cb.equal(rt.get(filterField), StatusContract.valueOf(filterValue.toUpperCase())));
 			/*	} else if (filterField.equals("carPrice")) {
