@@ -27,6 +27,9 @@
 		<param-value>redmond</param-value>
 	</context-param>
 
+	<session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
 
 	<servlet>
 		<servlet-name>hello</servlet-name>
