@@ -2,11 +2,13 @@ package dao.implementations;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -17,17 +19,12 @@ import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
 
 import model.Car;
-import model.CarModel;
-import model.Client;
+import model.Contract;
 import model.enums.CarType;
 
 import org.primefaces.model.SortOrder;
-
-import convertors.CarModelConverter;
 
 import dao.interfaces.CarDAOInterface;
 
@@ -43,6 +40,9 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		Query query = em.createNamedQuery("Car.count");
 		return (Long) query.getSingleResult();
 	}
+	
+	
+	
 
 	@Override
 	public List<Car> findRange(int start, int count, String sortField,
@@ -51,7 +51,7 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		CriteriaQuery<Car> cq = cb.createQuery(getEntityClass());
 		Root<Car> rt = cq.from(getEntityClass());
 		cq.select(rt);
-
+		
 		if (!filters.isEmpty()) {
 			Predicate predicate = cb.conjunction();
 			Iterator<String> it = filters.keySet().iterator();
@@ -60,6 +60,7 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 				String filterValue = filters.get(filterField);
 				System.out.println("In find Range CarDAO filterField "
 						+ filterField + "; filterValue : " + filterValue);
+				
 				if (filterField.equals("carType")) {
 					predicate = cb
 							.and(predicate, cb.equal(rt.get(filterField),
@@ -87,6 +88,8 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 							cb.like(rt.<String> get(filterField), "%"
 									+ filterValue + "%"));
 				}
+				
+				
 			}
 			cq.where(predicate);
 		}
@@ -104,7 +107,10 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		q.setFirstResult(start);
 		return q.getResultList();
 	}
-
+	
+	
+	
+	
 	public int count(Map<String, String> filters) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery cq = cb.createQuery(getEntityClass());
@@ -156,7 +162,11 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 				Car.class);
 		query.setParameter("from", dateFrom);
 		query.setParameter("to", dateTo);
+		
+		
+		
 		List<Car> result = query.getResultList();
+		System.out.println(result.size());
 		return result;
 	}
 

@@ -1,5 +1,6 @@
 package beans.cars;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,8 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
 	private int pageSize;
 	private int rowIndex;
 	private int rowCount;
+	private Date from;
+	private Date to;
 	private CarDAOInterface<Car> carDao;
 
 	public CarLazyDataModel(CarDAOInterface<Car> carDao2 ) {

@@ -41,6 +41,10 @@ public class CarBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		contractDateFrom = new Date();
+		//contractDateFrom.setYear(1900);
+		contractDateTo = new Date();
+		//contractDateTo.setYear(2300);
 		lazyModel = new CarLazyDataModel(carDao);
 	}
 
@@ -64,10 +68,13 @@ public class CarBean implements Serializable {
 		return CarType.values();
 	}
 
+	public List<Car> getCars(){
+		List<Car> result = carDao.findAvailableBeetwenDates(contractDateFrom, contractDateTo);
+		return result;
+	}
 
 	public List<CarModel> getCarModels(){
-		List<CarModel> list = new LinkedList<CarModel>();
-		list = carModelDao.findAll();
+		List<CarModel> list = carModelDao.findAll(); 
 		CarModelConverter.getList(list);
 		return list;
 	}
@@ -97,12 +104,12 @@ public class CarBean implements Serializable {
 		return Actions.ADD_CAR_VIEW.getViewUrl();
 	}
 
-	 public List<Car> getAvailableCars() {
+	/* public List<Car> getAvailableCars() {
 		 List<Car> list = new LinkedList<Car>();
 		 System.out.println("getAvailableCars");
 		 System.out.println("DateFrom" + contractDateFrom);
 		 System.out.println("DateTo" + contractDateTo);
 			list = carDao.findAvailableBeetwenDates(contractDateFrom, contractDateTo);
 			return list;
-	 }
+	 }*/
 }

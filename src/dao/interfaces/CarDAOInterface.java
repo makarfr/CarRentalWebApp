@@ -19,7 +19,7 @@ public interface CarDAOInterface<T> extends EntityDAOInterface<T> {
 	List<Car> findRange(int first, int pageSize, String sortField,
 			SortOrder sortOrder, Map<String, String> filters,
 			String contractDateFrom, String contractDateTo);
-
+	
 	
 
 }

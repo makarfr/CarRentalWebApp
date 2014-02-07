@@ -16,7 +16,7 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-	<!-- 	<h:panelGroup>
+	<h:panelGroup>
 						<div id="arend_time_form">
 							<h:form>
 								<p:panel id="panel" header="#{text.enter_dates}">
@@ -44,14 +44,14 @@
 										
 										<h:outputText/>
 										<p:commandButton value="#{text.calculate}"
-									action="#{carBean.getAvailableCars()}" update=":formCar:display" />
+									 update=":formCar:display" ajax="false" />
 									</h:panelGrid>
 								
 								
 									</p:panel>
 								</h:form>
 								</div>
-								</h:panelGroup> -->
+								</h:panelGroup> 
 			<h:form id="formCar">
 
 				<p:commandButton value="#{text.create_new_car_title}"
@@ -59,23 +59,23 @@
 					rendered="#{request.isUserInRole('dealer')}" icon="ui-icon-search"
 					style="margin: left" />
 
-				<p:dataTable var="carView" value="#{carBean.lazyModel}"
+				<p:dataTable var="carView" value="#{carBean.cars}"
 					paginator="true" rows="10"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}    {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 					 selectionMode="single"
-					selection="#{carBean.car}" id="carBean" lazy="true"
-					resizableColumns="true" liveResize="true">
+					selection="#{carBean.car}" id="carBean" 
+					resizableColumns="true" liveResize="true" rowKey="#{carView.carId}">
 
 
 					<p:ajax event="rowSelect" update=":formCar:display"
-						oncomplete="carDialog.show()" />
+						oncomplete="carDialog.show()"  />
 					<p:column>
 						<p:graphicImage
 							value="../resources/foto/#{carView.carModel.carModelName}_#{carView.carModel.carModelDescription}.jpg"
 							alt="no foto" width="130" height="80" />
 
 					</p:column>
-					<p:column headerText="#{text.model}" sortBy="#{carView.carModel}" >
+					<p:column headerText="#{text.model}"  sortBy="#{carView.carModel}">
 						<h:outputText value="#{carView.carModel}"
 							converter="carModelConverter" />
 					</p:column>
