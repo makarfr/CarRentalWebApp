@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -60,7 +62,7 @@ public class Contract implements Serializable {
 	private Car car;
 
 	//bi-directional many-to-one association to Dealer
-	@ManyToOne
+	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name ="dealer_id")
 	private Dealer dealer;
 

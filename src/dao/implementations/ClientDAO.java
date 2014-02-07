@@ -45,10 +45,10 @@ public class ClientDAO extends EntityDAO<Client> implements ClientDAOInterface<C
 	public Client getByUser(long regId) {
 		Query query = em.createNamedQuery("Client.getByUser", Client.class);
 		query.setParameter("regId", regId);
-		List<Client> result =  query.getResultList();
-	//	Object result =  query.getSingleResult();
-	//	return (Client) result;
-		return result.get(0);
+	//	List<Client> result =  query.getResultList();
+		Object result =  query.getSingleResult();
+		return (Client) result;
+	//	return result.get(0);
 	}
 
 	public List<Client> findAllFromDAO(){

@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,7 +26,10 @@ import common.UserRole;
  */
 @Entity
 @Table(name="dealer")
-@NamedQuery(name="Dealer.findAll", query="SELECT d FROM Dealer d")
+@NamedQueries({
+@NamedQuery(name="Dealer.findAll", query="SELECT d FROM Dealer d"),
+@NamedQuery(name="Dealer.getByUser", query="select c FROM Dealer c join c.registerUser r where r.registerId =:regId")
+})
 public class Dealer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
