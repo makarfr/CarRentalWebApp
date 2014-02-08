@@ -15,12 +15,11 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<h:form id="addClientForm" >
-				<f:facet name="header">#{text.create_new_member}</f:facet>
-
+				<p:panel header= "#{text.create_new_member}">
 				<h:panelGrid style="margin-top:20px">
 					<p:panelGrid columns="1">
 						<p:growl id="messages" showDetail="true" />
-						<h:outputText value="#{text.login}:" />
+						<h:outputText value="#{text.login_label}:" />
 						<h:inputText label="ClientLogin" required="true" id="login"
 							value="#{clientBean.selectedClient.registerUser.registerLogin}"
 							maxlength="200" />
@@ -77,7 +76,7 @@
 						icon="ui-icon-alert" />
 				</p:commandButton>
 
-				
+				</p:panel>
 			</h:form>
 			
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" appendTo="@(body)">

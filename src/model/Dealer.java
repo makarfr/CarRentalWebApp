@@ -45,7 +45,7 @@ public class Dealer implements Serializable {
 	@Column(name="dealer_name", nullable=false, length=200)
 	private String dealerName;
 
-	@Column(name="dealer_phone_number", nullable=false, length=200)
+	@Column(name="dealer_phone_number", nullable=false)
 	private Long dealerPhoneNumber;
 
 	@Column(name="dealer_surname", nullable=false, length=200)

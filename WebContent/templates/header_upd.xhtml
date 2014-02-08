@@ -49,18 +49,18 @@
 
 	<c:if test="#{login.logged}">
 							<p:tabMenu activeIndex="5">
-								<p:menuitem value="Automobiles" url="//carView.xhtml"
+								<p:menuitem value="#{text.car}" url="//carView.xhtml"
 									icon="ui-icon-star" />
-								<p:menuitem value="Clients" url="/dealer/clientView.xhtml"
+								<p:menuitem value="#{text.clients}" url="/dealer/clientView.xhtml"
 									rendered="#{request.isUserInRole('dealer')}"
 									icon="ui-icon-person" />
-								<p:menuitem value="Dealers" url="/admin/dealerView.xhtml"
+								<p:menuitem value="#{text.dealers}" url="/admin/dealerView.xhtml"
 									rendered="#{request.isUserInRole('admin')}"
 									icon="ui-icon-person" />
-								<p:menuitem value="Orders" url="/dealer/orderView.xhtml"
+								<p:menuitem value="#{text.orders}" url="/dealer/orderView.xhtml"
 									rendered="#{request.isUserInRole('dealer')}"
 									icon="ui-icon-person" />
-								<p:menuitem value="Profile Page" url="/client/clientProfileView.xhtml"
+								<p:menuitem value="#{text.profile_page}" url="/client/clientProfileView.xhtml"
 									rendered="#{request.isUserInRole('client')}"
 									icon="ui-icon-person" />
 							</p:tabMenu>

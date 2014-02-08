@@ -71,12 +71,12 @@ public class AuthentificationBean implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.toLowerCase();
 	}
 
 	public AuthentificationBean(String password, String name) {
 		this.password = password;
-		this.name = name;
+		this.name = name.toLowerCase();
 	}
 
 	public AuthentificationBean() {

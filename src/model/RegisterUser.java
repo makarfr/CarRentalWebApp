@@ -75,7 +75,7 @@ public class RegisterUser implements Serializable {
 	}
 
 	public void setRegisterLogin(String registerLogin) {
-		this.registerLogin = registerLogin;
+		this.registerLogin = registerLogin.toLowerCase();
 	}
 
 	public String getRegisterPassword() {

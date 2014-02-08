@@ -20,7 +20,7 @@
 					<h:panelGrid style="margin-top:20px">
 						<h:panelGrid columns="1">
 
-							<h:outputText value="#{text.login}:" />
+							<h:outputText value="#{text.login_label}:" />
 							<p:inputText label="DealerLogin" required="true" id="login"
 								value="#{addDealerBean.dealer.registerUser.registerLogin}"
 								maxlength="200" />
@@ -34,7 +34,8 @@
 
 							<h:outputText value="#{text.confirm_password}:" />
 							<p:inputText label="Password" type="password" required="true"
-								id="pw2" value="#{addDealerBean.passwordSecondTime}"maxlength="200" />
+								id="pw2" value="#{addDealerBean.passwordSecondTime}" 
+								maxlength="200"> </p:inputText>
 							<p:message for="pw2" style="color:red" />
 
 							<h:outputText value="#{text.client_name}" />
