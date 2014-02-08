@@ -34,7 +34,7 @@
 						
 							<h:outputText value="#{text.confirm_password}:" />
 							<p:inputText label="Password" type="password" required="true"
-								id="pw2" value="#{clientBean.passwordSecondTime}" />
+								id="pw2" value="#{clientBean.passwordSecondTime}" maxlength="200" />
 							<p:message for="pw2" style="color:red" />
 
 						<h:outputText value="#{text.client_name}" />
