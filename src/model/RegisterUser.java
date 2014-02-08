@@ -41,7 +41,7 @@ public class RegisterUser implements Serializable {
 	@Column(name="register_login", nullable=false, length=200, unique = true)
 	private String registerLogin;
 
-	@Length(min=3, max=25, message = "your password must be at least 3 symbols") 
+	@Length(min=3, max=25, message = "Your password must be at least 3 symbols") 
 	@Column(name="register_password", nullable=false, length=200)
 	private String registerPassword;
 	
