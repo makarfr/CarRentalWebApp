@@ -34,7 +34,8 @@ public class ClientBean implements Serializable {
 	private LazyDataModel<Client> lazyModel;
 
 	@EJB
-	private RegisterUserDAOInterface<RegisterUser> registerUserDAO;;
+	private RegisterUserDAOInterface<RegisterUser> registerUserDAO;
+	private String passwordSecondTime;
 
 	@PostConstruct
 	public void init() {
@@ -63,6 +64,14 @@ public class ClientBean implements Serializable {
 		return selectedClient;
 	}
 
+	public String getPasswordSecondTime() {
+		return passwordSecondTime;
+	}
+
+	public void setPasswordSecondTime(String passwordSecondTime) {
+		this.passwordSecondTime = passwordSecondTime;
+	}
+
 	public void setSelectedClient(Client client) {
 		this.selectedClient = client;
 	}
@@ -72,12 +81,15 @@ public class ClientBean implements Serializable {
 		System.out.println("in save method");
 	   String registerLogin = selectedClient.getRegisterUser().getRegisterLogin();
 		if (isLoginUnique(registerLogin)) {
+			if(checkPassword() == true) {
 			BigDecimal startDisc = new BigDecimal(3);
 			selectedClient.setClientDiscount(startDisc);
 			selectedClient.setClientCardNumber(0L);
 			clientDao.create(selectedClient);
 			System.out.println("client created, going to redirect to " + Actions.LOGIN_VIEW.getViewUrl());
+			
 			return Actions.LOGIN_VIEW.getFullUrl();
+			}
 		} else {
 			System.out.println("in else save throw msg");
 			FacesContext.getCurrentInstance().addMessage(
@@ -88,7 +100,9 @@ public class ClientBean implements Serializable {
 							  .getI18Message("error_login_already_exist")));
 			return Actions.REGISTER.getViewUrl();
 		}
+		return null;
 		
+	       		
 	}
 
 	public String update() {
@@ -98,5 +112,18 @@ public class ClientBean implements Serializable {
 
 	private boolean isLoginUnique(String userLogin) {
 		return registerUserDAO.findByLogin(userLogin) == null;
+	}
+	
+	private boolean checkPassword() {
+		 if(selectedClient.getRegisterUser().getRegisterPassword().equals(passwordSecondTime) == false){
+			 FacesContext.getCurrentInstance().addMessage(
+						null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR,
+								I18nHelper.INSTANCE.getI18Message("error"),
+								I18nHelper.INSTANCE
+								  .getI18Message("confirm_password_didnot_match")));;
+	            return  false;
+		 	}
+		return true;
 	}
 }

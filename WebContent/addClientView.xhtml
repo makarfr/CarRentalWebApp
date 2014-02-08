@@ -31,6 +31,11 @@
 							value="#{clientBean.selectedClient.registerUser.registerPassword}"
 							maxlength="200" />
 						<p:message for="pass" style="color:red" />
+						
+							<h:outputText value="#{text.confirm_password}:" />
+							<p:inputText label="Password" type="password" required="true"
+								id="pw2" value="#{clientBean.passwordSecondTime}" />
+							<p:message for="pw2" style="color:red" />
 
 						<h:outputText value="#{text.client_name}" />
 						<h:inputText label="Name" required="true" id="name"
