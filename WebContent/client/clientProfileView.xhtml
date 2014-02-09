@@ -15,8 +15,8 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<div>
-
-				<p:panelGrid columns="2">
+<p:panel header="#{text.profile_page}" >
+				<p:panelGrid columns="2" style="padding-left: 35%;">
 					<p:outputLabel value="#{text.your_name}" />
 					<p:outputLabel value="#{profileBean.selectedClient.clientName}" />
 					<p:outputLabel value="#{text.your_last_name}" />
@@ -29,16 +29,18 @@
 						value="#{profileBean.selectedClient.clientDiscount} %" />
 
 				</p:panelGrid>
+				</p:panel>
 			</div>
 			<div id="client_cars_view">
 				<h:form id="formAcc">
+				<p:panel header="#{text.client_history}">
 					<p:accordionPanel id="accordion" value="#{profileBean.contract}"
 						var="contract" itemStyleClass="carItem" headerText="Your cars"
 						numVisible="1">
 						<p:tab
 							title="#{contract.car.carModel.carModelName} #{contract.status} ">
 							<p:graphicImage
-								value="../resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
+								value="/resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
 								alt="no foto" width="130" height="80" />
 
 							<h:panelGrid columns="2" cellpadding="5">
@@ -81,7 +83,7 @@
 							</p:commandButton>
 						</p:tab>
 					</p:accordionPanel>
-
+</p:panel>
 					<p:dialog>
 						<p:outputPanel id="carDetail" style="text-align:center;"
 							layout="block" />
