@@ -14,7 +14,7 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-		
+
 			<h:form id="formOrder">
 
 				<p:dataTable var="order" value="#{contractBean.lazyModel}"
@@ -30,7 +30,7 @@
 						<h:outputText value="#{order.car.carModel.carModelName}" />
 					</p:column>
 
-					<p:column headerText="#{text.login}:">
+					<p:column headerText="#{text.login_label_user}:">
 						<h:outputText value="#{order.registerUser.registerLogin}" />
 					</p:column>
 
@@ -48,7 +48,7 @@
 							converter="javax.faces.DateTime" />
 					</p:column>
 
-					<p:column headerText="#{text.status}:" >
+					<p:column headerText="#{text.status}:">
 						<h:outputText value="#{order.status}" />
 					</p:column>
 
@@ -62,90 +62,91 @@
 					resizable="true" showEffect="explode" hideEffect="explode">
 
 					<h:panelGrid id="display" columns="1" cellpadding="4">
-					<h:panelGroup> 
-						<p:graphicImage
-							value="../resources/foto/#{contractBean.contract.car.carModel.carModelName}_#{contractBean.contract.car.carModel.carModelDescription}.jpg"
-							alt="no foto" width="150" height="100" />
-							
-						<p:panel header="#{text.car_detail}">
-							<h:panelGrid columns="2" cellpadding="4">
+						<h:panelGroup>
+							<p:graphicImage
+								value="../resources/foto/#{contractBean.contract.car.carModel.carModelName}_#{contractBean.contract.car.carModel.carModelDescription}.jpg"
+								alt="no foto" width="150" height="100" />
 
-								<h:outputText value="#{text.model} :" />
-								<h:outputText
-									value="#{contractBean.contract.car.carModel.carModelName}"
-									id="model" />
+							<p:panel header="#{text.car_detail}">
+								<h:panelGrid columns="2" cellpadding="4">
 
-								<h:outputText value="#{text.type} :" />
-								<h:outputText value="#{contractBean.contract.car.carType.value}"
-									id="type" />
+									<h:outputText value="#{text.model} :" />
+									<h:outputText
+										value="#{contractBean.contract.car.carModel.carModelName}"
+										id="model" />
+
+									<h:outputText value="#{text.type} :" />
+									<h:outputText
+										value="#{contractBean.contract.car.carType.value}" id="type" />
 
 
-								<h:outputText value="#{text.year} :" />
-								<h:outputText value="#{contractBean.contract.car.carYear}"
-									id="year">
-									<f:convertDateTime pattern="yyyy" />
-								</h:outputText>
+									<h:outputText value="#{text.year} :" />
+									<h:outputText value="#{contractBean.contract.car.carYear}"
+										id="year">
+										<f:convertDateTime pattern="yyyy" />
+									</h:outputText>
 
-								<h:outputText value="#{text.number}" />
-								<h:outputText value="#{contractBean.contract.car.carNumber}"
-									id="number" />
+									<h:outputText value="#{text.number}" />
+									<h:outputText value="#{contractBean.contract.car.carNumber}"
+										id="number" />
 
-								<h:outputText value="#{text.price} :" />
-								<h:outputText value="#{contractBean.contract.car.carPrice}"
-									id="price" />
+									<h:outputText value="#{text.price} :" />
+									<h:outputText value="#{contractBean.contract.car.carPrice}"
+										id="price" />
 
-								<h:outputText value="#{text.from} :" />
-								<h:outputText value="#{contractBean.contract.contractDateFrom}"
-									id="dateFrom" converter="javax.faces.DateTime" />
+									<h:outputText value="#{text.from} :" />
+									<h:outputText value="#{contractBean.contract.contractDateFrom}"
+										id="dateFrom" converter="javax.faces.DateTime" />
 
-								<h:outputText value="#{text.to} :" />
-								<h:outputText value="#{contractBean.contract.contractDateTo}"
-									id="dateTo" converter="javax.faces.DateTime" />
+									<h:outputText value="#{text.to} :" />
+									<h:outputText value="#{contractBean.contract.contractDateTo}"
+										id="dateTo" converter="javax.faces.DateTime" />
 
-								<h:outputText value="#{text.total_sum} :" />
-								<h:outputText value="#{contractBean.contract.totalPrice}"
-									id="totSum" />
-								
-							</h:panelGrid>
-						</p:panel>
+									<h:outputText value="#{text.total_sum} :" />
+									<h:outputText value="#{contractBean.contract.totalPrice}"
+										id="totSum" />
+
+								</h:panelGrid>
+							</p:panel>
 						</h:panelGroup>
-								<h:panelGroup>
-					
-						<p:panel  header="#{text.client_detail}">
-											
-				<p:panelGrid columns="2">
-					<p:outputLabel value="#{text.login}" />
-					<p:outputLabel value="#{contractBean.contract.registerUser.registerLogin}" />
-				
-				</p:panelGrid>
-				</p:panel>
-					</h:panelGroup>
-				</h:panelGrid>
-				
-				<p:commandButton value="#{text.contract_status_accepted}"
-									action="#{contractBean.accept}" update="@(page)">
-									<p:confirm header="#{text.confirmation}"
-										message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
-								</p:commandButton>
-								
-								<p:commandButton value="#{text.contract_status_reject}"
-									action="#{contractBean.reject}" update="@(page)">
-									<p:confirm header="#{text.confirmation}"
-										message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
-								</p:commandButton>
-								
-								<p:commandButton value="#{text.contract_status_close}"
-									action="#{contractBean.close}" update="@(page)">
-									<p:confirm header="#{text.confirmation}"
-										message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
-								</p:commandButton>
+						<h:panelGroup>
+
+							<p:panel header="#{text.client_detail}">
+
+								<p:panelGrid columns="2">
+									<p:outputLabel value="#{text.login_label_user}" />
+									<p:outputLabel
+										value="#{contractBean.contract.registerUser.registerLogin}" />
+
+								</p:panelGrid>
+							</p:panel>
+						</h:panelGroup>
+					</h:panelGrid>
+
+					<p:commandButton value="#{text.contract_status_accepted}"
+						action="#{contractBean.accept}" update="@(page)">
+						<p:confirm header="#{text.confirmation}"
+							message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton value="#{text.contract_status_reject}"
+						action="#{contractBean.reject}" update="@(page)">
+						<p:confirm header="#{text.confirmation}"
+							message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:commandButton value="#{text.contract_status_close}"
+						action="#{contractBean.close}" update="@(page)">
+						<p:confirm header="#{text.confirmation}"
+							message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+					</p:commandButton>
 				</p:dialog>
 
 			</h:form>
-			
-<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 				appendTo="@(body)">
-				<h:form id = "conf">
+				<h:form id="conf">
 					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
 						icon="ui-icon-check" />
 					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
@@ -154,6 +155,6 @@
 			</p:confirmDialog>
 		</ui:define>
 	</ui:composition>
-	
+
 </h:body>
 </html>
