@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jsp/jstl/core" >
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <h:head>
@@ -16,42 +16,41 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-	<h:panelGroup>
-						<div id="arend_time_form">
-							<h:form>
-								<p:panel id="panel" header="#{text.enter_dates}">
-									<h:panelGrid columns="3" cellpadding="7">
-										<p:outputLabel for="from_time" value="#{text.from}" />
-										<p:calendar id="from_time" binding="#{fromTimeComponent}"
-											value="#{carBean.contractDateFrom}"
-											navigator="true" display="inline" required="true"
-											requiredMessage="#{text.select_from_date}"
-											converterMessage="#{text.invalid_date}" />
-										<p:message for="from_time" style="color:red" />
+			<h:panelGroup>
+				<div id="arend_time_form">
+					<h:form>
+						<p:panel id="panel" header="#{text.enter_dates}">
+							<h:panelGrid columns="3" cellpadding="7">
+								<p:outputLabel for="from_time" value="#{text.from}" />
+								<p:calendar id="from_time" binding="#{fromTimeComponent}"
+									value="#{carBean.contractDateFrom}" navigator="true"
+									display="inline" required="true"
+									requiredMessage="#{text.select_from_date}"
+									converterMessage="#{text.invalid_date}" />
+								<p:message for="from_time" style="color:red" />
 
-										<p:outputLabel for="to_time" value="#{text.to}" />
-										<p:calendar id="to_time"
-											value="#{carBean.contractDateTo}"
-											navigator="true" display="inline" required="true"
-											requiredMessage="#{text.select_to_date}"
-											converterMessage="#{text.invalid_date}">
-											<f:attribute name="fromTimeComponent"
-												value="#{fromTimeComponent}" />
-										
-											<f:validator validatorId="dateGapValidator" />
-										</p:calendar>
-										<p:message for="to_time" style="color:red" />
-										
-										<h:outputText/>
-										<p:commandButton value="#{text.find}"
-									 update=":formCar:display" ajax="false" />
-									</h:panelGrid>
-								
-								
-									</p:panel>
-								</h:form>
-								</div>
-								</h:panelGroup> 
+								<p:outputLabel for="to_time" value="#{text.to}" />
+								<p:calendar id="to_time" value="#{carBean.contractDateTo}"
+									navigator="true" display="inline" required="true"
+									requiredMessage="#{text.select_to_date}"
+									converterMessage="#{text.invalid_date}">
+									<f:attribute name="fromTimeComponent"
+										value="#{fromTimeComponent}" />
+
+									<f:validator validatorId="dateGapValidator" />
+								</p:calendar>
+								<p:message for="to_time" style="color:red" />
+
+								<h:outputText />
+								<p:commandButton value="#{text.find}" update=":formCar:display"
+									ajax="false" />
+							</h:panelGrid>
+
+
+						</p:panel>
+					</h:form>
+				</div>
+			</h:panelGroup>
 			<h:form id="formCar">
 
 				<p:commandButton value="#{text.create_new_car_title}"
@@ -59,23 +58,22 @@
 					rendered="#{request.isUserInRole('dealer')}" icon="ui-icon-search"
 					style="margin: left" />
 
-				<p:dataTable var="carView" value="#{carBean.cars}"
-					paginator="true" rows="10"
+				<p:dataTable var="carView" value="#{carBean.cars}" paginator="true"
+					rows="10"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}    {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-					 selectionMode="single"
-					selection="#{carBean.car}" id="carBean" 
+					selectionMode="single" selection="#{carBean.car}" id="carBean"
 					resizableColumns="true" liveResize="true" rowKey="#{carView.carId}">
 
 
 					<p:ajax event="rowSelect" update=":formCar:display"
-						oncomplete="carDialog.show()"  />
+						oncomplete="carDialog.show()" />
 					<p:column>
 						<p:graphicImage
 							value="resources/foto/#{carView.carModel.carModelName}_#{carView.carModel.carModelDescription}.jpg"
 							alt="no foto" width="130" height="80" />
 
 					</p:column>
-					<p:column headerText="#{text.model}"  sortBy="#{carView.carModel}">
+					<p:column headerText="#{text.model}" sortBy="#{carView.carModel}">
 						<h:outputText value="#{carView.carModel}"
 							converter="carModelConverter" />
 					</p:column>
@@ -98,7 +96,8 @@
 					</p:column>
 
 					<p:column headerText="#{text.number}" sortBy="#{carView.carNumber}"
-						filterBy="#{carView.carNumber}" rendered="#{request.isUserInRole('dealer')}" >
+						filterBy="#{carView.carNumber}"
+						rendered="#{request.isUserInRole('dealer')}">
 						<h:outputText value="#{carView.carNumber}" />
 					</p:column>
 

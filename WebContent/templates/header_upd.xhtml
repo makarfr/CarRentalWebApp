@@ -13,49 +13,50 @@
 
 <head>
 
-<title>Welcome at Rent Car!</title>
+<title>Welcome to a Rent Car!</title>
 </head>
 
 <h:body>
 	<ui:composition>
 		<h:form>
-		<h:commandLink action="/carView.xhtml?faces-redirect=true">
-		<p:graphicImage
-			value="resources/logo.jpg"
-			alt="Rent Car" width="324" height="77"/>
-	</h:commandLink>
-	</h:form>
+			<h:commandLink action="/carView.xhtml?faces-redirect=true">
+				<p:graphicImage value="/resources/logo.jpg" alt="Rent Car"
+					width="324" height="77" />
+			</h:commandLink>
+		</h:form>
 		<div id="header-wrapper">
 
 			<div id="container">
 
 				<h:form id="formLogin">
-					<f:view locale="#{localeBean.localeCode}" contentType="text/html" />
-					<h:selectOneMenu value="#{localeBean.localeCode}"
-						onchange="submit()"
-						valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
-						<f:selectItems value="#{localeBean.languages}" />
-					</h:selectOneMenu>
-					<p:spacer width="20" />
-					<c:if test="#{login.logged}">
-						<p:commandLink value="#{text.logout}" action="#{login.logout}"
-							ajax="false" />
+					<div>
+						<f:view locale="#{localeBean.localeCode}" contentType="text/html" />
+						<h:selectOneMenu value="#{localeBean.localeCode}"
+							onchange="submit()"
+							valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
+							<f:selectItems value="#{localeBean.languages}" />
+						</h:selectOneMenu>
 						<p:spacer width="20" />
-						<p:outputLabel
-							value="#{text.welcome}, #{sessionScope['userLogin']}" />
-					</c:if>
-					<c:if test="#{!login.logged}">
-						<p:commandLink value="#{text.register}"
-							action="addClientView.xhtml?faces-redirect=true" ajax="false" />
-						<p:spacer width="20" />
-						<p:commandLink value="#{text.login}"
-							action="login.xhtml?faces-redirect=true" ajax="false" />
-						<br />
-					</c:if>
+						<c:if test="#{login.logged}">
+							<p:commandLink value="#{text.logout}" action="#{login.logout}"
+								ajax="false" />
+							<p:spacer width="20" />
+							<p:outputLabel
+								value="#{text.welcome}, #{sessionScope['userLogin']}" />
+						</c:if>
+						<c:if test="#{!login.logged}">
+							<p:commandLink value="#{text.register}"
+								action="addClientView.xhtml?faces-redirect=true" ajax="false" />
+							<p:spacer width="20" />
+							<p:commandLink value="#{text.login}"
+								action="login.xhtml?faces-redirect=true" ajax="false" />
+							<br />
+						</c:if>
+					</div>
 
 					<c:if test="#{login.logged}">
 						<p:tabMenu activeIndex="5">
-							<p:menuitem value="#{text.car}" url="//carView.xhtml"
+							<p:menuitem value="#{text.car}" url="/carView.xhtml"
 								icon="ui-icon-star" />
 							<p:menuitem value="#{text.clients}"
 								url="/dealer/clientView.xhtml"

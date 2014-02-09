@@ -8,7 +8,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.Car;
 import model.CarModel;
@@ -23,7 +25,7 @@ import dao.interfaces.CarDAOInterface;
 import dao.interfaces.CarModelDAOInterface;
 
 @ManagedBean(name ="carBean")
-@SessionScoped
+@ViewScoped
 public class CarBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +38,7 @@ public class CarBean implements Serializable {
 	private LazyDataModel<Car> lazyModel;
 	
 	private Date contractDateFrom;
+	
 	private Date contractDateTo;
 
 

@@ -55,7 +55,7 @@
 											value="#{orderPostBean.contract.contractDateFrom}"
 											navigator="true" display="inline" required="true"
 											requiredMessage="#{text.select_from_date}"
-											converterMessage="#{text.invalid_date}" />
+											converterMessage="#{text.invalid_date}" pattern="dd/mm/yyyy"/>
 										<p:message for="from_time" style="color:red" />
 
 										<p:outputLabel for="to_time" value="#{text.to}" />
@@ -63,7 +63,7 @@
 											value="#{orderPostBean.contract.contractDateTo}"
 											navigator="true" display="inline" required="true"
 											requiredMessage="#{text.select_to_date}"
-											converterMessage="#{text.invalid_date}">
+											converterMessage="#{text.invalid_date}" pattern="dd/mm/yyyy">
 											<f:attribute name="fromTimeComponent"
 												value="#{fromTimeComponent}" />
 											<f:attribute name="car"

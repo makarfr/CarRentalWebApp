@@ -11,14 +11,15 @@
 
 </h:head>
 
-<h:body>
+<h:body >
 	<ui:composition template="/templates/layout.xhtml">
-		<ui:define name="content">
-		
+		<ui:define name="content" >
+	
 				<p:panel header="#{text.create_new_member}">
-				<h:form id="addClientForm">
-					<h:panelGrid style="margin-top:20px">
-						<p:panelGrid columns="1">
+				<h:form id="addClientForm" >
+				
+					<h:panelGrid  style="padding-left: 35%;">
+						<p:panelGrid columns="1" >
 							<p:growl id="messages" showDetail="true" />
 							<h:outputText value="#{text.login_label}:" />
 							<h:inputText label="Login" required="true" id="login"
@@ -92,7 +93,6 @@
 						icon="ui-icon-close" />
 				</h:form>
 			</p:confirmDialog>
-
 
 
 		</ui:define>
