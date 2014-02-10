@@ -39,16 +39,16 @@ public class Dealer implements Serializable {
 	@Column(name="dealer_id", insertable=false, updatable=false, unique=true, nullable=false)
 	private Long dealerId;
 
-	@Column(name="dealer_address", nullable=false, length=200)
+	@Column(name="dealer_address", nullable=false, length=250)
 	private String dealerAddress;
 
-	@Column(name="dealer_name", nullable=false, length=200)
+	@Column(name="dealer_name", nullable=false, length=250)
 	private String dealerName;
 
 	@Column(name="dealer_phone_number", nullable=false)
-	private Long dealerPhoneNumber;
+	private String dealerPhoneNumber;
 
-	@Column(name="dealer_surname", nullable=false, length=200)
+	@Column(name="dealer_surname", nullable=false, length=250)
 	private String dealerSurname;
 	
 	@OneToOne(cascade= CascadeType.ALL)
@@ -65,7 +65,7 @@ public class Dealer implements Serializable {
 	}
 
 	public Dealer(String dealerAddress, String dealerName,
-			Long dealerPhoneNumber, String dealerSurname) {
+			String dealerPhoneNumber, String dealerSurname) {
 		super();
 		this.dealerAddress = dealerAddress;
 		this.dealerName = dealerName;
@@ -97,11 +97,11 @@ public class Dealer implements Serializable {
 		this.dealerName = dealerName;
 	}
 
-	public Long getDealerPhoneNumber() {
+	public String getDealerPhoneNumber() {
 		return this.dealerPhoneNumber;
 	}
 
-	public void setDealerPhoneNumber(Long dealerPhoneNumber) {
+	public void setDealerPhoneNumber(String dealerPhoneNumber) {
 		this.dealerPhoneNumber = dealerPhoneNumber;
 	}
 

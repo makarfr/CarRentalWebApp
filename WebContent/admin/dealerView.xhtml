@@ -48,7 +48,7 @@
 					</p:column>
 					<p:column>
 						<p:commandButton id="updateButton" icon="ui-icon-pencil"
-							action="#{clientBean.setSelectedClient(clientItem)}"
+							action="#{dealerBean.setDealer(del)}"
 							oncomplete="dlg.show()" update=":editDialog" />
 					</p:column>
 				</p:dataTable>
@@ -122,7 +122,7 @@
 
 						<p:commandButton id="closeButton" value="#{text.ok}"
 							oncomplete="dlgConfirm.hide();"
-							action="/admin/clientView.xhtml?faces-redirect=true "
+							action="/admin/dealerView.xhtml?faces-redirect=true "
 							ajax="false" />
 					</h:panelGrid>
 				</h:form>

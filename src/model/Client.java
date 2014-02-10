@@ -43,7 +43,7 @@ public class Client implements Serializable {
 	@Column(name="client_id", insertable=false, updatable=false, unique=true, nullable=false)
 	private Long clientId;
 
-	@Column(name="client_address", nullable=false, length=200)
+	@Column(name="client_address", nullable=false, length=250)
 	private String clientAddress;
 
 	@SequenceGenerator(name="CLIENT_CLIENT_ID_GENERATOR" )
@@ -54,19 +54,19 @@ public class Client implements Serializable {
 	@Column(name="client_discount", nullable=false)
 	private BigDecimal clientDiscount;
 
-	@Column(name="client_driver_license_number", nullable=false, length=200)
+	@Column(name="client_driver_license_number", nullable=false, length=250)
 	private String clientDriverLicenseNumber;
 
-	@Column(name="client_middle_name", length=200)
+	@Column(name="client_middle_name", length=250)
 	private String clientMiddleName;
 
-	@Column(name="client_name", nullable=false, length=200)
+	@Column(name="client_name", nullable=false, length=250)
 	private String clientName;
 
-	@Column(name="client_phone_number", nullable=false, length=200)
+	@Column(name="client_phone_number", nullable=false, length=250)
 	private String clientPhoneNumber;
 
-	@Column(name="client_surname", nullable=false, length=200)
+	@Column(name="client_surname", nullable=false, length=250)
 	private String clientSurname;
 
 	@OneToOne(cascade= CascadeType.ALL, optional = false)

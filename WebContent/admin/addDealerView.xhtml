@@ -14,80 +14,85 @@
 <h:body>
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
-			<h:form id="addDealForm">
-				<p:panel header="#{text.create_new_member}">
+			<h:form id="addClientForm">
+				<f:facet name="header">#{text.create_new_member}</f:facet>
 
-					<h:panelGrid style="margin-top:20px">
-						<h:panelGrid columns="1">
+				<h:panelGrid style="margin-top:20px">
+					<p:panelGrid columns="1">
+						<p:growl id="messages" showDetail="true" />
+						<h:outputText value="#{text.login}:" />
+						<h:inputText label="ClientLogin" required="true" id="login"
+							value="#{addDealerBean.dealer.registerUser.registerLogin}"
+							maxlength="20" />
+						<p:message for="login" style="color:red" />
 
-							<h:outputText value="#{text.login_label}:" />
-							<p:inputText label="DealerLogin" required="true" id="login"
-								value="#{addDealerBean.dealer.registerUser.registerLogin}"
-								maxlength="200" />
-							<p:message for="login" style="color:red" />
+						<h:outputText value="#{text.password}:" />
+						<h:inputSecret label="ClientPassword" required="true" id="pass"
+							value="#{addDealerBean.dealer.registerUser.registerPassword}"
+							maxlength="20" />
+						<p:message for="pass" style="color:red" />
 
-							<h:outputText value="#{text.password}:" />
-							<p:password label="Pass" required="true" id="pass"
-								value="#{addDealerBean.dealer.registerUser.registerPassword}"
-								maxlength="200" />
-							<p:message for="pass" style="color:red" />
+						<h:outputText value="#{text.confirm_password}:" />
+						<p:inputText label="Password" type="password" required="true"
+							id="pw2" value="#{addDealerBean.passwordSecondTime}" />
+						<p:message for="pw2" style="color:red" />
 
-							<h:outputText value="#{text.confirm_password}:" />
-							<p:inputText label="Password" type="password" required="true"
-								id="pw2" value="#{addDealerBean.passwordSecondTime}" 
-								maxlength="200"> </p:inputText>
-							<p:message for="pw2" style="color:red" />
 
-							<h:outputText value="#{text.client_name}" />
-							<p:inputText label="Name" required="true" id="name"
-								value="#{addDealerBean.dealer.dealerName}" maxlength="200" />
-							<p:message for="name" style="color:red" />
+						<h:outputText value="#{text.client_name}" />
+						<h:inputText label="Name" required="true" id="name"
+							value="#{addDealerBean.dealer.dealerName}" maxlength="200" />
+						<p:message for="name" style="color:red" />
 
-							<h:outputText value="#{text.client_surname}" />
-							<p:inputText label="Surname" required="true" id="s"
-								value="#{addDealerBean.dealer.dealerSurname}" maxlength="200" />
-							<p:message for="s" style="color:red" />
+						<h:outputText value="#{text.client_surname}" />
+						<h:inputText label="Surname" required="true" id="s"
+							value="#{addDealerBean.dealer.dealerSurname}"
+							maxlength="200" />
+						<p:message for="s" style="color:red" />
 
-							<h:outputText value="#{text.client_address}:" />
-							<p:inputText label="Address" required="true" id="adress"
-								value="#{addDealerBean.dealer.dealerAddress}" maxlength="200" />
-							<p:message for="adress" style="color:red" />
+						<h:outputText value="#{text.client_address}:" />
+						<h:inputText label="Address" required="true" id="adress"
+							value="#{addDealerBean.dealer.dealerAddress}"
+							maxlength="200" />
+						<p:message for="adress" style="color:red" />
 
-							<h:outputText value="#{text.client_phone_number}:" />
-							<p:inputMask label="PhoneNumber" required="true" id="number"
-								value="#{addDealerBean.dealer.dealerPhoneNumber}"
-								mask="+ 38(999) 999-99-99" />
-							<p:message for="number" style="color:red" />
+						<h:outputText value="#{text.client_phone_number}:" />
+						<p:inputMask label="PhoneNumber" required="true" id="number"
+							value="#{addDealerBean.dealer.dealerPhoneNumber}"
+							mask="+ 38(999) 999-99-99" />
+						<p:message for="number" style="color:red" />
 
-						</h:panelGrid>
+						
+					</p:panelGrid>
 
-					</h:panelGrid>
-					<p:commandButton value="#{text.reset}" type="reset" />
+				</h:panelGrid>
+				<p:commandButton value="Reset" type="reset" />
 
-					<p:commandButton value="#{text.ok}" action="#{addDealerBean.save}"
-						update="addDealForm">
-						<p:confirm header="#{text.confirmation}"
-							message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
-					</p:commandButton>
-				</p:panel>
+				<p:commandButton value="Ok" action="#{addDealerBean.save}"
+					update="addClientForm:messages">
+					<p:confirm header="Confirmation" message="Are you sure?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+
+
 			</h:form>
-			<h:form>
-				<p:commandButton value="#{text.cancel}"
-					action="/admin/dealerView.xhtml?faces-redirect=true" ajax="false" />
 
-			</h:form>
 			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 				appendTo="@(body)">
-				<h:form id="conf">
+				<h:form>
 					<p:commandButton value="Yes" styleClass="ui-confirmdialog-yes"
 						icon="ui-icon-check" />
 					<p:commandButton value="No" styleClass="ui-confirmdialog-no"
 						icon="ui-icon-close" />
 				</h:form>
 			</p:confirmDialog>
+
+
+
 		</ui:define>
 	</ui:composition>
 
 
 </h:body>
 </html>
+
+

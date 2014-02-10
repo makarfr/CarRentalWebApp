@@ -98,7 +98,8 @@ public class ClientBean implements Serializable {
 							I18nHelper.INSTANCE.getI18Message("error_login"),
 							I18nHelper.INSTANCE
 							  .getI18Message("error_login_already_exist")));
-			return Actions.REGISTER.getViewUrl();
+			//return Actions.REGISTER.getViewUrl();
+			return null;
 		}
 		return null;
 		

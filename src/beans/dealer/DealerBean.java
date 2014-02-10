@@ -60,6 +60,7 @@ public class DealerBean implements Serializable {
 		this.dealer = dealer;
 	}
 
+
 	public List<Dealer> getDealersList() {
 		List<Dealer> list = dealDAO.findAll();
 		return list;

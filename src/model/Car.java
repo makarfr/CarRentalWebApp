@@ -48,13 +48,13 @@ public class Car implements Serializable {
 	@Column(name = "car_id")
 	private Long carId;
 
-	@Column(name = "car_description", length = 200)
+	@Column(name = "car_description", length = 250)
 	private String carDescription;
 
 	@Column(name = "car_model_id", nullable = false, insertable = false, updatable = false)
 	private Long carModelId;
 
-	@Column(name = "car_number", nullable = false, length = 20)
+	@Column(name = "car_number", nullable = false, length = 100)
 	private String carNumber;
 
 	@DecimalMin("1.00")

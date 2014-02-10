@@ -26,7 +26,6 @@
 								value="#{clientBean.selectedClient.registerUser.registerLogin}"
 								maxlength="200" requiredMessage="#{text.login_required}" />
 
-
 							<h:outputText value="#{text.password}:" />
 							<h:inputSecret label="Password" required="true" id="pass"
 								value="#{clientBean.selectedClient.registerUser.registerPassword}"
@@ -69,7 +68,7 @@
 						</p:panelGrid>
 
 					</h:panelGrid>
-					<p:commandButton value="#{text.reset}" type="reset" />
+					<p:commandButton value="#{text.reset}" type="reset"/>
 
 					<p:commandButton value="#{text.ok}" action="#{clientBean.save}"
 						update="addClientForm:messages">

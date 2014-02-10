@@ -34,10 +34,10 @@ public class CarModel implements Serializable {
 	@Column(name="car_model_id", insertable=false, updatable=false, unique=true, nullable=false)
 	private Long carModelId;
 
-	@Column(name="car_model_description", length=200)
+	@Column(name="car_model_description", length=250)
 	private String carModelDescription;
 
-	@Column(name="car_model_name", nullable=false, length=200)
+	@Column(name="car_model_name", nullable=false, length=250)
 	private String carModelName;
 
 	//bi-directional many-to-one association to Car

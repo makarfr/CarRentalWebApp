@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
 
 import model.enums.StatusContract;
 
@@ -53,6 +54,7 @@ public class Contract implements Serializable {
 	@Column(name="contract_date_to", nullable=false)
 	private Date contractDateTo;
 	
+	@DecimalMin("1.00")
 	@Column(name="total_price", nullable=false)
 	private BigDecimal totalPrice;
 
