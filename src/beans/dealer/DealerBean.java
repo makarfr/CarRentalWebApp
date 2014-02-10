@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.model.LazyDataModel;
 
@@ -19,7 +20,7 @@ import model.Dealer;
 import dao.interfaces.DealerDAOInterface;
 
 @ManagedBean(name = "dealerBean")
-@SessionScoped
+@ViewScoped
 public class DealerBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

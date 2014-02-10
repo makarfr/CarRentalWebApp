@@ -15,75 +15,86 @@
 	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<div>
-<p:panel header="#{text.profile_page}" >
-				<p:panelGrid columns="2" style="padding-left: 35%;">
-					<p:outputLabel value="#{text.your_name}" />
-					<p:outputLabel value="#{profileBean.selectedClient.clientName}" />
-					<p:outputLabel value="#{text.your_last_name}" />
-					<p:outputLabel value="#{profileBean.selectedClient.clientSurname}" />
-					<p:outputLabel value="#{text.your_licence_number}" />
-					<p:outputLabel
-						value="#{profileBean.selectedClient.clientDriverLicenseNumber}" />
-					<p:outputLabel value="#{text.your_discount}" />
-					<p:outputLabel
-						value="#{profileBean.selectedClient.clientDiscount} %" />
+				<p:panel header="#{text.profile_page}">
+					<p:panelGrid columns="2" style="padding-left: 35%;">
+						<p:outputLabel value="#{text.your_name}" />
+						<p:outputLabel value="#{profileBean.selectedClient.clientName}" />
+						<p:outputLabel value="#{text.your_last_name}" />
+						<p:outputLabel value="#{profileBean.selectedClient.clientSurname}" />
+						<p:outputLabel value="#{text.your_licence_number}" />
+						<p:outputLabel
+							value="#{profileBean.selectedClient.clientDriverLicenseNumber}" />
+						<p:outputLabel value="#{text.your_discount}" />
+						<p:outputLabel
+							value="#{profileBean.selectedClient.clientDiscount} %" />
 
-				</p:panelGrid>
+					</p:panelGrid>
 				</p:panel>
 			</div>
 			<div id="client_cars_view">
 				<h:form id="formAcc">
-				<p:panel header="#{text.client_history}">
-					<p:accordionPanel id="accordion" value="#{profileBean.contract}"
-						var="contract" itemStyleClass="carItem" headerText="Your cars"
-						numVisible="1">
-						<p:tab
-							title="#{contract.car.carModel.carModelName} #{contract.status} ">
+					<p:panel header="#{text.client_history}" id="panelForm">
+						<p:panelGrid columns="2">
+							<p:carousel id="accordion" value="#{profileBean.contract}"
+								var="contract" numVisible="2">
 							<p:graphicImage
-								value="/resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
-								alt="no foto" width="130" height="80" />
+									value="/resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
+									alt="no foto" width="130" height="80" />
 
-							<h:panelGrid columns="2" cellpadding="5">
-								<h:outputText value="#{text.model} :" />
-								<h:outputText value="#{contract.car.carModel.carModelName}"
-									id="model" />
+								<h:panelGrid columns="2" cellpadding="5">
+									<h:outputText value="#{text.model} :" />
+									<h:outputText value="#{contract.car.carModel.carModelName}"
+										id="model" />
 
-								<h:outputText value="#{text.type} :" />
-								<h:outputText value="#{contract.car.carType.value}" id="type" />
+									<h:outputText value="#{text.type} :" />
+									<h:outputText value="#{contract.car.carType.value}" id="type" />
 
 
-								<h:outputText value="#{text.year} :" />
-								<h:outputText value="#{contract.car.carYear}" id="year">
-									<f:convertDateTime pattern="yyyy" />
-								</h:outputText>
+									<h:outputText value="#{text.year} :" />
+									<h:outputText value="#{contract.car.carYear}" id="year">
+										<f:convertDateTime pattern="yyyy" />
+									</h:outputText>
 
-								<h:outputText value="#{text.price} :" />
-								<h:outputText value="#{contract.car.carPrice}" id="price" />
+									<h:outputText value="#{text.price} :" />
+									<h:outputText value="#{contract.car.carPrice}" id="price" />
 
-								<h:outputText value="#{text.from} :" />
-								<h:outputText value="#{contract.contractDateFrom}" id="dateFrom"
-									converter="javax.faces.DateTime" />
+									<h:outputText value="#{text.from} :" />
+									<h:outputText value="#{contract.contractDateFrom}"
+										id="dateFrom" converter="javax.faces.DateTime" />
 
-								<h:outputText value="#{text.to} :" />
-								<h:outputText value="#{contract.contractDateTo}" id="dateTo"
-									converter="javax.faces.DateTime" />
+									<h:outputText value="#{text.to} :" />
+									<h:outputText value="#{contract.contractDateTo}" id="dateTo"
+										converter="javax.faces.DateTime" />
 
-								<h:outputText value="#{text.status} :" />
-								<h:outputText value="#{contract.status}" id="stat" />
+									<h:outputText value="#{text.status} :" />
+									<h:outputText value="#{contract.status}" id="stat" />
 
-								<h:outputText value="#{text.total_sum} :" />
-								<h:outputText value="#{contract.totalPrice}" id="totSum" />
+									<h:outputText value="#{text.total_sum} :" />
+									<h:outputText value="#{contract.totalPrice}" id="totSum" />
 
-							</h:panelGrid>
-							<p:commandButton value="#{text.rent_it_again}"
-								action="#{selectedCarBean.choose(contract.car)}"
-								update="@(page)">
-								<p:confirm header="#{text.confirmation}"
-									message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
-							</p:commandButton>
-						</p:tab>
-					</p:accordionPanel>
-</p:panel>
+								</h:panelGrid>
+								<p:commandButton value="#{text.rent_it_again}"
+									action="#{selectedCarBean.choose(contract.car)}"
+									update="@(page)">
+									<p:confirm header="#{text.confirmation}"
+										message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+								</p:commandButton>
+
+							</p:carousel>
+							<h:panelGroup>
+								<p:commandButton value="#{text.contract_status_list_accepted}"
+									action="#{profileBean.accepted}" update=":formAcc:panelForm" />
+								<p:commandButton value="#{text.contract_status_list_new}"
+									action="#{profileBean.newOrders}" update=":formAcc:panelForm" />
+									<p:commandButton value="#{text.contract_status_list_rejected}"
+									action="#{profileBean.rejected}" update=":formAcc:panelForm" />
+									<p:commandButton value="#{text.contract_status_list_closed}"
+									action="#{profileBean.closed}" update=":formAcc:panelForm" />
+							</h:panelGroup>
+
+						</p:panelGrid>
+					</p:panel>
+
 					<p:dialog>
 						<p:outputPanel id="carDetail" style="text-align:center;"
 							layout="block" />

@@ -29,21 +29,25 @@
 			<div id="container">
 
 				<h:form id="formLogin">
-					<div>
+					<div style="text-align:right;">
 						<f:view locale="#{localeBean.localeCode}" contentType="text/html" />
 						<h:selectOneMenu value="#{localeBean.localeCode}"
 							onchange="submit()"
 							valueChangeListener="#{localeBean.languageLocaleCodeChanged}">
 							<f:selectItems value="#{localeBean.languages}" />
 						</h:selectOneMenu>
-						<p:spacer width="20" />
+						<h:panelGroup style="text-align:right;">
+						<p:spacer  width="20px" />
 						<c:if test="#{login.logged}">
-							<p:commandLink value="#{text.logout}" action="#{login.logout}"
-								ajax="false" />
-							<p:spacer width="20" />
-							<p:outputLabel
+						<p:outputLabel
 								value="#{text.welcome}, #{sessionScope['userLogin']}" />
-						</c:if>
+							<p:spacer width="20 px" />	
+							<p:commandLink value="#{text.logout}" action="#{login.logout}"
+								ajax="false"/>
+								</c:if>
+							</h:panelGroup>
+							
+						
 						<c:if test="#{!login.logged}">
 							<p:commandLink value="#{text.register}"
 								action="addClientView.xhtml?faces-redirect=true" ajax="false" />

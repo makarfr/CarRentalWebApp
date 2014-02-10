@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.CarModel;
 import model.Client;
@@ -28,7 +29,7 @@ import dao.interfaces.DealerDAOInterface;
 import dao.interfaces.EntityDAOInterface;
 
 @ManagedBean(name = "contractBean")
-@SessionScoped
+@ViewScoped
 public class ContractBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

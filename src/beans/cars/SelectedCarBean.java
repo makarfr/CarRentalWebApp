@@ -3,14 +3,12 @@ package beans.cars;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-import common.Actions;
+import javax.faces.bean.ViewScoped;
 
 import model.Car;
 
-
-@SessionScoped
+import common.Actions;
+@ViewScoped
 @ManagedBean
 public class SelectedCarBean implements Serializable {
 
