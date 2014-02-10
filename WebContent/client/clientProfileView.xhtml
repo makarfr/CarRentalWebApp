@@ -36,7 +36,7 @@
 					<p:panel header="#{text.client_history}" id="panelForm">
 						<p:panelGrid columns="2">
 							<p:carousel id="accordion" value="#{profileBean.contract}"
-								var="contract" numVisible="2">
+								var="contract" numVisible="2"  rendered="#{! empty profileBean.contract}">
 							<p:graphicImage
 									value="/resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
 									alt="no foto" width="130" height="80" />
@@ -83,13 +83,13 @@
 							</p:carousel>
 							<h:panelGroup>
 								<p:commandButton value="#{text.contract_status_list_accepted}"
-									action="#{profileBean.accepted}" update=":formAcc:panelForm" />
+									action="#{profileBean.accepted}" update=":formAcc" />
 								<p:commandButton value="#{text.contract_status_list_new}"
-									action="#{profileBean.newOrders}" update=":formAcc:panelForm" />
+									action="#{profileBean.newOrders}" update=":formAcc" />
 									<p:commandButton value="#{text.contract_status_list_rejected}"
-									action="#{profileBean.rejected}" update=":formAcc:panelForm" />
+									action="#{profileBean.rejected}" update=":formAcc" />
 									<p:commandButton value="#{text.contract_status_list_closed}"
-									action="#{profileBean.closed}" update=":formAcc:panelForm" />
+									action="#{profileBean.closed}" update=":formAcc" />
 							</h:panelGroup>
 
 						</p:panelGrid>
