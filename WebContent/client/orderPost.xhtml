@@ -21,24 +21,24 @@
 						<p:panel header="#{text.car_detail}">
 							<h:panelGrid columns="2" cellpadding="7">
 
-								<h:outputText value="#{text.model}" />
+								<h:outputText value="#{text.model} :" />
 								<h:outputText
 									value="#{selectedCarBean.car.carModel.carModelName}" id="model" />
 
-								<h:outputText value="#{text.type}" />
+								<h:outputText value="#{text.type} :" />
 								<h:outputText value="#{selectedCarBean.car.carType.value}"
 									id="type" />
 
-								<h:outputText value="#{text.number}" />
+								<h:outputText value="#{text.number} :" />
 								<h:outputText value="#{selectedCarBean.car.carNumber}"
 									id="number" />
 
-								<h:outputText value="#{text.year}" />
+								<h:outputText value="#{text.year} :" />
 								<h:outputText value="#{selectedCarBean.car.carYear}" id="year">
 									<f:convertDateTime pattern="yyyy" />
 								</h:outputText>
 
-								<h:outputText value="#{text.price}" />
+								<h:outputText value="#{text.price} :" />
 								<h:outputText value="#{selectedCarBean.car.carPrice}" id="price" />
 
 							</h:panelGrid>
@@ -55,22 +55,22 @@
 											value="#{orderPostBean.contract.contractDateFrom}"
 											navigator="true" display="inline" required="true"
 											requiredMessage="#{text.select_from_date}"
-											converterMessage="#{text.invalid_date}" pattern="dd/mm/yyyy"/>
-										<p:message for="from_time" style="color:red" />
+											converterMessage="#{text.invalid_date}"/>
+										<p:message for="from_time" style="color:red"  display="text" />
 
 										<p:outputLabel for="to_time" value="#{text.to}" />
 										<p:calendar id="to_time"
 											value="#{orderPostBean.contract.contractDateTo}"
 											navigator="true" display="inline" required="true"
 											requiredMessage="#{text.select_to_date}"
-											converterMessage="#{text.invalid_date}" pattern="dd/mm/yyyy">
+											converterMessage="#{text.invalid_date}">
 											<f:attribute name="fromTimeComponent"
 												value="#{fromTimeComponent}" />
 											<f:attribute name="car"
 												value="#{orderPostBean.selectedCarBean.car}" />
 											<f:validator validatorId="dateGapValidator" />
 										</p:calendar>
-										<p:message for="to_time" style="color:red" />
+										<p:message for="to_time" style="color:red"  display="text" />
 									</h:panelGrid>
 								</p:panel>
 

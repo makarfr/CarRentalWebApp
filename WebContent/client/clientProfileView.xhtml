@@ -5,14 +5,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	>
 
 <h:head>
 
 </h:head>
 
 <h:body>
-	<ui:composition template="/templates/layout.xhtml" >
+	<ui:composition template="/templates/layout.xhtml">
 		<ui:define name="content">
 			<div>
 				<p:panel header="#{text.profile_page}">
@@ -34,10 +35,13 @@
 			<div id="client_cars_view">
 				<h:form id="formAcc">
 					<p:panel header="#{text.client_history}" id="panelForm">
-						<p:panelGrid columns="2">
+					<table>
+						<tr>
+						<td style="width=680px">
 							<p:carousel id="accordion" value="#{profileBean.contract}"
-								var="contract" numVisible="2"  rendered="#{! empty profileBean.contract}">
-							<p:graphicImage
+								var="contract" numVisible="2"
+								rendered="#{! empty profileBean.contract}" >
+								<p:graphicImage
 									value="/resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
 									alt="no foto" width="130" height="80" />
 
@@ -81,18 +85,22 @@
 								</p:commandButton>
 
 							</p:carousel>
-							<h:panelGroup>
-								<p:commandButton value="#{text.contract_status_list_accepted}"
-									action="#{profileBean.accepted}" update=":formAcc" />
-								<p:commandButton value="#{text.contract_status_list_new}"
-									action="#{profileBean.newOrders}" update=":formAcc" />
+						</td>
+						<td>
+						
+								<h:panelGrid columns="1">
+									<p:commandButton value="#{text.contract_status_list_accepted}"
+										action="#{profileBean.accepted}" update=":formAcc" />
+									<p:commandButton value="#{text.contract_status_list_new}"
+										action="#{profileBean.newOrders}" update=":formAcc" />
 									<p:commandButton value="#{text.contract_status_list_rejected}"
-									action="#{profileBean.rejected}" update=":formAcc" />
+										action="#{profileBean.rejected}" update=":formAcc" />
 									<p:commandButton value="#{text.contract_status_list_closed}"
-									action="#{profileBean.closed}" update=":formAcc" />
-							</h:panelGroup>
-
-						</p:panelGrid>
+										action="#{profileBean.closed}" update=":formAcc" />
+								</h:panelGrid>
+								</td>
+						</tr>
+						</table>
 					</p:panel>
 
 					<p:dialog>

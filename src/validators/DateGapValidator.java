@@ -22,6 +22,10 @@ public class DateGapValidator implements Validator {
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
 
         UIInput fromTimeComponent = (UIInput) uiComponent.getAttributes().get("fromTimeComponent");
+    //    UIInput toTimeComponent = (UIInput) uiComponent.getAttributes().get("toTimeComponent");
+        
+   //     System.out.println("fromTimeComponent " + fromTimeComponent.getSubmittedValue().toString());
+  //     System.out.println("toTimeComponent " + toTimeComponent.getSubmittedValue().toString());
         Date dateFrom = (Date) fromTimeComponent.getValue();
         Date dateTo = (Date) o;
 

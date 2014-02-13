@@ -26,20 +26,19 @@
 									value="#{carBean.contractDateFrom}" navigator="true"
 									display="inline" required="true"
 									requiredMessage="#{text.select_from_date}"
-									converterMessage="#{text.invalid_date}" />
-								<p:message for="from_time" style="color:red" />
+									converterMessage="#{text.invalid_date}"/>
+								<p:message for="from_time"  display="text" />
 
 								<p:outputLabel for="to_time" value="#{text.to}" />
-								<p:calendar id="to_time" value="#{carBean.contractDateTo}"
+								<p:calendar id="to_time" value="#{carBean.contractDateTo}" 
 									navigator="true" display="inline" required="true"
 									requiredMessage="#{text.select_to_date}"
 									converterMessage="#{text.invalid_date}">
 									<f:attribute name="fromTimeComponent"
 										value="#{fromTimeComponent}" />
-
 									<f:validator validatorId="dateGapValidator" />
 								</p:calendar>
-								<p:message for="to_time" style="color:red" />
+								<p:message for="to_time" display="text"/>
 
 								<h:outputText />
 								<p:commandButton value="#{text.find}" update=":formCar:display"
@@ -60,9 +59,10 @@
 
 				<p:dataTable var="carView" value="#{carBean.cars}" paginator="true"
 					rows="10"
-					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}    {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+					paginatorTemplate="{FirstPageLink}    {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 					selectionMode="single" selection="#{carBean.car}" id="carBean"
-					resizableColumns="true" liveResize="true" rowKey="#{carView.carId}">
+					resizableColumns="true" liveResize="true" rowKey="#{carView.carId}"
+					sortOrder="descending" sortBy="carPrice">
 
 
 					<p:ajax event="rowSelect" update=":formCar:display"
@@ -73,19 +73,19 @@
 							alt="no foto" width="130" height="80" />
 
 					</p:column>
-					<p:column headerText="#{text.model}" sortBy="#{carView.carModel}">
+					<p:column headerText="#{text.model}" >
 						<h:outputText value="#{carView.carModel}"
 							converter="carModelConverter" />
 					</p:column>
 
-					<p:column headerText="#{text.year}" sortBy="#{carView.carYear}"
+					<p:column headerText="#{text.year}" sortBy="carYear"
 						filterBy="#{carView.carYear}">
 						<h:outputText value="#{carView.carYear}">
 							<f:convertDateTime pattern="yyyy" />
 						</h:outputText>
 					</p:column>
 
-					<p:column headerText="#{text.price}" sortBy="#{carView.carPrice}"
+					<p:column headerText="#{text.price}" sortBy="carPrice"
 						filterBy="#{carView.carPrice}">
 						<h:outputText value="#{carView.carPrice}" />
 					</p:column>
@@ -122,7 +122,7 @@
 								id="model" />
 
 							<h:outputText value="#{text.type}" />
-							<h:outputText value="#{carBean.car.carType.value}" id="type" />
+							<h:outputText value="#{carBean.car.carDescription}" id="type" />
 
 							<h:outputText value="#{text.number}" />
 							<h:outputText value="#{carBean.car.carNumber}" id="number" />

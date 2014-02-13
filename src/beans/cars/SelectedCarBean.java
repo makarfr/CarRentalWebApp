@@ -3,12 +3,13 @@ package beans.cars;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import model.Car;
 
 import common.Actions;
-@ViewScoped
+@SessionScoped
 @ManagedBean
 public class SelectedCarBean implements Serializable {
 
@@ -19,15 +20,22 @@ public class SelectedCarBean implements Serializable {
 	private Car car;
 
     public String choose(Car car) {
+    	System.out.println("choose car " + car);
         this.car = car;
-        return Actions.ORDER_POST.getFullUrl();
+        setCar(car);
+        System.out.println("after this.car = car " + this.car);
+        this.car.setCarDescription("Hello");
+     //   return Actions.ORDER_POST.getFullUrl();
+        return "client/orderPost.xhtml";
     }
 
     public Car getCar() {
-        return car;
+    	System.out.println("getCar" + this.car);
+        return this.car;
     }
 
     public void setCar(Car car) {
+      	System.out.println("setCar" + car);
         this.car = car;
     }
 }

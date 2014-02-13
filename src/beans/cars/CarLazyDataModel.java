@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
+
 import model.Car;
 
 import org.primefaces.model.LazyDataModel;
@@ -23,10 +25,11 @@ public class CarLazyDataModel extends LazyDataModel<Car> {
 	private int rowCount;
 	private Date from;
 	private Date to;
+	@EJB
 	private CarDAOInterface<Car> carDao;
 
 	public CarLazyDataModel(CarDAOInterface<Car> carDao2 ) {
-		this.carDao = carDao2;
+	//	this.carDao = carDao2;
 	}
 
 	@Override

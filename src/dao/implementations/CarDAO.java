@@ -47,6 +47,7 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 	@Override
 	public List<Car> findRange(int start, int count, String sortField,
 			SortOrder sortOrder, Map<String, String> filters) {
+		System.out.println("In List<Car> findRange CArDAO ");
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Car> cq = cb.createQuery(getEntityClass());
 		Root<Car> rt = cq.from(getEntityClass());
@@ -156,8 +157,8 @@ public class CarDAO extends EntityDAO<Car> implements CarDAOInterface<Car> {
 		String dateFrom = new SimpleDateFormat("dd/MM/YYYY")
 				.format(contractDateFrom);
 		String dateTo = new SimpleDateFormat("dd/MM/YYYY").format(c);
-		System.out.println("findAvailableBeetwenDates DateFrom" + dateFrom);
-		System.out.println("findAvailableBeetwenDates DateTo" + dateTo);
+	/*	System.out.println("findAvailableBeetwenDates DateFrom" + dateFrom);
+		System.out.println("findAvailableBeetwenDates DateTo" + dateTo);*/
 		Query query = em.createNamedQuery("Car.findAvailableBeetwenDates",
 				Car.class);
 		query.setParameter("from", dateFrom);

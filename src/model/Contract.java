@@ -188,10 +188,10 @@ BigDecimal totalPrice, Dealer dealer, RegisterUser registerUser,
 
     @Override
     public int hashCode() {
-        long result = contractId;
+        long result = 56;
         result = 31 * result + car.getCarId();
         result = 31 * result + registerUser.getRegisterId();
-        result = 31 * result + dealer.getDealerId();
+     //   result = 31 * result + dealer.getDealerId();
         result = 31 * result + (contractDateFrom != null ? contractDateFrom.hashCode() : 0);
         result = 31 * result + (contractDateTo != null ? contractDateTo.hashCode() : 0);
         result = 31 * result + totalPrice.intValue();
