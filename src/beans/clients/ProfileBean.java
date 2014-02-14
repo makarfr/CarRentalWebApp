@@ -13,8 +13,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import beans.dealer.ContractLazyDataModel;
-
 import model.Car;
 import model.Client;
 import model.Contract;
@@ -24,6 +22,8 @@ import common.SessionHelper;
 
 import dao.interfaces.ClientDAOInterface;
 import dao.interfaces.ContractDAOInterface;
+
+import static model.enums.StatusContract.*;
 
 @RequestScoped
 @ManagedBean
@@ -52,7 +52,7 @@ public class ProfileBean {
 
 	@PostConstruct
 	private void init() {
-	
+
 		Client client = (Client) SessionHelper.getAttribute("client");
 		selectedClient = client;
 
@@ -66,22 +66,28 @@ public class ProfileBean {
 			if (!contract.contains(contractItem)) {
 				contract.add(contractItem);
 			}
-			 if (!contractAccepted.contains(contractItem) &&(contractItem.getStatus().equals(StatusContract.ACCEPTED))){
-				 contractAccepted.add(contractItem);
-	                Collections.sort(contractNew, getContractCompare()); 
-	        }
-			  if (!contractNew.contains(contractItem) &&(contractItem.getStatus().equals(StatusContract.NEW))){
-	                contractNew.add(contractItem);
-	                Collections.sort(contractNew, getContractCompare()); 
-	        }
-			  if (!contractReject.contains(contractItem) &&(contractItem.getStatus().equals(StatusContract.REJECTED))){
-				  contractReject.add(contractItem);
-				  Collections.sort(contractReject, getContractCompare()); 
-	        }
-			  if (!contractClosed.contains(contractItem) &&(contractItem.getStatus().equals(StatusContract.CLOSED))){
-				  contractClosed.add(contractItem);
-				  Collections.sort(contractClosed, getContractCompare()); 
-	        }
+			if (!contractAccepted.contains(contractItem)
+					&& (contractItem.getStatus()
+							.equals(StatusContract.ACCEPTED))) {
+				contractAccepted.add(contractItem);
+				Collections.sort(contractNew, getContractCompare());
+			}
+			if (!contractNew.contains(contractItem)
+					&& (contractItem.getStatus().equals(StatusContract.NEW))) {
+				contractNew.add(contractItem);
+				Collections.sort(contractNew, getContractCompare());
+			}
+			if (!contractReject.contains(contractItem)
+					&& (contractItem.getStatus()
+							.equals(StatusContract.REJECTED))) {
+				contractReject.add(contractItem);
+				Collections.sort(contractReject, getContractCompare());
+			}
+			if (!contractClosed.contains(contractItem)
+					&& (contractItem.getStatus().equals(StatusContract.CLOSED))) {
+				contractClosed.add(contractItem);
+				Collections.sort(contractClosed, getContractCompare());
+			}
 		}
 
 	}
@@ -94,7 +100,6 @@ public class ProfileBean {
 		this.clientBean = clientBean;
 	}
 
-	
 	public Car getSelectedCar() {
 		return selectedCar;
 	}
@@ -150,36 +155,54 @@ public class ProfileBean {
 	public void setContractClosed(List<Contract> contractClosed) {
 		this.contractClosed = contractClosed;
 	}
-	
-	private Comparator<Contract> getContractCompare(){
-	Comparator<Contract> comp = new Comparator<Contract>() {
+
+	private Comparator<Contract> getContractCompare() {
+		Comparator<Contract> comp = new Comparator<Contract>() {
 
 			@Override
 			public int compare(Contract o1, Contract o2) {
-				if(o1.getContractDateFrom().before(o2.getContractDateFrom())){
+				if (o1.getContractDateFrom().before(o2.getContractDateFrom())) {
 					return 1;
-				} else if(o1.getContractDateFrom().after(o2.getContractDateFrom())){
+				} else if (o1.getContractDateFrom().after(
+						o2.getContractDateFrom())) {
 					return -1;
 				}
 				return 0;
 			}
-		};	  
-	                return comp;
+		};
+		return comp;
 	}
-	
-	public void accepted(){
+
+	public void accepted() {
 		contract = contractAccepted;
 	}
-	
-	public void newOrders(){
+
+	public void newOrders() {
 		contract = contractNew;
 	}
-	
-	public void closed(){
+
+	public void closed() {
 		contract = contractClosed;
 	}
-	
-	public void rejected(){
+
+	public void rejected() {
 		contract = contractReject;
+
 	}
+
+	public boolean isCarAvailableForRent(StatusContract status) {
+
+		switch (status) {
+		case REJECTED:
+		case ACCEPTED:
+		case NEW:
+			return false;
+		case CLOSED:
+			return true;
+		default:
+			return false;
+		}
+
+	}
+
 }

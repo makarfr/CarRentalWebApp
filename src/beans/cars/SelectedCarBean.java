@@ -26,7 +26,7 @@ public class SelectedCarBean implements Serializable {
         System.out.println("after this.car = car " + this.car);
         this.car.setCarDescription("Hello");
      //   return Actions.ORDER_POST.getFullUrl();
-        return "client/orderPost.xhtml";
+        return Actions.ORDER_POST.getFullUrl();
     }
 
     public Car getCar() {
