@@ -1,5 +1,6 @@
 package beans;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -84,7 +85,6 @@ public class AuthentificationBean implements Serializable {
 	}
 
 	public String login() {
-
 		FacesContext fc = FacesContext.getCurrentInstance();
 		ExternalContext ec = fc.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) ec.getRequest();
@@ -95,20 +95,22 @@ public class AuthentificationBean implements Serializable {
 
 			request.login(name, password);
 			RegisterUser user = dao.findByLogin(name);
-			System.out.println("RegisterUser Role : " + user.getRole().getRoleName());
+			System.out.println("RegisterUser Role : "
+					+ user.getRole().getRoleName());
 			SessionHelper.putAtrributeToSession("regId", user.getRegisterId());
-			SessionHelper.putAtrributeToSession("userLogin", user.getRegisterLogin());
-		
+			SessionHelper.putAtrributeToSession("userLogin",
+					user.getRegisterLogin());
 
 			if (request.isUserInRole(UserRole.CLIENT.name().toLowerCase())) {
 				System.out.println(" Role is client ");
 				this.client = clientDao.getByUser(user.getRegisterId());
 				SessionHelper.putAtrributeToSession("id", client.getClientId());
 				SessionHelper.putAtrributeToSession("client", client);
-				
+
 				isLogged = true;
 				return Actions.CARS_VIEW.getFullUrl();
-			} else if (request.isUserInRole(UserRole.ADMIN.name().toLowerCase())) {
+			} else if (request
+					.isUserInRole(UserRole.ADMIN.name().toLowerCase())) {
 				System.out.println(" Role is admin ");
 				isLogged = true;
 				return Actions.DEALER_VIEW.getFullUrl();
@@ -144,5 +146,22 @@ public class AuthentificationBean implements Serializable {
 		return Actions.LOGIN_VIEW.getFullUrl();
 
 	}
+
+	/*public void ifAlreadyLogged() {
+		System.out.println(" in ifAlreadyLogged 1 " );
+		FacesContext fc = FacesContext.getCurrentInstance();
+		System.out.println(" in ifAlreadyLogged 2 " );
+		ExternalContext extContext = fc.getExternalContext();  
+		try {
+			extContext.redirect(extContext.getRequestContextPath() + "/carView.xhtml");
+		} catch (IOException e) {
+			System.out.println("error block");
+			e.printStackTrace();
+		}  
+		System.out.println(" in ifAlreadyLogged 3 " );
+		String url = "/CarRentalWeb/carView.xhtml";
+		String s = "<script > window.location =" + url + " ; </script>";
+	//	return s;
+	}*/
 
 }

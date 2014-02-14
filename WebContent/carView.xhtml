@@ -38,7 +38,7 @@
 										value="#{fromTimeComponent}" />
 									<f:validator validatorId="dateGapValidator" />
 								</p:calendar>
-								<p:message for="to_time" display="text"/>
+								<p:message for="to_time" display="text" />
 
 								<h:outputText />
 								<p:commandButton value="#{text.find}" update=":formCar:display"
@@ -62,7 +62,7 @@
 					paginatorTemplate="{FirstPageLink}    {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 					selectionMode="single" selection="#{carBean.car}" id="carBean"
 					resizableColumns="true" liveResize="true" rowKey="#{carView.carId}"
-					sortOrder="descending" sortBy="carPrice">
+					sortOrder="descending" sortBy="carPrice" >
 
 
 					<p:ajax event="rowSelect" update=":formCar:display"
