@@ -68,7 +68,7 @@
 						</p:panelGrid>
 
 					</h:panelGrid>
-					<p:commandButton value="#{text.reset}" type="reset"/>
+					<p:commandButton value="#{text.reset}" type="reset" update="addClientForm" process="@this"/>
 
 					<p:commandButton value="#{text.ok}" action="#{addClientBean.save}"
 						update=":addClientForm">
