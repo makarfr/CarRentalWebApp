@@ -22,20 +22,18 @@ public class SelectedCarBean implements Serializable {
     public String choose(Car car) {
     	System.out.println("choose car " + car);
         this.car = car;
-        setCar(car);
         System.out.println("after this.car = car " + this.car);
-        this.car.setCarDescription("Hello");
-     //   return Actions.ORDER_POST.getFullUrl();
+         //   return Actions.ORDER_POST.getFullUrl();
         return Actions.ORDER_POST.getFullUrl();
     }
 
     public Car getCar() {
-    	System.out.println("getCar" + this.car);
+    	System.out.println("getCar " + this.car);
         return this.car;
     }
 
     public void setCar(Car car) {
-      	System.out.println("setCar" + car);
+      	System.out.println("setCar " + car);
         this.car = car;
     }
 }

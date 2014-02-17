@@ -5,8 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	>
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 
@@ -35,71 +34,68 @@
 			<div id="client_cars_view">
 				<h:form id="formAcc">
 					<p:panel header="#{text.client_history}" id="panelForm">
-					<table>
-						<tr>
-						<td style="width=680px">
-							<p:carousel id="accordion" value="#{profileBean.contract}"
-								var="contract" numVisible="2"
-								rendered="#{! empty profileBean.contract}" >
-								<p:graphicImage
-									value="/resources/foto/#{contract.car.carModel.carModelName}_#{contract.car.carModel.carModelDescription}.jpg"
-									alt="no foto" width="130" height="80" />
+						<table>
+							<tr>
+								<td style=""><p:carousel id="accordion"
+										value="#{profileBean.contract}" var="order" numVisible="2"
+										rendered="#{! empty profileBean.contract}"  itemStyleClass="carItem">
+										<p:graphicImage
+											value="/resources/foto/#{order.car.carModel.carModelName}_#{order.car.carModel.carModelDescription}.jpg"
+											alt="no foto" width="130" height="80" />
 
-								<h:panelGrid columns="2" cellpadding="5">
-									<h:outputText value="#{text.model} :" />
-									<h:outputText value="#{contract.car.carModel.carModelName}"
-										id="model" />
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputText value="#{text.model} :" />
+											<h:outputText value="#{order.car.carModel.carModelName}"
+												id="model" />
 
-									<h:outputText value="#{text.type} :" />
-									<h:outputText value="#{contract.car.carType.value}" id="type" />
+											<h:outputText value="#{text.type} :" />
+											<h:outputText value="#{order.car.carType.value}" id="type" />
 
 
-									<h:outputText value="#{text.year} :" />
-									<h:outputText value="#{contract.car.carYear}" id="year">
-										<f:convertDateTime pattern="yyyy" />
-									</h:outputText>
+											<h:outputText value="#{text.year} :" />
+											<h:outputText value="#{order.car.carYear}" id="year">
+												<f:convertDateTime pattern="yyyy" />
+											</h:outputText>
 
-									<h:outputText value="#{text.price} :" />
-									<h:outputText value="#{contract.car.carPrice}" id="price" />
+											<h:outputText value="#{text.price} :" />
+											<h:outputText value="#{order.car.carPrice}" id="price" />
 
-									<h:outputText value="#{text.from} :" />
-									<h:outputText value="#{contract.contractDateFrom}"
-										id="dateFrom" converter="javax.faces.DateTime" />
+											<h:outputText value="#{text.from} :" />
+											<h:outputText value="#{order.contractDateFrom}"
+												id="dateFrom" converter="javax.faces.DateTime" />
 
-									<h:outputText value="#{text.to} :" />
-									<h:outputText value="#{contract.contractDateTo}" id="dateTo"
-										converter="javax.faces.DateTime" />
+											<h:outputText value="#{text.to} :" />
+											<h:outputText value="#{order.contractDateTo}" id="dateTo"
+												converter="javax.faces.DateTime" />
 
-									<h:outputText value="#{text.status} :" />
-									<h:outputText value="#{contract.status}" id="stat" />
+											<h:outputText value="#{text.status} :" />
+											<h:outputText value="#{order.status}" id="stat" />
 
-									<h:outputText value="#{text.total_sum} :" />
-									<h:outputText value="#{contract.totalPrice}" id="totSum" />
+											<h:outputText value="#{text.total_sum} :" />
+											<h:outputText value="#{order.totalPrice}" id="totSum" />
 
-								</h:panelGrid>
-								<p:commandButton value="#{text.rent_it_again}" rendered="#{profileBean.isCarAvailableForRent(contract.status)}"
-									action="#{selectedCarBean.choose(contract.car)}"
-									update="@(page)">
-									<p:confirm header="#{text.confirmation}"
-										message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
-								</p:commandButton>
-
-							</p:carousel>
-						</td>
-						<td>
-						
-								<h:panelGrid columns="1">
-									<p:commandButton value="#{text.contract_status_list_accepted}"
-										action="#{profileBean.accepted}" update=":formAcc" />
-									<p:commandButton value="#{text.contract_status_list_new}"
-										action="#{profileBean.newOrders}" update=":formAcc" />
-									<p:commandButton value="#{text.contract_status_list_rejected}"
-										action="#{profileBean.rejected}" update=":formAcc" />
-									<p:commandButton value="#{text.contract_status_list_closed}"
-										action="#{profileBean.closed}" update=":formAcc" />
-								</h:panelGrid>
-								</td>
-						</tr>
+										</h:panelGrid>
+										
+												<p:commandButton value="#{text.rent_it_again}"
+												action="#{selectedCarBean.choose(order.car)}"
+												update="@(page)">
+												
+												<p:confirm header="#{text.confirmation}"
+													message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
+											</p:commandButton>
+									
+									</p:carousel></td>
+								<td><h:panelGrid columns="1">
+										<p:commandButton value="#{text.contract_status_list_accepted}"
+											action="#{profileBean.accepted}" update=":formAcc:accordion" />
+										<p:commandButton value="#{text.contract_status_list_new}"
+											action="#{profileBean.newOrders}" update=":formAcc" />
+										<p:commandButton value="#{text.contract_status_list_rejected}"
+											action="#{profileBean.rejected}" update=":formAcc" />
+										<p:commandButton value="#{text.contract_status_list_closed}"
+											action="#{profileBean.closed}" update=":formAcc" />
+									</h:panelGrid></td>
+							</tr>
 						</table>
 					</p:panel>
 

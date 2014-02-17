@@ -66,12 +66,12 @@ public class ProfileBean {
 			if (!contract.contains(contractItem)) {
 				contract.add(contractItem);
 			}
-			if (!contractAccepted.contains(contractItem)
+			/*if (!contractAccepted.contains(contractItem)
 					&& (contractItem.getStatus()
 							.equals(StatusContract.ACCEPTED))) {
 				contractAccepted.add(contractItem);
-				Collections.sort(contractNew, getContractCompare());
-			}
+				Collections.sort(contractAccepted, getContractCompare());
+			}*/
 			if (!contractNew.contains(contractItem)
 					&& (contractItem.getStatus().equals(StatusContract.NEW))) {
 				contractNew.add(contractItem);
@@ -174,7 +174,17 @@ public class ProfileBean {
 	}
 
 	public void accepted() {
-		contract = contractAccepted;
+		Iterator it = contract.iterator();
+		while (it.hasNext()) {
+			Contract contractItem = ((Contract) it.next());
+			if (!contractAccepted.contains(contractItem)
+					&& (contractItem.getStatus()
+							.equals(StatusContract.ACCEPTED))) {
+				contractAccepted.add(contractItem);
+				Collections.sort(contractAccepted, getContractCompare());
+			}
+		}
+		setContract(contractAccepted);
 	}
 
 	public void newOrders() {
@@ -186,7 +196,7 @@ public class ProfileBean {
 	}
 
 	public void rejected() {
-		contract = contractReject;
+		setContract(contractReject);
 
 	}
 
