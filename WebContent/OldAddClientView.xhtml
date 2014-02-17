@@ -23,46 +23,46 @@
 							<p:growl id="messages" showDetail="true" />
 							<h:outputText value="#{text.login_label}:" />
 							<h:inputText label="Login" required="true" id="login"
-								value="#{addClientBean.client.registerUser.registerLogin}"
+								value="#{clientBean.selectedClient.registerUser.registerLogin}"
 								maxlength="200" requiredMessage="#{text.login_required}" />
 
 							<h:outputText value="#{text.password}:" />
 							<h:inputSecret label="Password" required="true" id="pass"
-								value="#{addClientBean.client.registerUser.registerPassword}"
+								value="#{clientBean.selectedClient.registerUser.registerPassword}"
 								maxlength="200" requiredMessage="#{text.password_required}" />
 
 
 							<h:outputText value="#{text.confirm_password}:" />
-							<h:inputSecret label="Password" type="password" required="true"
-								id="pw2" value="#{addClientBean.passwordSecondTime}"
+							<p:inputText label="Password" type="password" required="true"
+								id="pw2" value="#{clientBean.passwordSecondTime}"
 								maxlength="200" requiredMessage="#{text.password_conf_required}" />
 
 
 							<h:outputText value="#{text.client_name}" />
 							<h:inputText label="Name" required="true" id="name"
-								value="#{addClientBean.client.clientName}" maxlength="200"
+								value="#{clientBean.selectedClient.clientName}" maxlength="200"
 								requiredMessage="#{text.name_required}" />
 
 							<h:outputText value="#{text.client_surname}" />
 							<h:inputText label="Surname" required="true" id="s"
-								value="#{addClientBean.client.clientSurname}"
+								value="#{clientBean.selectedClient.clientSurname}"
 								maxlength="200" requiredMessage="#{text.surname_required}" />
 
 							<h:outputText value="#{text.client_address}:" />
 							<h:inputText label="Address" required="true" id="adress"
-								value="#{addClientBean.client.clientAddress}"
+								value="#{clientBean.selectedClient.clientAddress}"
 								maxlength="200" requiredMessage="#{text.addres_required}" />
 
 							<h:outputText value="#{text.client_phone_number}:" />
 							<p:inputMask label="PhoneNumber" required="true" id="number"
-								value="#{addClientBean.client.clientPhoneNumber}"
+								value="#{clientBean.selectedClient.clientPhoneNumber}"
 								mask="+ 38(999) 999-99-99"
 								requiredMessage="#{text.phone_number__required}" />
 
 							<h:outputText value="#{text.client_driver_license}:" />
 							<p:inputMask label="ClientDriverlicense" required="true"
 								id="license"
-								value="#{addClientBean.client.clientDriverLicenseNumber}"
+								value="#{clientBean.selectedClient.clientDriverLicenseNumber}"
 								mask="aa-9999-aa"
 								requiredMessage="#{text.driver_license__required}" />
 						</p:panelGrid>
@@ -70,7 +70,7 @@
 					</h:panelGrid>
 					<p:commandButton value="#{text.reset}" type="reset"/>
 
-					<p:commandButton value="#{text.ok}" action="#{addClientBean.save}"
+					<p:commandButton value="#{text.ok}" action="#{clientBean.save}"
 						update=":addClientForm">
 						<p:confirm header="#{text.confirmation}"
 							message="#{text.confirm_are_you_sure}" icon="ui-icon-alert" />
@@ -78,7 +78,7 @@
 				</h:form>
 				<h:form>
 					<p:commandButton value="#{text.back}"
-						action="/carView.xhtml?faces-redirect=true" ajax="false" />
+						action="//carView.xhtml?faces-redirect=true" ajax="false" />
 				</h:form>
 			</p:panel>
 			

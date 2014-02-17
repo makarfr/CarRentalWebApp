@@ -66,6 +66,7 @@ public class ProfileBean {
 			Contract contractItem = ((Contract) it.next());
 			if (!contract.contains(contractItem)) {
 				contract.add(contractItem);
+		//	}
 			if (!contractAccepted.contains(contractItem)
 					&& (contractItem.getStatus()
 							.equals(StatusContract.ACCEPTED))) {
