@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.Car;
 import model.Client;
@@ -25,7 +26,7 @@ import dao.interfaces.ContractDAOInterface;
 
 import static model.enums.StatusContract.*;
 
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class ProfileBean {
 
@@ -65,7 +66,7 @@ public class ProfileBean {
 			Contract contractItem = ((Contract) it.next());
 			if (!contract.contains(contractItem)) {
 				contract.add(contractItem);
-			}
+		//	}
 			if (!contractAccepted.contains(contractItem)
 					&& (contractItem.getStatus()
 							.equals(StatusContract.ACCEPTED))) {
@@ -87,6 +88,7 @@ public class ProfileBean {
 					&& (contractItem.getStatus().equals(StatusContract.CLOSED))) {
 				contractClosed.add(contractItem);
 				Collections.sort(contractClosed, getContractCompare());
+			}
 			}
 		}
 
