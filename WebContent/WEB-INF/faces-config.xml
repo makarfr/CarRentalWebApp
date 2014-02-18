@@ -11,7 +11,7 @@
 
 	<application>
 		<locale-config>
-			<default-locale>en</default-locale>
+			<default-locale>ru</default-locale>
 		</locale-config>
 		<resource-bundle>
 			<base-name>i18n.text</base-name>

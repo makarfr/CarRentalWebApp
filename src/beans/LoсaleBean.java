@@ -18,6 +18,7 @@ public class LoñaleBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String localeCode;
+	private Locale locale;
 
 	private Map<String, Locale> languages = new LinkedHashMap<String, Locale>(2) {
 		{
@@ -28,7 +29,9 @@ public class LoñaleBean implements Serializable {
 
 	public LoñaleBean() {
 		Application app = FacesContext.getCurrentInstance().getApplication();
+		locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 		localeCode = app.getDefaultLocale().getLanguage();
+		
 	}
 
 	public Map<String, Locale> getLanguages() {
@@ -58,6 +61,14 @@ public class LoñaleBean implements Serializable {
 				System.out.println("new locale: " + FacesContext.getCurrentInstance().getViewRoot().getLocale());				
 			}
 		}
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
 	}
 
 
