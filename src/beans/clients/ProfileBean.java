@@ -71,7 +71,7 @@ public class ProfileBean {
 					&& (contractItem.getStatus()
 							.equals(StatusContract.ACCEPTED))) {
 				contractAccepted.add(contractItem);
-				Collections.sort(contractNew, getContractCompare());
+				Collections.sort(contractAccepted, getContractCompare());
 			}
 			if (!contractNew.contains(contractItem)
 					&& (contractItem.getStatus().equals(StatusContract.NEW))) {
